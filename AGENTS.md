@@ -139,7 +139,7 @@ Full reference lives in the main ilha `AGENTS.md`, but the essentials for valida
 - Multi-statement: use function declaration — `caxi eval "function f() { const x=1; return x }"` (auto-invoked)
 - Broken: `caxi eval "const x = 1; return x"` — fails with `Unexpected token ';'`
 - Comma operator works: `caxi eval "(window.x = 42, window.x)"`
-- On Sergio's machine: use `caxi` (wraps `chrome-devtools-axi` with npmrc swap). On other machines, install with `npm install -g @kunchenguid/chrome-devtools-axi` and use `chrome-devtools-axi` directly.
+- Installation: `npm install -g @kunchenguid/chrome-devtools-axi`. Some dev machines that use a restricted npm registry may need a wrapper that swaps `~/.npmrc` to the public registry before invocation (common in enterprise setups where the default registry is internal).
 - File URLs for local HTML: `caxi open "file://$(pwd)/output/todo/laguna-xs.2.html"` — absolute path required.
 
 ### Token counts are more honest than tok/s
@@ -187,7 +187,7 @@ These are CHEAP checks (grep) but they differentiate well. A model that returns 
 - **Synthetic multiple-choice tests** — we're not HumanEval. We care if code runs.
 - **One-liners** — tests trivia, not engineering. Single prompt = at least a full file worth of output.
 - **Prompts the model has memorized** — classic FizzBuzz, basic fibonacci. Too much training data, zero discrimination.
-- **Anything requiring Sergio's taste** — if only one human can grade it, it's not automatable.
+- **Anything requiring one-person's subjective taste** — if only one human can grade it, it's not automatable.
 
 ### When to retire a benchmark
 
