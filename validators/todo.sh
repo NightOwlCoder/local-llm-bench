@@ -14,7 +14,7 @@
 #   - Actual font specified (not default Times New Roman)
 #
 # Usage: ./todo.sh <artifact-file> <model> <results-dir>
-set -euo pipefail
+set -uo pipefail
 ARTIFACT="$1"
 MODEL="$2"
 RESULTS="$3"
@@ -26,22 +26,39 @@ if [ ! -s "$ARTIFACT" ]; then
   exit 1
 fi
 
-SCREENSHOT="$RESULTS/todo-$SAFE.png"
-BYTES=$(wc -c < "$ARTIFACT")
+# Absolute paths required — caxi can't resolve relative file:// URLs
+ABS_ARTIFACT="$(cd "$(dirname "$ARTIFACT")" && pwd)/$(basename "$ARTIFACT")"
+ABS_RESULTS="$(cd "$RESULTS" && pwd)"
 
-caxi open "file://$ARTIFACT" >/dev/null 2>&1 || true
+SCREENSHOT="$RESULTS/todo-$SAFE.png"
+BYTES=$(wc -c < "$ARTIFACT" | tr -d ' ')
+
+caxi open "file://$ABS_ARTIFACT" >/dev/null 2>&1 || true
 sleep 1
 caxi screenshot "$SCREENSHOT" >/dev/null 2>&1 || true
 
-HAS_INPUT=$(caxi eval "document.querySelector('input[type=text], input:not([type]), textarea') !== null" 2>/dev/null | tail -1 || echo "false")
-HAS_BUTTON=$(caxi eval "document.querySelector('button') !== null" 2>/dev/null | tail -1 || echo "false")
-USES_LOCAL_STORAGE=$(grep -c "localStorage" "$ARTIFACT" 2>/dev/null || echo "0")
-USES_CSS_VARS=$(grep -c "^\s*--\|var(--" "$ARTIFACT" 2>/dev/null || echo "0")
-HAS_BORDER_RADIUS=$(grep -c "border-radius" "$ARTIFACT" 2>/dev/null || echo "0")
-HAS_BOX_SHADOW=$(grep -c "box-shadow" "$ARTIFACT" 2>/dev/null || echo "0")
-HAS_GRADIENT=$(grep -c "gradient" "$ARTIFACT" 2>/dev/null || echo "0")
-HAS_TRANSITION=$(grep -c "transition\|animation" "$ARTIFACT" 2>/dev/null || echo "0")
-HAS_FILTER_WORDS=$(grep -ciE "filter|all|active|completed|done" "$ARTIFACT" 2>/dev/null || echo "0")
+# Extract strict true/false from caxi output; fall back to "false" if caxi returned noise
+caxi_bool() { caxi eval "$1" 2>/dev/null | grep -oE '^(true|false)$' | tail -1 || echo "false"; }
+HAS_INPUT=$(caxi_bool "document.querySelector('input[type=text], input:not([type]), textarea') !== null")
+HAS_BUTTON=$(caxi_bool "document.querySelector('button') !== null")
+
+# grep -c returns 1 on zero matches; `|| echo 0` then appends a second "0",
+# giving "0\n0" which breaks integer arithmetic and jq --argjson.
+# Use grep without -c + wc -l — always exits 0 with a clean single-line count.
+count_matches() {
+  grep -F -- "$1" "$ARTIFACT" 2>/dev/null | wc -l | tr -d ' '
+}
+count_matches_ci() {
+  grep -iE -- "$1" "$ARTIFACT" 2>/dev/null | wc -l | tr -d ' '
+}
+
+USES_LOCAL_STORAGE=$(count_matches "localStorage")
+USES_CSS_VARS=$(count_matches "^\s*--\|var(--")
+HAS_BORDER_RADIUS=$(count_matches "border-radius")
+HAS_BOX_SHADOW=$(count_matches "box-shadow")
+HAS_GRADIENT=$(count_matches "gradient")
+HAS_TRANSITION=$(count_matches "transition\|animation")
+HAS_FILTER_WORDS=$(count_matches_ci "filter|all|active|completed|done")
 
 # Simple polish score 0-5
 POLISH=0

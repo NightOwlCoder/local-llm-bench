@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Validate oi response: just needs to be non-empty.
 # Usage: ./oi.sh <artifact-file> <model> <results-dir>
-set -euo pipefail
+set -uo pipefail
 ARTIFACT="$1"
 MODEL="$2"
 RESULTS="$3"

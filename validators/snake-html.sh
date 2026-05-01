@@ -3,7 +3,7 @@
 # canvas and basic game elements.
 #
 # Usage: ./snake-html.sh <artifact-file> <model> <results-dir>
-set -euo pipefail
+set -uo pipefail
 ARTIFACT="$1"
 MODEL="$2"
 RESULTS="$3"
@@ -15,21 +15,21 @@ if [ ! -s "$ARTIFACT" ]; then
   exit 1
 fi
 
+ABS_ARTIFACT="$(cd "$(dirname "$ARTIFACT")" && pwd)/$(basename "$ARTIFACT")"
 SCREENSHOT="$RESULTS/snake-html-$SAFE.png"
-BYTES=$(wc -c < "$ARTIFACT")
+BYTES=$(wc -c < "$ARTIFACT" | tr -d ' ')
 
-# Open in Chrome, wait for paint, screenshot
-caxi open "file://$ARTIFACT" >/dev/null 2>&1 || true
+caxi open "file://$ABS_ARTIFACT" >/dev/null 2>&1 || true
 sleep 1
 caxi screenshot "$SCREENSHOT" >/dev/null 2>&1 || true
 
-# Check for canvas OR div-based snake grid
-HAS_CANVAS=$(caxi eval "document.querySelector('canvas') !== null" 2>/dev/null | tail -1 || echo "false")
-HAS_KEY_HANDLER=$(caxi eval "typeof document.onkeydown === 'function' || typeof window.onkeydown === 'function' || document.querySelectorAll('script').length > 0" 2>/dev/null | tail -1 || echo "false")
-JS_ERRORS=$(caxi eval "(window.__errors||[]).length" 2>/dev/null | tail -1 || echo "0")
+caxi_bool() { caxi eval "$1" 2>/dev/null | grep -oE '^(true|false)$' | tail -1 || echo "false"; }
 
-jq -n --arg m "$MODEL" --argjson b "$BYTES" --arg c "$HAS_CANVAS" --arg k "$HAS_KEY_HANDLER" --arg e "$JS_ERRORS" \
-  '{model:$m, benchmark:"snake-html", pass:($c == "true"), bytes:$b, has_canvas:$c, has_key_handler:$k, js_errors:$e}' \
+HAS_CANVAS=$(caxi_bool "document.querySelector('canvas') !== null")
+HAS_SCRIPT=$(caxi_bool "document.querySelectorAll('script').length > 0")
+
+jq -n --arg m "$MODEL" --argjson b "$BYTES" --arg c "$HAS_CANVAS" --arg s "$HAS_SCRIPT" \
+  '{model:$m, benchmark:"snake-html", pass:($c == "true"), bytes:$b, has_canvas:$c, has_script:$s}' \
   > "$RESULTS/snake-html-$SAFE.json"
 
 if [ "$HAS_CANVAS" = "true" ]; then

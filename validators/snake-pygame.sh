@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Validate snake-pygame: Python syntax check only (can't auto-play pygame).
 # Usage: ./snake-pygame.sh <artifact-file> <model> <results-dir>
-set -euo pipefail
+set -uo pipefail
 ARTIFACT="$1"
 MODEL="$2"
 RESULTS="$3"

@@ -4,7 +4,7 @@
 # structure + key handling.
 #
 # Usage: ./tetris.sh <artifact-file> <model> <results-dir>
-set -euo pipefail
+set -uo pipefail
 ARTIFACT="$1"
 MODEL="$2"
 RESULTS="$3"
@@ -16,25 +16,30 @@ if [ ! -s "$ARTIFACT" ]; then
   exit 1
 fi
 
+ABS_ARTIFACT="$(cd "$(dirname "$ARTIFACT")" && pwd)/$(basename "$ARTIFACT")"
 SCREENSHOT="$RESULTS/tetris-$SAFE.png"
-BYTES=$(wc -c < "$ARTIFACT")
+BYTES=$(wc -c < "$ARTIFACT" | tr -d ' ')
 
-caxi open "file://$ARTIFACT" >/dev/null 2>&1 || true
+caxi open "file://$ABS_ARTIFACT" >/dev/null 2>&1 || true
 sleep 1
 caxi screenshot "$SCREENSHOT" >/dev/null 2>&1 || true
 
-HAS_CANVAS=$(caxi eval "document.querySelector('canvas') !== null" 2>/dev/null | tail -1 || echo "false")
-HAS_SCRIPT=$(caxi eval "document.querySelectorAll('script').length > 0" 2>/dev/null | tail -1 || echo "false")
-PAGE_HEIGHT=$(caxi eval "document.body.scrollHeight" 2>/dev/null | tail -1 || echo "0")
+caxi_bool() { caxi eval "$1" 2>/dev/null | grep -oE '^(true|false)$' | tail -1 || echo "false"; }
+caxi_num()  { caxi eval "$1" 2>/dev/null | grep -oE '^[0-9]+$' | tail -1 || echo "0"; }
+
+HAS_CANVAS=$(caxi_bool "document.querySelector('canvas') !== null")
+HAS_SCRIPT=$(caxi_bool "document.querySelectorAll('script').length > 0")
+PAGE_HEIGHT=$(caxi_num "document.body.scrollHeight")
 
 # Poke an arrow key and check page didn't crash
 caxi eval "document.dispatchEvent(new KeyboardEvent('keydown', {key:'ArrowDown'}))" >/dev/null 2>&1 || true
-STILL_ALIVE=$(caxi eval "typeof document !== 'undefined'" 2>/dev/null | tail -1 || echo "false")
+STILL_ALIVE=$(caxi_bool "typeof document !== 'undefined'")
 
 PASS="false"
 [ "$HAS_CANVAS" = "true" ] && [ "$HAS_SCRIPT" = "true" ] && [ "$STILL_ALIVE" = "true" ] && PASS="true"
 
-jq -n --arg m "$MODEL" --argjson b "$BYTES" --arg c "$HAS_CANVAS" --arg s "$HAS_SCRIPT" --arg h "$PAGE_HEIGHT" --arg a "$STILL_ALIVE" --arg p "$PASS" \
+jq -n --arg m "$MODEL" --argjson b "$BYTES" --arg c "$HAS_CANVAS" --arg s "$HAS_SCRIPT" \
+  --argjson h "$PAGE_HEIGHT" --arg a "$STILL_ALIVE" --arg p "$PASS" \
   '{model:$m, benchmark:"tetris", pass:($p=="true"), bytes:$b, has_canvas:$c, has_script:$s, page_height:$h, survived_keypress:$a}' \
   > "$RESULTS/tetris-$SAFE.json"
 
