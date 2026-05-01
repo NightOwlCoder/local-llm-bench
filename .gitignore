@@ -1,0 +1,19 @@
+# Raw API responses — big, regenerable from bench.sh
+raw/*.json
+raw/*.log
+raw/SUMMARY.txt
+
+# Full run logs — huge, regenerable
+bench-run*.log
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Python bytecode (in case anyone adds scripts)
+__pycache__/
+*.pyc

@@ -1,0 +1,141 @@
+⏰ 13:13:08 ❯ ollama run gemma4:26b --verbose
+>>> oi
+Thinking...
+The user said "oi" (Portuguese for "hi").
+The user is greeting me.
+
+    *   Acknowledge the greeting.
+    *   Respond in the same language (Portuguese).
+    *   Offer assistance.
+
+    *   Option 1: "Oi! Como posso ajudar?" (Hi! How can I help?)
+    *   Option 2: "Olá! Tudo bem? Em que posso te ajudar hoje?"
+(Hello! Everything okay? How can I help you today?)
+    *   Option 3: "Oi! O que manda?" (Hi! What's up? - more
+informal).
+"Oi! Tudo bem? Como posso te ajudar hoje?" (Friendly,
+professional, and helpful).
+...done thinking.
+
+Oi! Tudo bem? Como posso te ajudar hoje?
+
+total duration:       2.297903541s
+load duration:        132.632041ms
+prompt eval count:    17 token(s)
+prompt eval duration: 179.774292ms
+prompt eval rate:     94.56 tokens/s
+eval count:           169 token(s)
+eval duration:        1.895956959s
+eval rate:            89.14 tokens/s
+>>> give me a snake pygame please
+Thinking...
+The user wants a implementation of the classic "Snake" game using
+the `pygame` library in Python.
+
+    *   Language: Python.
+    *   Library: `pygame`.
+    *   Core Mechanics:
+        *   A window (surface).
+        *   A snake (a list of coordinates/segments).
+        *   Food (a random coordinate).
+        *   Movement (changing direction via arrow keys or WASD).
+        *   Growth (eating food increases snake length).
+        *   Game Over conditions (hitting walls or hitting self).
+        *   Score tracking.
+        *   Game loop (handle events $\rightarrow$ update logic
+$\rightarrow$ draw).
+
+    *   *Setup:* Import `pygame`, `time`, `random`. Initialize
+`pygame`. Define colors (Black, White, Red, Green).
+    *   *Constants:* Screen width/height, snake block size, snake
+speed.
+    *   *Snake Structure:* A list of `[x, y]` positions.
+    *   *Main Loop:*
+        *   Event handling (Key presses).
+        *   Update snake position (Head moves based on
+direction).
+        *   Collision detection (Walls/Self).
+        *   Food logic (If head == food, grow snake, spawn new
+food).
+        *   Rendering (Draw background, food, snake, score).
+        *   Clock control (FPS).
+
+    *   *Class vs. Function:* For a simple request, a procedural
+approach with a `gameLoop` function is easier to read for
+beginners.
+    *   *Class structure:*
+        *   `snake_block`: Size of each square.
+        *   `snake_speed`: Speed of the game.
+    *   *Logic details:*
+        *   Need to prevent the snake from reversing directly
+(e.g., moving left while going right).
+        *   Need a way to display "Game Over" and "Score".
+
+    *   *Imports:* `import pygame`, `import time`, `import
+random`.
+    *   *Init:* `pygame.init()`.
+    *   *Colors:* `white = (255, 255, 255)`, `yellow = (255, 255,
+102)`, etc.
+    *   *The Loop:*
+        ```python
+        while not game_over:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    game_close = True
+                if event.type == pygame.KEYDOWN:
+                    # Update direction
+            # Move snake
+            # Check wall collision
+            # Check food collision
+            # Update display
+        ```
+
+    *   Add comments to explain what each part does.
+    *   Include instructions on how to run it (installing
+pygame).
+    *   Ensure the code is "copy-paste ready".
+
+    *   *Self-Correction during coding:* Make sure the food
+position is aligned with the grid (multiple of `snake_block`).
+    *   *Issue:* If I move the snake, the tail needs to follow.
+    *   *Logic:* `snake_head = [x1, y1]`.
+`snake_list.append(snake_head)`. If `len(snake_list) >
+length_of_snake`, `del snake_list[0]`.
+...done thinking.
+
+To run this code, you will need to have the `pygame` library
+installed. You can install it via terminal/command prompt using:
+`pip install pygame`
+
+Here is a complete, well-commented, and playable version of the
+Snake game.
+
+[... python code in snake/gemma4-26b.py ...]
+
+### How to Play:
+1.  **Controls:** Use your **Arrow Keys** (Up, Down, Left, Right)
+to move the snake.
+2.  **Objective:** Eat the **Red square** (food) to grow longer
+and increase your score.
+3.  **Game Over:** You lose if you hit the edge of the window or
+if you crash into your own tail.
+4.  **Restarting:** After losing, press **'C'** to play again or
+**'Q'** to quit.
+
+### Key Features of this code:
+*   **Grid Alignment:** The food and snake are aligned to a 20px
+grid so the movement feels smooth and "classic."
+*   **Anti-Reverse Logic:** I added a check (`and x1_change ==
+0`) so that the snake cannot instantly turn 180 degrees into
+itself, which would cause an immediate "accidental" game over.
+*   **Score Tracking:** The score is displayed live on the screen.
+
+total duration:       27.763803833s
+load duration:        140.841875ms
+prompt eval count:    44 token(s)
+prompt eval duration: 113.953334ms
+prompt eval rate:     386.12 tokens/s
+eval count:           2334 token(s)
+eval duration:        26.920653271s
+eval rate:            86.70 tokens/s
+>>> Send a message (/? for help)

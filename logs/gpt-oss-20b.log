@@ -1,0 +1,104 @@
+⏰ 13:21:14 ❯ ollama run gpt-oss:20b --verbose
+>>> oi
+Thinking...
+The user says "oi". It's Portuguese greeting meaning "hi". They
+want a reply. The user says "oi" but no context. Maybe a casual
+greeting. They might want to continue conversation? We can
+respond with a friendly greeting. The instructions: be a good
+conversation partner, ask questions, reflect, etc. No mention of
+personal data. Should ask them what they'd like to talk about. So
+reply in Portuguese presumably. Let's respond in friendly manner:
+"Oi! Como posso ajudar você hoje?" Also could ask them what they
+want.
+...done thinking.
+
+Oi! Tudo bem? Como posso ajudar você hoje? Se quiser conversar
+sobre algum assunto específico, é só falar!
+
+total duration:       2.123311042s
+load duration:        117.110375ms
+prompt eval count:    68 token(s)
+prompt eval duration: 332.54075ms
+prompt eval rate:     204.49 tokens/s
+eval count:           142 token(s)
+eval duration:        1.601966876s
+eval rate:            88.64 tokens/s
+>>> give me a snake pygame please
+Thinking...
+User requests "give me a snake pygame". They likely want a snake
+game implemented using Pygame. We should provide a code sample.
+We need to consider length: We can provide a minimal snake game
+code. Also add explanation. Should ask if they want instructions
+or just code. But they said "give me a snake pygame please". So
+provide code. Let's produce a full Python script using Pygame.
+Also maybe provide instructions on running. Let's include the
+entire script with comments.
+
+We should keep code simple: define constants, main loop, snake
+movement, food, collision detection. Use Pygame library. Provide
+minimal dependencies. Also include installation instructions: pip
+install pygame. Provide explanation.
+
+We must be mindful of license: Pygame is free. Provide code.
+We'll keep code short but functional. We'll include main guard.
+
+We'll provide code:
+
+```python
+import pygame
+import random
+import sys
+...
+```
+
+Add classes maybe for Snake, Food. But simple functions okay.
+
+Also mention that the code requires Python 3 and Pygame.
+
+Also add note about the grid size.
+
+Let's produce final answer.
+...done thinking.
+
+Below is a **complete, ready‑to‑run Snake game written in
+Pygame**.
+Just copy the code into a file called `snake.py`, install Pygame
+(`pip install pygame`) and run `python snake.py`.
+
+[... python code in snake/gpt-oss-20b.py ...]
+
+### How to run
+
+```bash
+# 1. Install Pygame (if not already installed)
+pip install pygame
+
+# 2. Run the script
+python snake.py
+```
+
+### What the code does
+
+* **Grid system** – The game world is a grid (`GRID_SIZE` ×
+`GRID_SIZE` pixels per cell).
+* **Snake movement** – The snake is a list of grid positions.
+Each tick it moves one cell in the current direction.
+* **Food** – Randomly placed on an empty cell; eating it
+increases the score and grows the snake.
+* **Collision detection** – The game ends if the snake hits the
+walls or itself.
+* **Speed increase** – The game speeds up every 5 points, adding
+a bit of challenge.
+
+Feel free to tweak constants (grid size, FPS, colors, etc.) to
+suit your taste. Happy coding!
+
+total duration:       15.576322125s
+load duration:        119.156584ms
+prompt eval count:    107 token(s)
+prompt eval duration: 104.110375ms
+prompt eval rate:     1027.76 tokens/s
+eval count:           1363 token(s)
+eval duration:        15.059964774s
+eval rate:            90.50 tokens/s
+>>> Send a message (/? for help)
