@@ -1,0 +1,24 @@
+{
+  "image_a": "snake-html-qwen3-coder-30b.png",
+  "image_b": "snake-html-qwen3.5-35b-a3b-coding-nvfp4.png",
+  "benchmark": "snake-html",
+  "winner": "B",
+  "delta": 2,
+  "score_a": 2,
+  "score_b": 4,
+  "reason_a": "Image A has a muddy red gradient with an empty, flat play area and generic pill buttons that feel like an unfinished first draft.",
+  "reason_b": "Image B shows a cohesive dark navy palette with a subtle grid, refined score cards, a polished Game Over modal, and on-screen arrow key hints that feel product-ready.",
+  "verdict": "B demonstrates stronger typographic hierarchy, palette cohesion, and depth signals (grid, accent gradient border, modal layering) giving it a clear modern web app feel over A's empty reddish canvas.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 3017,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 244,
+    "service_tier": "standard"
+  }
+}

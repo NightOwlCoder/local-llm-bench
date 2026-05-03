@@ -1,0 +1,24 @@
+{
+  "image_a": "calc-qwen3-coder-next.png",
+  "image_b": "calc-qwen3.5-35b-a3b-coding-nvfp4.png",
+  "benchmark": "calc",
+  "winner": "A",
+  "delta": 1,
+  "score_a": 4,
+  "score_b": 3,
+  "reason_a": "Compact, cohesive dark card with subtle pill buttons, a restrained purple accent, and refined typography that feels like a polished product.",
+  "reason_b": "Functional and colorful with a useful history panel, but the pastel button palette feels inconsistent and more like a bootcamp project than a modern product.",
+  "verdict": "A's disciplined color palette, consistent pill-shaped buttons, and tighter spacing give it a more cohesive, modern feel despite B's richer feature set.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2963,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 195,
+    "service_tier": "standard"
+  }
+}

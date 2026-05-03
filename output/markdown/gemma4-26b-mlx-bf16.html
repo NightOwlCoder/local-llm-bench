@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Markdown Previewer</title>
+    
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.2/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --panel-bg: #161b22;
+            --text-color: #c9d1d9;
+            --accent-color: #58a6ff;
+            --border-color: #30363d;
+            --header-bg: #010409;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: var(--header-bg);
+            padding: 0.75rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .badge {
+            font-size: 0.75rem;
+            background: var(--border-color);
+            padding: 2px 8px;
+            border-radius: 12px;
+            text-transform: uppercase;
+        }
+
+        /* Main Layout */
+        main {
+            display: flex;
+            flex: 1;
+            overflow: hidden; /* Prevents body scroll, allows panel scroll */
+        }
+
+        .panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .panel-header {
+            background: var(--panel-bg);
+            padding: 5px 15px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8b949e;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Editor Styling */
+        #editor {
+            flex: 1;
+            background-color: var(--bg-color);
+            color: #e6edf3;
+            padding: 20px;
+            font-family: 'Fira Code', 'Cascadia Code', 'Source Code Pro', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            border: none;
+            resize: none;
+            outline: none;
+            border-right: 1px solid var(--border-color);
+        }
+
+        /* Preview Styling */
+        #preview {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+            background-color: var(--bg-color);
+            line-height: 1.6;
+        }
+
+        /* Markdown Content Styling (GitHub-ish) */
+        #preview h1, #preview h2, #preview h3 { border-bottom: 1px solid var(--border-color); padding-bottom: 0.3em; margin-top: 1.5em; margin-bottom: 1rem; }
+        #preview h1 { font-size: 2em; }
+        #preview h2 { font-size: 1.5em; }
+        #preview p { margin-bottom: 1rem; }
+        #preview code { background: rgba(110, 118, 129, 0.4); padding: 0.2em 0.4em; border-radius: 6px; font-family: monospace; }
+        #preview pre { background: #161b22; padding: 16px; border-radius: 8px; overflow: auto; margin-bottom: 1rem; border: 1px solid var(--border-color); }
+        #preview pre code { background: none; padding: 0; }
+        #preview blockquote { padding: 0 1em; color: #8b949e; border-left: 0.25em solid var(--border-color); margin-bottom: 1rem; }
+        #preview ul, #preview ol { padding-left: 2em; margin-bottom: 1rem; }
+        #preview a { color: var(--accent-color); text-decoration: none; }
+        #preview a:hover { text-decoration: underline; }
+        #preview table { border-collapse: collapse; width: 100%; margin-bottom: 1rem; }
+        #preview th, #preview td { border: 1px solid var(--border-color); padding: 6px 13px; }
+        #preview tr:nth-child(2n) { background-color: var(--panel-bg); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            main { flex-direction: column; }
+            #editor { border-right: none; border-bottom: 1px solid var(--border-color); }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Markdown<span>Live</span></h1>
+    <div class="badge">Editor + Preview</div>
+</header>
+
+<main>
+    <!-- Left Side: Editor -->
+    <section class="panel">
+        <div class="panel-header">Markdown Input</div>
+        <textarea id="editor" spellcheck="false" placeholder="Type your markdown here..."></textarea>
+    </section>
+
+    <!-- Right Side: Preview -->
+    <section class="panel">
+        <div class="panel-header">Live Render</div>
+        <div id="preview"></div>
+    </section>
+</main>
+
+<script>
+    const editor = document.getElementById('editor');
+    const preview = document.getElementById('preview');
+
+    // Default Content
+    const defaultContent = `# Welcome to the Previewer!
+
+## Features:
+1. **Live Rendering** - See changes instantly.
+2. **Syntax Highlighting** for code blocks.
+3. *Italic* and **Bold** text support.
+4. [Clickable Links](https://google.com)
+
+### Code Example
+\`\`\`javascript
+function helloWorld() {
+  console.log("Hello, markdown!");
+}
+helloWorld();
+\`\`\`
+
+### List Support
+- Item One
+- Item Two
+  - Sub item A
+  - Sub item B
+
+> "Markdown is intended to be as easy-to-read and easy-to-write as is feasible." - John Gruber`;
+
+    // Configure Marked with Highlight.js
+    marked.setOptions({
+        highlight: function(code, lang) {
+            const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+            return hljs.highlight(code, { language }).value;
+        },
+        langPrefix: 'hljs language-', 
+        breaks: true,
+        gfm: true
+    });
+
+    // Update Function
+    function updatePreview() {
+        const content = editor.value;
+        preview.innerHTML = marked.parse(content);
+    }
+
+    // Event Listeners
+    editor.addEventListener('input', updatePreview);
+
+    // Initialize
+    editor.value = defaultContent;
+    updatePreview();
+</script>
+
+</body>
+</html>

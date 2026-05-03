@@ -17,13 +17,13 @@ BLUE = (50, 153, 213)
 WIDTH = 600
 HEIGHT = 400
 
-# Game Settings
-SNAKE_BLOCK = 10
+# Snake settings
+BLOCK_SIZE = 20
 SNAKE_SPEED = 15
 
 # Initialize Display
 dis = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption('Snake Game by AI')
+pygame.display.set_caption('Snake Game by Python')
 
 clock = pygame.time.Clock()
 
@@ -35,9 +35,9 @@ def display_score(score):
     value = score_font.render("Your Score: " + str(score), True, YELLOW)
     dis.blit(value, [0, 0])
 
-def draw_snake(snake_block, snake_list):
+def draw_snake(block_size, snake_list):
     for x in snake_list:
-        pygame.draw.rect(dis, GREEN, [x[0], x[1], snake_block, snake_block])
+        pygame.draw.rect(dis, GREEN, [x[0], x[1], block_size, block_size])
 
 def message(msg, color):
     mesg = font_style.render(msg, True, color)
@@ -49,24 +49,24 @@ def gameLoop():
     game_over = False
     game_close = False
 
-    # Starting position of the snake
+    # Starting Position
     x1 = WIDTH / 2
     y1 = HEIGHT / 2
 
-    # Changes in position
+    # Movement changes
     x1_change = 0
     y1_change = 0
 
     snake_List = []
     Length_of_snake = 1
 
-    # Generate initial food position
-    foodx = round(random.randrange(0, WIDTH - SNAKE_BLOCK) / 10.0) * 10.0
-    foody = round(random.randrange(0, HEIGHT - SNAKE_BLOCK) / 10.0) * 10.0
+    # Generate initial food position (aligned to grid)
+    foodx = round(random.randrange(0, WIDTH - BLOCK_SIZE) / 20.0) * 20.0
+    foody = round(random.randrange(0, HEIGHT - BLOCK_SIZE) / 20.0) * 20.0
 
     while not game_over:
 
-        # --- Game Over Screen Loop ---
+        # Screen when player loses
         while game_close == True:
             dis.fill(BLUE)
             message("You Lost! Press C-Play Again or Q-Quit", RED)
@@ -81,34 +81,34 @@ def gameLoop():
                     if event.key == pygame.K_c:
                         gameLoop()
 
-        # --- Event Handling (Input) ---
+        # Event Handling (Controls)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game_over = True
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT and x1_change == 0:
-                    x1_change = -SNAKE_BLOCK
+                if event.key == pygame.K_LEFT and x1_change == 0: # Prevent 180 turn
+                    x1_change = -BLOCK_SIZE
                     y1_change = 0
                 elif event.key == pygame.K_RIGHT and x1_change == 0:
-                    x1_change = SNAKE_BLOCK
+                    x1_change = BLOCK_SIZE
                     y1_change = 0
                 elif event.key == pygame.K_UP and y1_change == 0:
-                    y1_change = -SNAKE_BLOCK
+                    y1_change = -BLOCK_SIZE
                     x1_change = 0
                 elif event.key == pygame.K_DOWN and y1_change == 0:
-                    y1_change = SNAKE_BLOCK
+                    y1_change = BLOCK_SIZE
                     x1_change = 0
 
-        # --- Logic: Wall Collision ---
+        # Check Boundary Collision
         if x1 >= WIDTH or x1 < 0 or y1 >= HEIGHT or y1 < 0:
             game_close = True
-
+        
         x1 += x1_change
         y1 += y1_change
         dis.fill(BLACK)
 
         # Draw Food
-        pygame.draw.rect(dis, RED, [foodx, foody, SNAKE_BLOCK, SNAKE_BLOCK])
+        pygame.draw.rect(dis, RED, [foodx, foody, BLOCK_SIZE, BLOCK_SIZE])
 
         # Snake movement logic
         snake_Head = []
@@ -119,20 +119,20 @@ def gameLoop():
         if len(snake_List) > Length_of_snake:
             del snake_List[0]
 
-        # --- Logic: Self Collision ---
+        # Check if snake hits itself
         for x in snake_List[:-1]:
             if x == snake_Head:
                 game_close = True
 
-        draw_snake(SNAKE_BLOCK, snake_List)
+        draw_snake(BLOCK_SIZE, snake_List)
         display_score(Length_of_snake - 1)
 
         pygame.display.update()
 
-        # --- Logic: Eating Food ---
+        # Check if food is eaten
         if x1 == foodx and y1 == foody:
-            foodx = round(random.randrange(0, WIDTH - SNAKE_BLOCK) / 10.0) * 10.0
-            foody = round(random.randrange(0, HEIGHT - SNAKE_BLOCK) / 10.0) * 10.0
+            foodx = round(random.randrange(0, WIDTH - BLOCK_SIZE) / 20.0) * 20.0
+            foody = round(random.randrange(0, HEIGHT - BLOCK_SIZE) / 20.0) * 20.0
             Length_of_snake += 1
 
         clock.tick(SNAKE_SPEED)

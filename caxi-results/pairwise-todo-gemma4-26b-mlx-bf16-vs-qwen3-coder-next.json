@@ -1,0 +1,24 @@
+{
+  "image_a": "todo-gemma4-26b-mlx-bf16.png",
+  "image_b": "todo-qwen3-coder-next.png",
+  "benchmark": "todo",
+  "winner": "B",
+  "delta": 1,
+  "score_a": 3,
+  "score_b": 4,
+  "reason_a": "Image A has a striking glassmorphic card with bold 'Focus.' typography and a nice shadow, but the empty task area and low-contrast muted text make it feel unfinished.",
+  "reason_b": "Image B presents a clean, cohesive product-like todo app with clear hierarchy, visible task rows, proper iconography, and balanced spacing.",
+  "verdict": "B feels like a finished product with functional content and refined details, while A's glass aesthetic is undermined by an empty state and weak contrast.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2863,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 222,
+    "service_tier": "standard"
+  }
+}

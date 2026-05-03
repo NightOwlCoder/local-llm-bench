@@ -1,0 +1,24 @@
+{
+  "image_a": "tetris-laguna-xs.2.png",
+  "image_b": "tetris-qwen3.5-35b-a3b-coding-nvfp4.png",
+  "benchmark": "tetris",
+  "winner": "A",
+  "delta": 1,
+  "score_a": 3,
+  "score_b": 2,
+  "reason_a": "Compact, cohesive card with a glowing neon 'TETRIS' wordmark, refined score panel, and subtle keycap-style control hints that feel intentional.",
+  "reason_b": "Functional layout with decent panels but the stark black play area, emoji title, and generic stacked controls feel more like a first-draft dev UI.",
+  "verdict": "A shows more restraint and visual craft with its neon accent, tighter hierarchy, and polished score card, while B's raw black canvas and emoji header undermine its polish.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 3471,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 227,
+    "service_tier": "standard"
+  }
+}

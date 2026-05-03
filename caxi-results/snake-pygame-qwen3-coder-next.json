@@ -1,0 +1,7 @@
+{
+  "model": "qwen3-coder-next",
+  "benchmark": "snake-pygame",
+  "pass": true,
+  "lines": 138,
+  "syntax_ok": true
+}

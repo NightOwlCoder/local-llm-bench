@@ -1,0 +1,24 @@
+{
+  "image_a": "calc-gpt-oss-20b.png",
+  "image_b": "calc-laguna-xs.2.png",
+  "benchmark": "calc",
+  "winner": "A",
+  "delta": 1,
+  "score_a": 3,
+  "score_b": 2,
+  "reason_a": "Dark, cohesive palette with restrained pink accents, consistent rounding, and disciplined spacing give it a modern minimal app feel, though empty display bars look unfinished.",
+  "reason_b": "Vibrant gradient background and colorful buttons feel busy and dated, with clashing green/purple/orange palette that lacks cohesion despite a clearer display hierarchy.",
+  "verdict": "A's restrained dark theme and cohesive accent use feels more like a polished 2026 product, while B's loud multi-color palette reads as a first-draft tutorial project.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2857,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 223,
+    "service_tier": "standard"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "image_a": "snake-html-gemma4-26b-mlx-bf16.png",
+  "image_b": "snake-html-gpt-oss-20b.png",
+  "benchmark": "snake-html",
+  "winner": "A",
+  "delta": 3,
+  "score_a": 4,
+  "score_b": 1,
+  "reason_a": "Neon cyan/magenta palette with glowing typography, grid background, and rounded panels creates a cohesive arcade-style product feel.",
+  "reason_b": "Bare-bones layout with unrendered '<br>' tag, flat default button, and minimal styling feels like an unfinished dev draft.",
+  "verdict": "A delivers polished neon aesthetics and proper text rendering while B shows raw HTML artifacts and generic styling.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2871,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 181,
+    "service_tier": "standard"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "image_a": "markdown-gpt-oss-20b.png",
+  "image_b": "markdown-qwen3-coder-next.png",
+  "benchmark": "markdown",
+  "winner": "B",
+  "delta": 3,
+  "score_a": 1,
+  "score_b": 4,
+  "reason_a": "Image A shows only a raw markdown source block with no preview, no header, no styling \u2014 essentially a bare textarea.",
+  "reason_b": "Image B presents a polished split-pane editor with dark header, themed editor panel, rendered HTML preview with proper typography, accent link color, and styled code block.",
+  "verdict": "B delivers a complete, product-like markdown studio with clear hierarchy and dual-pane polish, while A looks like an unstyled draft.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2861,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 206,
+    "service_tier": "standard"
+  }
+}

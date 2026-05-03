@@ -1,0 +1,23 @@
+{
+  "model": "gemma4-26b-mlx-bf16",
+  "benchmark": "oi-quality",
+  "tokens_used": 166,
+  "language": 10,
+  "conciseness": 10,
+  "tone": 10,
+  "cleanliness": 10,
+  "total": 40,
+  "notes": "Perfect short, warm Portuguese greeting that offers help. No artifacts, though the token count seems high for such a brief output.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 500,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 103,
+    "service_tier": "standard"
+  }
+}

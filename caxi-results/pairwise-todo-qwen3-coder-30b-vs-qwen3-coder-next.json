@@ -1,0 +1,24 @@
+{
+  "image_a": "todo-qwen3-coder-30b.png",
+  "image_b": "todo-qwen3-coder-next.png",
+  "benchmark": "todo",
+  "winner": "B",
+  "delta": 1,
+  "score_a": 3,
+  "score_b": 4,
+  "reason_a": "A has a moody purple glass aesthetic with bold 'Focus.' typography but suffers from low contrast and barely visible task items.",
+  "reason_b": "B presents a cleaner, product-like card with a distinct gradient header, pill-shaped input, and clear typographic hierarchy, though it feels slightly more generic.",
+  "verdict": "B wins with better contrast, clearer hierarchy, and a more polished product feel, while A's low-contrast glass treatment obscures content.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2858,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 194,
+    "service_tier": "standard"
+  }
+}

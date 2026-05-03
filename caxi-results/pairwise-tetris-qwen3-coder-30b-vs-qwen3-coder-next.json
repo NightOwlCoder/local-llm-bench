@@ -1,0 +1,24 @@
+{
+  "image_a": "tetris-qwen3-coder-30b.png",
+  "image_b": "tetris-qwen3-coder-next.png",
+  "benchmark": "tetris",
+  "winner": "A",
+  "delta": 2,
+  "score_a": 4,
+  "score_b": 2,
+  "reason_a": "Sleek neon-on-dark aesthetic with cohesive magenta accent, clean typography hierarchy, and polished sidebar cards with subtle borders.",
+  "reason_b": "Gradient title and buttons feel dated, layout is looser, and the stacked orange blocks plus muted next-piece preview look unfinished.",
+  "verdict": "A delivers a more cohesive, modern neon product feel while B reads like a generic first-draft template.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 3230,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 183,
+    "service_tier": "standard"
+  }
+}

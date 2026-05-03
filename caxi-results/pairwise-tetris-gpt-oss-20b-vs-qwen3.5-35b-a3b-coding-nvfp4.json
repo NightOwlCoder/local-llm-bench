@@ -1,0 +1,24 @@
+{
+  "image_a": "tetris-gpt-oss-20b.png",
+  "image_b": "tetris-qwen3.5-35b-a3b-coding-nvfp4.png",
+  "benchmark": "tetris",
+  "winner": "A",
+  "delta": 2,
+  "score_a": 3,
+  "score_b": 2,
+  "reason_a": "Image A has a cohesive card-based layout with a glowing title, distinct score panel, neon magenta piece, and keyboard control hints that give it a polished product feel.",
+  "reason_b": "Image B is functional but feels bare-bones with disconnected side panels, uniform cyan coloring, and lacks typography hierarchy or depth cues.",
+  "verdict": "A wins due to stronger layout cohesion, typographic hierarchy, glowing accents, and thoughtful details like control hints that elevate it beyond a dev-tool aesthetic.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2874,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 238,
+    "service_tier": "standard"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "image_a": "todo-gpt-oss-20b.png",
+  "image_b": "todo-qwen3.5-35b-a3b-coding-nvfp4.png",
+  "benchmark": "todo",
+  "winner": "A",
+  "delta": 1,
+  "score_a": 3,
+  "score_b": 2,
+  "reason_a": "Gradient background with a floating card, bold title, date subtitle, and tabbed filters give it a modern product feel despite some faded task text.",
+  "reason_b": "Clean and functional but very plain with a flat gray background, generic green button, and bare-bones layout that feels like a first draft.",
+  "verdict": "A leans into color, depth, and hierarchy with gradients and a centered card, while B reads as a minimal utilitarian mockup.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2916,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 200,
+    "service_tier": "standard"
+  }
+}

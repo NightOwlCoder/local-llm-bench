@@ -1,0 +1,424 @@
+# qwen3.5:35b-a3b-coding-nvfp4 — snake-html
+# load=1.058s total=48.610s eval_tokens=4272
+
+Here is a complete, single-file Snake game. I have designed it with a modern "Neon/Cyberpunk" aesthetic, utilizing HTML5 Canvas for smooth rendering and CSS for a polished UI.
+
+Save the following code as an `.html` file (e.g., `snake.html`) and open it in your browser.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Snake</title>
+    <style>
+        /* --- CSS STYLING --- */
+        :root {
+            --bg-color: #0f172a;
+            --grid-line: #1e293b;
+            --snake-color: #10b981;
+            --snake-head: #34d399;
+            --food-color: #f43f5e;
+            --text-color: #f8fafc;
+            --accent: #818cf8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        .game-container {
+            position: relative;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+            border-radius: 12px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--accent), var(--snake-color));
+        }
+
+        canvas {
+            display: block;
+            background-color: #020617; /* Very dark slate */
+            border-radius: 10px;
+        }
+
+        /* UI Overlay (Scoreboard) */
+        .ui-layer {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            pointer-events: none; /* Let clicks pass through to canvas */
+            z-index: 10;
+        }
+
+        .score-box {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(5px);
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .score-label {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Start / Game Over Modal */
+        .modal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(15, 23, 42, 0.95);
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+            z-index: 20;
+            width: 300px;
+        }
+
+        .modal h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, var(--snake-color), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .modal p {
+            color: #94a3b8;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.1s, filter 0.2s;
+            font-weight: bold;
+            box-shadow: 0 4px 14px 0 rgba(129, 140, 248, 0.39);
+        }
+
+        .btn:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Mobile controls hint */
+        .controls-hint {
+            margin-top: 20px;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-container">
+        <!-- UI Layer -->
+        <div class="ui-layer">
+            <div class="score-box">
+                <div class="score-label">Score</div>
+                <div id="score">0</div>
+            </div>
+            <div class="score-box">
+                <div class="score-label">High Score</div>
+                <div id="high-score">0</div>
+            </div>
+        </div>
+
+        <!-- The Game Canvas -->
+        <canvas id="gameCanvas" width="600" height="600"></canvas>
+
+        <!-- Start/Game Over Screen -->
+        <div id="modal" class="modal">
+            <h1 id="modal-title">Snake</h1>
+            <p id="modal-msg">Use Arrow Keys to Move</p>
+            <button class="btn" id="start-btn">Play Game</button>
+        </div>
+        
+        <div class="controls-hint">Use ⬆️ ⬇️ ⬅️ ➡️ to move</div>
+    </div>
+
+    <script>
+        /* --- JAVASCRIPT LOGIC --- */
+        
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Game Configuration
+        const GRID_SIZE = 20;
+        const TILE_COUNT = canvas.width / GRID_SIZE; // 30x30 grid
+        const GAME_SPEED = 100; // Milliseconds per frame (lower is faster)
+        
+        // Game State
+        let score = 0;
+        let highScore = localStorage.getItem('snakeHighScore') || 0;
+        let gameRunning = false;
+        let gameLoopId;
+        
+        // Snake & Food
+        let snake = [];
+        let food = { x: 0, y: 0 };
+        let dx = 0;
+        let dy = 0;
+        let nextDx = 0; // Buffer for input to prevent self-collision on quick turns
+        let nextDy = 0;
+
+        // DOM Elements
+        const scoreEl = document.getElementById('score');
+        const highScoreEl = document.getElementById('high-score');
+        const modal = document.getElementById('modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalMsg = document.getElementById('modal-msg');
+        const startBtn = document.getElementById('start-btn');
+
+        // Initialize High Score UI
+        highScoreEl.innerText = highScore;
+
+        // --- INPUT HANDLING ---
+        document.addEventListener('keydown', keyDownEvent);
+        startBtn.addEventListener('click', startGame);
+
+        function keyDownEvent(e) {
+            if (!gameRunning) return;
+
+            // Prevent reversing direction directly
+            switch(e.keyCode) {
+                case 37: // Left
+                    if (dx === 1) break;
+                    nextDx = -1; nextDy = 0;
+                    break;
+                case 38: // Up
+                    if (dy === 1) break;
+                    nextDx = 0; nextDy = -1;
+                    break;
+                case 39: // Right
+                    if (dx === -1) break;
+                    nextDx = 1; nextDy = 0;
+                    break;
+                case 40: // Down
+                    if (dy === -1) break;
+                    nextDx = 0; nextDy = 1;
+                    break;
+            }
+        }
+
+        // --- CORE FUNCTIONS ---
+
+        function startGame() {
+            resetGame();
+            modal.classList.add('hidden');
+            gameRunning = true;
+            gameLoop();
+        }
+
+        function resetGame() {
+            score = 0;
+            scoreEl.innerText = score;
+            
+            // Start in the middle
+            snake = [
+                { x: 10, y: 10 },
+                { x: 9, y: 10 },
+                { x: 8, y: 10 }
+            ];
+            
+            // Initial movement
+            dx = 1; dy = 0;
+            nextDx = 1; nextDy = 0;
+            
+            placeFood();
+        }
+
+        function gameLoop() {
+            if (!gameRunning) return;
+
+            // Update Logic
+            setTimeout(() => {
+                requestAnimationFrame(gameLoop);
+                update();
+                draw();
+            }, GAME_SPEED);
+        }
+
+        function update() {
+            // Apply buffered input
+            dx = nextDx;
+            dy = nextDy;
+
+            // Calculate new head position
+            const head = { x: snake[0].x + dx, y: snake[0].y + dy };
+
+            // Check Wall Collision
+            if (head.x < 0 || head.x >= TILE_COUNT || head.y < 0 || head.y >= TILE_COUNT) {
+                gameOver();
+                return;
+            }
+
+            // Check Self Collision
+            for (let i = 0; i < snake.length; i++) {
+                if (head.x === snake[i].x && head.y === snake[i].y) {
+                    gameOver();
+                    return;
+                }
+            }
+
+            // Move Snake
+            snake.unshift(head); // Add new head
+
+            // Check Food Collision
+            if (head.x === food.x && head.y === food.y) {
+                score += 10;
+                scoreEl.innerText = score;
+                placeFood();
+                // Don't pop the tail, so snake grows
+            } else {
+                snake.pop(); // Remove tail
+            }
+        }
+
+        function draw() {
+            // Clear Canvas
+            ctx.fillStyle = '#0f172a'; // Match CSS var
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Optional: Draw subtle grid
+            drawGrid();
+
+            // Draw Food
+            drawFood();
+
+            // Draw Snake
+            drawSnake();
+        }
+
+        function drawGrid() {
+            ctx.strokeStyle = '#1e293b';
+            ctx.lineWidth = 0.5;
+            for (let i = 0; i <= TILE_COUNT; i++) {
+                ctx.beginPath();
+                ctx.moveTo(i * GRID_SIZE, 0);
+                ctx.lineTo(i * GRID_SIZE, canvas.height);
+                ctx.stroke();
+                
+                ctx.beginPath();
+                ctx.moveTo(0, i * GRID_SIZE);
+                ctx.lineTo(canvas.width, i * GRID_SIZE);
+                ctx.stroke();
+            }
+        }
+
+        function drawSnake() {
+            snake.forEach((segment, index) => {
+                // Head is slightly different color
+                ctx.fillStyle = index === 0 ? '#34d399' : '#10b981';
+                
+                // Add a glow effect
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = '#10b981';
+
+                // Draw rounded rects for style
+                let x = segment.x * GRID_SIZE;
+                let y = segment.y * GRID_SIZE;
+                let size = GRID_SIZE - 2; // Slight gap between segments
+                
+                ctx.beginPath();
+                ctx.roundRect(x + 1, y + 1, size, size, 4);
+                ctx.fill();
+                
+                // Reset shadow for performance
+                ctx.shadowBlur = 0;
+            });
+        }
+
+        function drawFood() {
+            let x = food.x * GRID_SIZE;
+            let y = food.y * GRID_SIZE;
+            
+            ctx.fillStyle = '#f43f5e';
+            ctx.shadowBlur = 20;
+            ctx.shadowColor = '#f43f5e';
+            
+            ctx.beginPath();
+            ctx.arc(x + GRID_SIZE/2, y + GRID_SIZE/2, GRID_SIZE/2 - 2, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.shadowBlur = 0;
+        }
+
+        function placeFood() {
+            let valid = false;
+            while (!valid) {
+                food.x = Math.floor(Math.random() * TILE_COUNT);
+                food.y = Math.floor(Math.random() * TILE_COUNT);
+
+                valid = true;
+                // Ensure food doesn't spawn on snake body
+                for (let part of snake) {
+                    if (part.x === food.x && part.y === food.y) {
+                        valid = false;
+                        break;
+                    }
+                }
+            }
+        }
+
+        function gameOver() {
+            gameRunning = false;
+            
+            // Update High Score
+            if (score > highScore) {
+                highScore = score;
+                localStorage.setItem('snakeHighScore', highScore);
+                highScoreEl.innerText = highScore;
+            }
+
+            // Show Modal
+            modalTitle.innerText = "Game Over";
+            modalMsg.innerText = `You scored ${score} points!`;
+            startBtn.innerText = "Try Again";
+            modal.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
+```

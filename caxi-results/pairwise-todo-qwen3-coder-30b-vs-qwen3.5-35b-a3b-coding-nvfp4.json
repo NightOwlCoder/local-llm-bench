@@ -1,0 +1,24 @@
+{
+  "image_a": "todo-qwen3-coder-30b.png",
+  "image_b": "todo-qwen3.5-35b-a3b-coding-nvfp4.png",
+  "benchmark": "todo",
+  "winner": "B",
+  "delta": 2,
+  "score_a": 2,
+  "score_b": 4,
+  "reason_a": "Image A has a pleasant purple gradient background but the card feels incomplete with overlapping text, no footer, and weak structural hierarchy.",
+  "reason_b": "Image B presents a polished, cohesive card with clear header, icon, tab pill, functional footer, and refined spacing that reads as a finished product.",
+  "verdict": "B wins because it delivers a complete, well-structured todo card with better hierarchy, an accent pill tab, and a proper footer, while A feels like a broken first draft with visual glitches.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2871,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 226,
+    "service_tier": "standard"
+  }
+}

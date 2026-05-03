@@ -1,0 +1,24 @@
+{
+  "image_a": "markdown-gemma4-26b-mlx-bf16.png",
+  "image_b": "markdown-qwen3-coder-30b.png",
+  "benchmark": "markdown",
+  "winner": "A",
+  "delta": 2,
+  "score_a": 4,
+  "score_b": 2,
+  "reason_a": "Dark, cohesive split-pane UI with monospace input, proper typographic hierarchy, subtle dividers, and a neatly styled code block that feels like a real product.",
+  "reason_b": "Colorful gradient header looks flashy but the preview pane is empty, the editor is cramped with awkward line wrapping, and overall it feels like an unfinished first draft.",
+  "verdict": "A delivers a polished, functional split-view with refined dark styling while B has a broken-feeling layout and wasted whitespace.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 3006,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 225,
+    "service_tier": "standard"
+  }
+}

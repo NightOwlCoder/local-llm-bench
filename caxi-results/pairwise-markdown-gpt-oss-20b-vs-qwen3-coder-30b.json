@@ -1,0 +1,24 @@
+{
+  "image_a": "markdown-gpt-oss-20b.png",
+  "image_b": "markdown-qwen3-coder-30b.png",
+  "benchmark": "markdown",
+  "winner": "B",
+  "delta": 3,
+  "score_a": 1,
+  "score_b": 4,
+  "reason_a": "Image A is a bare monospace text panel with no header, no styling, and a dev-tool first-draft feel.",
+  "reason_b": "Image B features a rich gradient background, clear title hierarchy, rounded container, styled header bar with accent buttons, and product-like polish.",
+  "verdict": "B delivers a cohesive, modern app shell with gradients, typography hierarchy, and UI chrome while A is essentially an unstyled textarea.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 3000,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 181,
+    "service_tier": "standard"
+  }
+}

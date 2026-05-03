@@ -1,0 +1,24 @@
+{
+  "image_a": "calc-gemma4-26b-mlx-bf16.png",
+  "image_b": "calc-gpt-oss-20b.png",
+  "benchmark": "calc",
+  "winner": "A",
+  "delta": 2,
+  "score_a": 4,
+  "score_b": 2,
+  "reason_a": "Clean hierarchy with a prominent display, cohesive accent colors (orange operators, red/blue utilities, green equals), and consistent button spacing feel polished and product-ready.",
+  "reason_b": "Empty display bars, jarring pink operator buttons that clash with the dark palette, and misaligned button widths give it an unfinished, first-draft feel.",
+  "verdict": "A delivers a cohesive, modern calculator aesthetic with thoughtful accent colors and typography, while B's mismatched pink buttons and blank display read as unfinished.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2864,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 218,
+    "service_tier": "standard"
+  }
+}

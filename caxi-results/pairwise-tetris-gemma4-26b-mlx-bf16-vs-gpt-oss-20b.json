@@ -1,0 +1,24 @@
+{
+  "image_a": "tetris-gemma4-26b-mlx-bf16.png",
+  "image_b": "tetris-gpt-oss-20b.png",
+  "benchmark": "tetris",
+  "winner": "B",
+  "delta": 1,
+  "score_a": 2,
+  "score_b": 3,
+  "reason_a": "Image A has a cleanly outlined playfield with glowing cyan blocks but lacks grid texture, info hierarchy, and the Next panel feels cramped with inconsistent spacing.",
+  "reason_b": "Image B shows a more complete product feel with subtle grid lines, distinct Next/Score/Level panels, glowing blocks with inner highlights, and helpful control hints.",
+  "verdict": "B feels like a polished product with clearer hierarchy, grid texture, and richer panel structure, while A reads as a simpler first-pass layout.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2867,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 217,
+    "service_tier": "standard"
+  }
+}

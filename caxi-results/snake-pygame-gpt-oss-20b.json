@@ -1,0 +1,7 @@
+{
+  "model": "gpt-oss:20b",
+  "benchmark": "snake-pygame",
+  "pass": true,
+  "lines": 190,
+  "syntax_ok": true
+}

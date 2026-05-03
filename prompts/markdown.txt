@@ -1,0 +1,1 @@
+build a markdown previewer as a single HTML file. live editor on left, rendered preview on right. support headers, bold, italic, code blocks, lists, and links. make it beautiful.

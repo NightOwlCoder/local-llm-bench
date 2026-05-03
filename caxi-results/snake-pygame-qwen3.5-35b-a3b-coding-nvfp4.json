@@ -1,0 +1,7 @@
+{
+  "model": "qwen3.5:35b-a3b-coding-nvfp4",
+  "benchmark": "snake-pygame",
+  "pass": true,
+  "lines": 149,
+  "syntax_ok": true
+}

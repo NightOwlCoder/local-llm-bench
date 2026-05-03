@@ -1,0 +1,24 @@
+{
+  "model": "qwen3-coder-next",
+  "benchmark": "snake-pygame-review",
+  "artifact": "output/snake-pygame/qwen3-coder-next.py",
+  "correctness": 7,
+  "style": 6,
+  "architecture": 4,
+  "robustness": 5,
+  "ux": 7,
+  "total": 29,
+  "notes": "The game works for basic play but has bugs: snake_speed is modified as a local variable despite being a global (UnboundLocalError will occur when eating food), and restart uses recursion instead of a loop which could stack overflow. Mixed naming conventions (snake_List, Length_of_snake, gameLoop), many magic numbers, and globals scattered throughout hurt architecture. UX is decent with score display, restart prompt, and reverse-direction prevention, but using `quit()` after pygame.quit() and the recursive restart are questionable.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 1875,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 244,
+    "service_tier": "standard"
+  }
+}

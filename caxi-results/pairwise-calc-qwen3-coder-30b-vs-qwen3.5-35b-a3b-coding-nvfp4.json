@@ -1,0 +1,24 @@
+{
+  "image_a": "calc-qwen3-coder-30b.png",
+  "image_b": "calc-qwen3.5-35b-a3b-coding-nvfp4.png",
+  "benchmark": "calc",
+  "winner": "B",
+  "delta": 1,
+  "score_a": 3,
+  "score_b": 3,
+  "reason_a": "A has a bold vibrant gradient backdrop and a colorful equals button, but the button grid feels uneven with mismatched cell colors and the empty space next to '=' looks unfinished.",
+  "reason_b": "B has a restrained, cohesive dark palette with a consistent purple accent, pill-shaped buttons, and clean typography that reads as a modern product, though it's a bit plain and also has an empty slot.",
+  "verdict": "B wins narrowly for its disciplined spacing, cohesive accent color, and polished modern dark-UI feel, while A's vibrant but inconsistent styling reads more like a first draft.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2872,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 262,
+    "service_tier": "standard"
+  }
+}

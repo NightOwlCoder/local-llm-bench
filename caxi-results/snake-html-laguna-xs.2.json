@@ -1,0 +1,24 @@
+{
+  "benchmark": "snake-html",
+  "url": "file://<artifact>",
+  "tiers": {
+    "loads_clean": true,
+    "has_canvas": true,
+    "game_starts": false,
+    "loop_alive": true,
+    "input_responds": false,
+    "has_score": true
+  },
+  "score": 4,
+  "hashes": {
+    "before_start": "279b2430e318",
+    "after_start": "8d9f7346a8a9",
+    "after_2s": "da97045c2e8f",
+    "after_input": "da97045c2e8f"
+  },
+  "start_method": "button-click",
+  "errors": [],
+  "notes": [],
+  "pass": false,
+  "model": "laguna-xs.2"
+}

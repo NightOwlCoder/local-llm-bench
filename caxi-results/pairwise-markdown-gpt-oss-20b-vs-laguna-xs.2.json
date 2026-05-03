@@ -1,0 +1,24 @@
+{
+  "image_a": "markdown-gpt-oss-20b.png",
+  "image_b": "markdown-laguna-xs.2.png",
+  "benchmark": "markdown",
+  "winner": "A",
+  "delta": 3,
+  "score_a": 4,
+  "score_b": 1,
+  "reason_a": "Dark themed editor with rounded container, subtle gradient background, clean header with accent icon, and monospace code styling feels like a polished product.",
+  "reason_b": "Bare default white box with raw unrendered markdown and a visible 'LIVE_UPDATE_MARKER' string feels like an unfinished first draft.",
+  "verdict": "A delivers cohesive dark-mode polish with hierarchy and depth, while B looks like an untouched default stylesheet with leaked debug text.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2860,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 217,
+    "service_tier": "standard"
+  }
+}

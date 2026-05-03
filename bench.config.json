@@ -4,20 +4,46 @@
     "laguna-xs.2",
     "qwen3-coder:30b",
     "qwen3-coder-next",
-    "devstral:24b",
-    "glm-4.7-flash",
     "gpt-oss:20b",
-    "gemma4:26b",
     "gemma4:26b-mlx-bf16",
-    "qwen3.5:35b-a3b-coding-nvfp4",
-    "qwen3.6:27b-mlx-bf16"
+    "qwen3.5:35b-a3b-coding-nvfp4"
   ],
   "benchmarks": [
-    {"name": "oi",           "ext": "txt",  "notes": "Warm-up + greeting. Cold load captured here."},
-    {"name": "snake-pygame", "ext": "py",   "notes": "Legacy pygame snake. Validator: syntax check only."},
-    {"name": "snake-html",   "ext": "html", "notes": "HTML5 canvas snake. Caxi plays it."},
-    {"name": "tetris",       "ext": "html", "notes": "Harder: piece rotation, collision, gravity."},
-    {"name": "todo",         "ext": "html", "notes": "Modern todo app. Function + polish scored."}
+    {
+      "name": "oi",
+      "ext": "txt",
+      "notes": "Warm-up + greeting. Cold load captured here."
+    },
+    {
+      "name": "snake-pygame",
+      "ext": "py",
+      "notes": "Legacy pygame snake. Validator: syntax check only."
+    },
+    {
+      "name": "snake-html",
+      "ext": "html",
+      "notes": "HTML5 canvas snake. Caxi plays it."
+    },
+    {
+      "name": "tetris",
+      "ext": "html",
+      "notes": "Harder: piece rotation, collision, gravity."
+    },
+    {
+      "name": "todo",
+      "ext": "html",
+      "notes": "Modern todo app. Function + polish scored."
+    },
+    {
+      "name": "calc",
+      "ext": "html",
+      "notes": "Scientific calculator. Tests precedence, parens, float, clear. Deterministic."
+    },
+    {
+      "name": "markdown",
+      "ext": "html",
+      "notes": "Markdown previewer with live updates."
+    }
   ],
   "runtime": {
     "keep_alive": "10m",

@@ -1,0 +1,23 @@
+{
+  "model": "gpt-oss-20b",
+  "benchmark": "oi-quality",
+  "tokens_used": 73,
+  "language": 10,
+  "conciseness": 10,
+  "tone": 9,
+  "cleanliness": 10,
+  "total": 39,
+  "notes": "Clean, friendly Portuguese greeting with a natural follow-up offer to help. Token count seems high for such a short output, but the visible response itself is ideal.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 493,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 114,
+    "service_tier": "standard"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "benchmark": "markdown",
+  "url": "file://<artifact>",
+  "tiers": {
+    "loads_clean": true,
+    "dual_pane": true,
+    "renders_h1": false,
+    "renders_bold": false,
+    "renders_italic": false,
+    "renders_link": false,
+    "renders_code": false,
+    "live_updates": false
+  },
+  "score": 2,
+  "samples": {
+    "preview_len": 0
+  },
+  "errors": [],
+  "notes": [],
+  "pass": false,
+  "model": "gpt-oss:20b"
+}

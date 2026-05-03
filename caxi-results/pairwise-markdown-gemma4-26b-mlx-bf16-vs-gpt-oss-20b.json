@@ -1,0 +1,24 @@
+{
+  "image_a": "markdown-gemma4-26b-mlx-bf16.png",
+  "image_b": "markdown-gpt-oss-20b.png",
+  "benchmark": "markdown",
+  "winner": "B",
+  "delta": 3,
+  "score_a": 1,
+  "score_b": 4,
+  "reason_a": "Image A shows only a raw markdown input box with no rendered preview, no header, and no styling beyond a plain gray panel.",
+  "reason_b": "Image B has a polished dark theme with a branded header, split editor/preview panes, proper typography hierarchy, and styled code blocks.",
+  "verdict": "B delivers a complete, cohesive product-like markdown editor while A appears to be an unfinished first draft missing the preview entirely.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2867,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 179,
+    "service_tier": "standard"
+  }
+}

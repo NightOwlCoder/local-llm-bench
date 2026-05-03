@@ -1,0 +1,317 @@
+# qwen3-coder:30b — calc
+# load=4.454s total=31.332s eval_tokens=2523
+
+# Scientific Calculator
+
+I'll create a beautiful, functional scientific calculator in a single HTML file with all the requested features. The calculator will support basic operations, parentheses, square root, and power functions.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            padding: 20px;
+        }
+        
+        .calculator {
+            width: 100%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .display {
+            padding: 25px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            text-align: right;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .expression {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            min-height: 30px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 10px;
+        }
+        
+        .result {
+            font-size: 2.5rem;
+            font-weight: 500;
+            color: white;
+            min-height: 50px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        button {
+            border: none;
+            outline: none;
+            background: rgba(30, 30, 40, 0.8);
+            color: white;
+            font-size: 1.2rem;
+            padding: 20px 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        button:hover {
+            background: rgba(50, 50, 70, 0.9);
+            transform: translateY(-2px);
+        }
+        
+        button:active {
+            transform: translateY(1px);
+        }
+        
+        .operator {
+            background: rgba(40, 40, 60, 0.8);
+            font-weight: bold;
+        }
+        
+        .operator:hover {
+            background: rgba(60, 60, 90, 0.9);
+        }
+        
+        .equals {
+            background: linear-gradient(45deg, #ff8a00, #e52e71);
+            grid-column: span 2;
+        }
+        
+        .equals:hover {
+            background: linear-gradient(45deg, #ff9a2e, #f53e81);
+        }
+        
+        .clear {
+            background: rgba(200, 50, 50, 0.7);
+        }
+        
+        .clear:hover {
+            background: rgba(220, 70, 70, 0.8);
+        }
+        
+        .function {
+            background: rgba(50, 150, 150, 0.7);
+        }
+        
+        .function:hover {
+            background: rgba(70, 170, 170, 0.8);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 15px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        @media (max-width: 480px) {
+            .calculator {
+                max-width: 100%;
+            }
+            
+            button {
+                padding: 18px 5px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="display">
+            <div class="expression" id="expression"></div>
+            <div class="result" id="result">0</div>
+        </div>
+        <div class="buttons">
+            <button class="clear" onclick="clearAll()">C</button>
+            <button class="clear" onclick="backspace()">⌫</button>
+            <button class="function" onclick="appendToExpression('(')">(</button>
+            <button class="function" onclick="appendToExpression(')')">)</button>
+            <button class="function" onclick="appendToExpression('sqrt(')">√</button>
+            
+            <button class="function" onclick="appendToExpression('^')">x^y</button>
+            <button class="function" onclick="appendToExpression('sin(')">sin</button>
+            <button class="function" onclick="appendToExpression('cos(')">cos</button>
+            <button class="function" onclick="appendToExpression('tan(')">tan</button>
+            <button class="function" onclick="appendToExpression('log(')">log</button>
+            
+            <button onclick="appendToExpression('7')">7</button>
+            <button onclick="appendToExpression('8')">8</button>
+            <button onclick="appendToExpression('9')">9</button>
+            <button class="operator" onclick="appendToExpression('/')">/</button>
+            <button class="operator" onclick="appendToExpression('*')">×</button>
+            
+            <button onclick="appendToExpression('4')">4</button>
+            <button onclick="appendToExpression('5')">5</button>
+            <button onclick="appendToExpression('6')">6</button>
+            <button class="operator" onclick="appendToExpression('-')">-</button>
+            <button class="operator" onclick="appendToExpression('+')">+</button>
+            
+            <button onclick="appendToExpression('1')">1</button>
+            <button onclick="appendToExpression('2')">2</button>
+            <button onclick="appendToExpression('3')">3</button>
+            <button class="operator" onclick="appendToExpression('(')">(</button>
+            <button class="operator" onclick="appendToExpression(')')">)</button>
+            
+            <button onclick="appendToExpression('0')">0</button>
+            <button onclick="appendToExpression('.')">.</button>
+            <button class="operator" onclick="appendToExpression('Math.PI')">π</button>
+            <button class="operator" onclick="appendToExpression('Math.E')">e</button>
+            <button class="equals" onclick="calculate()">=</button>
+        </div>
+        <div class="footer">
+            Scientific Calculator | Supports +, -, *, /, parentheses, sqrt, power
+        </div>
+    </div>
+
+    <script>
+        let expression = '';
+        const expressionElement = document.getElementById('expression');
+        const resultElement = document.getElementById('result');
+        
+        function appendToExpression(value) {
+            expression += value;
+            updateDisplay();
+        }
+        
+        function clearAll() {
+            expression = '';
+            updateDisplay();
+        }
+        
+        function backspace() {
+            expression = expression.slice(0, -1);
+            updateDisplay();
+        }
+        
+        function updateDisplay() {
+            expressionElement.textContent = expression;
+            if (expression === '') {
+                resultElement.textContent = '0';
+            } else {
+                resultElement.textContent = evaluateExpression(expression);
+            }
+        }
+        
+        function evaluateExpression(expr) {
+            try {
+                // Replace mathematical functions and constants
+                expr = expr.replace(/sqrt\(/g, 'Math.sqrt(');
+                expr = expr.replace(/sin\(/g, 'Math.sin(');
+                expr = expr.replace(/cos\(/g, 'Math.cos(');
+                expr = expr.replace(/tan\(/g, 'Math.tan(');
+                expr = expr.replace(/log\(/g, 'Math.log10(');
+                expr = expr.replace(/\^/g, '**');
+                expr = expr.replace(/π/g, 'Math.PI');
+                expr = expr.replace(/e/g, 'Math.E');
+                
+                // Evaluate the expression
+                const result = eval(expr);
+                
+                // Format the result
+                if (Number.isInteger(result)) {
+                    return result.toString();
+                } else {
+                    return parseFloat(result.toFixed(10)).toString();
+                }
+            } catch (error) {
+                return 'Error';
+            }
+        }
+        
+        function calculate() {
+            if (expression === '') return;
+            
+            try {
+                // Replace mathematical functions and constants
+                let expr = expression;
+                expr = expr.replace(/sqrt\(/g, 'Math.sqrt(');
+                expr = expr.replace(/sin\(/g, 'Math.sin(');
+                expr = expr.replace(/cos\(/g, 'Math.cos(');
+                expr = expr.replace(/tan\(/g, 'Math.tan(');
+                expr = expr.replace(/log\(/g, 'Math.log10(');
+                expr = expr.replace(/\^/g, '**');
+                expr = expr.replace(/π/g, 'Math.PI');
+                expr = expr.replace(/e/g, 'Math.E');
+                
+                const result = eval(expr);
+                
+                // Format the result
+                if (Number.isInteger(result)) {
+                    expression = result.toString();
+                } else {
+                    expression = parseFloat(result.toFixed(10)).toString();
+                }
+                
+                updateDisplay();
+            } catch (error) {
+                expression = 'Error';
+                updateDisplay();
+            }
+        }
+        
+        // Initialize display
+        updateDisplay();
+    </script>
+</body>
+</html>
+```
+
+## Features of this Scientific Calculator:
+
+1. **Beautiful Design**:
+   - Gradient background with glass-morphism effect
+   - Responsive layout that works on all devices
+   - Modern color scheme with visual feedback on button presses
+   - Clean typography and spacing
+
+2. **Full Functionality**:
+   - Basic operations: +, -, *, /
+   - Parentheses support for complex expressions
+   - Square root function (sqrt)
+   - Power function (x^y)
+   - Trigonometric functions: sin, cos, tan
+   - Logarithmic function (log)
+   - Constants: π (pi) and e
+   - Clear (C) and backspace (⌫) buttons
+
+3. **User Experience**:
+   - Shows both the expression and result
+   - Real-time calculation as you type
+   - Error handling for invalid expressions
+   - Responsive buttons with hover and active states
+   - Clear visual hierarchy
+
+Simply copy and paste this code into an HTML file and open it in any modern browser to use the calculator.

@@ -1,0 +1,24 @@
+{
+  "image_a": "tetris-gemma4-26b-mlx-bf16.png",
+  "image_b": "tetris-qwen3-coder-next.png",
+  "benchmark": "tetris",
+  "winner": "A",
+  "delta": 2,
+  "score_a": 4,
+  "score_b": 2,
+  "reason_a": "Strong neon-pink glow on pieces, clear typographic hierarchy, well-organized side panels with Next/Controls, and a faint ghost piece adds polish.",
+  "reason_b": "Functional but flat with muted cyan outlines, generic layout, and plain-text controls tucked in a corner giving a dev-demo feel.",
+  "verdict": "A delivers a more cohesive neon arcade aesthetic with better hierarchy, glow effects, and panel structure while B feels like an unstyled first draft.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2867,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 205,
+    "service_tier": "standard"
+  }
+}

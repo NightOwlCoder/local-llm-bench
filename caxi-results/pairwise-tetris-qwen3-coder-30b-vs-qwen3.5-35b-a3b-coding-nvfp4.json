@@ -1,0 +1,24 @@
+{
+  "image_a": "tetris-qwen3-coder-30b.png",
+  "image_b": "tetris-qwen3.5-35b-a3b-coding-nvfp4.png",
+  "benchmark": "tetris",
+  "winner": "A",
+  "delta": 2,
+  "score_a": 4,
+  "score_b": 2,
+  "reason_a": "Image A shows a polished product with gradient title, clear sections for score/next piece/controls, gradient buttons, and a detailed playfield with grid lines.",
+  "reason_b": "Image B is sparse and unfinished-looking with a nearly empty board, minimal info panel, and basic keyboard hint glyphs.",
+  "verdict": "A delivers a fully realized, cohesive Tetris product UI while B feels like an early prototype with minimal visual craft.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 3243,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 187,
+    "service_tier": "standard"
+  }
+}

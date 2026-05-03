@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/opt/homebrew/bin/bash
 # Validate oi response: just needs to be non-empty.
 # Usage: ./oi.sh <artifact-file> <model> <results-dir>
 set -uo pipefail

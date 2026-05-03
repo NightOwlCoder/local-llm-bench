@@ -1,0 +1,24 @@
+{
+  "image_a": "calc-gemma4-26b-mlx-bf16.png",
+  "image_b": "calc-qwen3.5-35b-a3b-coding-nvfp4.png",
+  "benchmark": "calc",
+  "winner": "A",
+  "delta": 2,
+  "score_a": 4,
+  "score_b": 2,
+  "reason_a": "Clean button grid with proper square tiles, good color accents (orange operators, green equals, red AC), and balanced spacing creating a polished product feel.",
+  "reason_b": "Pill-shaped buttons feel cramped and inconsistent, with misaligned rows, a weak display area, and a monochromatic purple palette that reads as a rough first draft.",
+  "verdict": "A has disciplined grid layout, stronger typographic hierarchy, and thoughtful accent colors that make it feel like a shipped product versus B's awkward pill buttons and uneven alignment.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2877,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 222,
+    "service_tier": "standard"
+  }
+}

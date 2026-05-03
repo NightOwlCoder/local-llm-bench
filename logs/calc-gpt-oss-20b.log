@@ -1,0 +1,186 @@
+# gpt-oss:20b — calc
+# load=1.575s total=37.813s eval_tokens=2570
+
+Below is a **single‑file** scientific calculator.  
+It supports `+ – × ÷`, parentheses, `sqrt`, and power (`^`).  
+The interface is built with a dark‑theme, CSS grid layout and a clean typography.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Scientific Calculator</title>
+<style>
+:root {
+    --bg: #1e1e2f;
+    --accent: #ff9a9e;
+    --text: #e0e0e0;
+    --button-bg: #2c2c3a;
+    --button-hover: #3a3a4b;
+    --button-shadow: #0d0d13;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+    background:var(--bg);
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    color:var(--text);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+.calculator{
+    width:350px;
+    background:rgba(255,255,255,.05);
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 10px 30px var(--button-shadow);
+}
+.display{
+    background:rgba(0,0,0,.15);
+    border-radius:10px;
+    padding:10px 15px;
+    margin-bottom:10px;
+    font-size:1.2rem;
+    min-height:30px;
+    word-wrap:break-word;
+}
+#result{
+    font-size:1.8rem;
+    font-weight:600;
+}
+.buttons{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+}
+.btn{
+    background:var(--button-bg);
+    border:none;
+    border-radius:8px;
+    padding:15px 0;
+    font-size:1.1rem;
+    color:var(--text);
+    cursor:pointer;
+    transition:all .2s ease;
+    box-shadow:0 4px 6px var(--button-shadow);
+}
+.btn:hover{background:var(--button-hover);}
+.btn:active{transform:translateY(2px);}
+.op{background:var(--accent); color:#fff;}
+.op:hover{background:darken(var(--accent),10%);}
+#equals{background:var(--accent); color:#fff; grid-column:span 2;}
+</style>
+</head>
+<body>
+<div class="calculator">
+  <div id="expression" class="display"></div>
+  <div id="result" class="display"></div>
+  <div class="buttons">
+    <!-- Row 1 -->
+    <button class="btn" data-val="C">C</button>
+    <button class="btn" data-val="CE">CE</button>
+    <button class="btn" data-val="(">(</button>
+    <button class="btn" data-val=")">)</button>
+
+    <!-- Row 2 -->
+    <button class="btn" data-val="sqrt(">√</button>
+    <button class="btn" data-val="^">^</button>
+    <button class="btn" data-val="7">7</button>
+    <button class="btn" data-val="8">8</button>
+
+    <!-- Row 3 -->
+    <button class="btn" data-val="9">9</button>
+    <button class="btn op" data-val="÷">÷</button>
+    <button class="btn" data-val="4">4</button>
+    <button class="btn" data-val="5">5</button>
+
+    <!-- Row 4 -->
+    <button class="btn" data-val="6">6</button>
+    <button class="btn op" data-val="×">×</button>
+    <button class="btn" data-val="1">1</button>
+    <button class="btn" data-val="2">2</button>
+
+    <!-- Row 5 -->
+    <button class="btn" data-val="3">3</button>
+    <button class="btn op" data-val="-">-</button>
+    <button class="btn" data-val="0">0</button>
+    <button class="btn" data-val=".">.</button>
+
+    <!-- Row 6 -->
+    <button class="btn" id="equals" colspan="2">=</button>
+    <button class="btn op" data-val="+">+</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const exprEl = document.getElementById('expression');
+  const resEl  = document.getElementById('result');
+  let expr = '';
+
+  const btns = document.querySelectorAll('.btn');
+  btns.forEach(btn=>{
+    const val = btn.getAttribute('data-val');
+    if (!val) return; // skip equals
+    btn.addEventListener('click',()=>{
+      if(val==='C'){ expr=''; }
+      else if(val==='CE'){ expr=expr.slice(0,-1); }
+      else{ expr+=val; }
+      exprEl.textContent = expr;
+      resEl.textContent = '';
+    });
+  });
+
+  document.getElementById('equals').addEventListener('click',()=>{
+    if(!expr)return;
+    try{
+      // prepare expression for JS eval
+      let toEval = expr
+        .replace(/×/g,'*')
+        .replace(/÷/g,'/')
+        .replace(/\^/g,'**')
+        .replace(/sqrt\(/g,'Math.sqrt(');
+      const result = eval(toEval);
+      resEl.textContent = result;
+    }catch(e){
+      resEl.textContent = 'Error';
+    }
+  });
+
+  // Optional: allow keyboard entry
+  document.addEventListener('keydown',(e)=>{
+    const key = e.key;
+    if((/[\d.+\-*/()%^]/.test(key))){
+      expr += key;
+      exprEl.textContent = expr;
+    }else if(e.key==='Enter'){
+      document.getElementById('equals').click();
+    }else if(e.key==='Escape'){
+      expr='';
+      exprEl.textContent='';
+      resEl.textContent='';
+    }
+  });
+})();
+</script>
+</body>
+</html>
+```
+
+### How it works
+1. **Expression building** – Every button appends its value to the `expr` string.  
+2. **Clear functions** –  
+   * `C` clears the entire expression.  
+   * `CE` deletes the last character.  
+3. **Evaluation** – Clicking `=` converts the expression to JavaScript syntax:
+   * `×` → `*`
+   * `÷` → `/`
+   * `^` → `**`
+   * `sqrt(` → `Math.sqrt(`  
+   Then `eval()` calculates the result.  
+4. **Result display** – The computed value (or “Error” on exception) appears below the expression.  
+
+Feel free to tweak the colors, fonts, or button layout to match your personal taste!

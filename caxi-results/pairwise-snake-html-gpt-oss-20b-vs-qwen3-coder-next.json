@@ -1,0 +1,24 @@
+{
+  "image_a": "snake-html-gpt-oss-20b.png",
+  "image_b": "snake-html-qwen3-coder-next.png",
+  "benchmark": "snake-html",
+  "winner": "B",
+  "delta": 2,
+  "score_a": 2,
+  "score_b": 4,
+  "reason_a": "Image A shows an unrendered '<br>' tag in the game-over text and has a generic dark panel with minimal styling and weak visual identity.",
+  "reason_b": "Image B has a cohesive neon/cyberpunk theme with glowing typography, grid background, and a polished 'Play Again' button that feels like an intentional product.",
+  "verdict": "B wins due to its strong thematic identity, glowing neon styling, and polished typography, while A looks like an unfinished draft with a visible HTML tag bug.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2865,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 203,
+    "service_tier": "standard"
+  }
+}

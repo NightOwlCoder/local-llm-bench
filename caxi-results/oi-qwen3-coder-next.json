@@ -1,0 +1,6 @@
+{
+  "model": "qwen3-coder-next",
+  "benchmark": "oi",
+  "pass": true,
+  "word_count": 7
+}

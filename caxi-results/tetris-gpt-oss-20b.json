@@ -1,0 +1,28 @@
+{
+  "benchmark": "tetris",
+  "url": "file://<artifact>",
+  "tiers": {
+    "loads_clean": true,
+    "has_canvas": true,
+    "game_starts": false,
+    "gravity_alive": true,
+    "left_moves": true,
+    "right_moves": true,
+    "rotate_works": true,
+    "has_score": true
+  },
+  "score": 7,
+  "hashes": {
+    "before_start": "da932dda2856",
+    "after_start": "48880ad18089",
+    "after_3s": "22d1674f037c",
+    "after_left": "d887f6e471d5",
+    "after_right": "77351baf3b4d",
+    "after_rotate": "aa896258d48c"
+  },
+  "start_method": "space",
+  "errors": [],
+  "notes": [],
+  "pass": true,
+  "model": "gpt-oss:20b"
+}

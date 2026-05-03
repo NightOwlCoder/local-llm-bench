@@ -1,0 +1,24 @@
+{
+  "image_a": "snake-html-laguna-xs.2.png",
+  "image_b": "snake-html-qwen3-coder-30b.png",
+  "benchmark": "snake-html",
+  "winner": "A",
+  "delta": 2,
+  "score_a": 4,
+  "score_b": 2,
+  "reason_a": "Dark neon aesthetic with glowing red 'Game Over' text, cyan gradient button, and cohesive moody palette feels like a polished product.",
+  "reason_b": "Generic red gradient background with flat card, empty play area, and basic pink buttons feels like a first-draft template.",
+  "verdict": "A commits to a distinctive neon theme with refined typography, glow effects, and accent colors, while B looks like an unstyled bootstrap layout.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 3003,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 185,
+    "service_tier": "standard"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "image_a": "calc-gpt-oss-20b.png",
+  "image_b": "calc-qwen3.5-35b-a3b-coding-nvfp4.png",
+  "benchmark": "calc",
+  "winner": "A",
+  "delta": 2,
+  "score_a": 4,
+  "score_b": 2,
+  "reason_a": "Cohesive dark palette with purple accents, a proper display area showing '0', pill-shaped buttons, and clear visual hierarchy between AC (red), operators (purple), and equals (filled violet).",
+  "reason_b": "Layout feels disorganized with operators scattered non-standardly, empty display bars, and jarring pink buttons that clash with the dark theme rather than complementing it.",
+  "verdict": "A delivers a polished, coherent calculator with intentional accent colors and clean typography, while B's misaligned operator placement and mismatched pink accents feel like a rough first draft.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2871,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 229,
+    "service_tier": "standard"
+  }
+}

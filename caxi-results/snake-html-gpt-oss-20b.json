@@ -1,0 +1,24 @@
+{
+  "benchmark": "snake-html",
+  "url": "file://<artifact>",
+  "tiers": {
+    "loads_clean": true,
+    "has_canvas": true,
+    "game_starts": false,
+    "loop_alive": true,
+    "input_responds": false,
+    "has_score": true
+  },
+  "score": 4,
+  "hashes": {
+    "before_start": "e199dd6e2274",
+    "after_start": "d1743a91dc85",
+    "after_2s": "0fed5fd71036",
+    "after_input": "0fed5fd71036"
+  },
+  "start_method": "button-click",
+  "errors": [],
+  "notes": [],
+  "pass": false,
+  "model": "gpt-oss:20b"
+}

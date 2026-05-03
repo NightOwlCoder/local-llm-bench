@@ -1,0 +1,24 @@
+{
+  "image_a": "tetris-gemma4-26b-mlx-bf16.png",
+  "image_b": "tetris-qwen3-coder-30b.png",
+  "benchmark": "tetris",
+  "winner": "A",
+  "delta": 1,
+  "score_a": 3,
+  "score_b": 3,
+  "reason_a": "Image A has a bold gradient title, clearer hierarchical panels with labels, and gradient buttons that give it a more product-like feel.",
+  "reason_b": "Image B has a cleaner minimalist layout with a subtle glow on the playfield and tidy info panels, but lacks typographic hierarchy and branding.",
+  "verdict": "A wins slightly due to stronger typography, branded header, and more visually refined control buttons, though B's minimalism is arguably more cohesive.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 3236,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 214,
+    "service_tier": "standard"
+  }
+}

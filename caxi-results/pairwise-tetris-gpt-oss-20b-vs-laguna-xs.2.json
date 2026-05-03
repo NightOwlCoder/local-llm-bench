@@ -1,0 +1,24 @@
+{
+  "image_a": "tetris-gpt-oss-20b.png",
+  "image_b": "tetris-laguna-xs.2.png",
+  "benchmark": "tetris",
+  "winner": "B",
+  "delta": 1,
+  "score_a": 2,
+  "score_b": 3,
+  "reason_a": "Clean neon-on-dark playfield with glowing cyan blocks, but the sidebar panels feel sparse and utilitarian with minimal hierarchy.",
+  "reason_b": "More structured product layout with titled card, next-pieces grid, score panel, and a controls legend, giving it a cohesive app feel despite the empty playfield.",
+  "verdict": "B feels like a finished product with multiple well-composed sections and clear hierarchy, while A reads as a minimal first draft with only basic panels.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 3458,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 201,
+    "service_tier": "standard"
+  }
+}

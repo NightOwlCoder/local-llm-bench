@@ -1,0 +1,518 @@
+[
+  {
+    "model": "gemma4-26b-mlx-bf16",
+    "safe": "gemma4-26b-mlx-bf16",
+    "functional": {
+      "snake-html": {
+        "score": 4,
+        "max": 6
+      },
+      "tetris": {
+        "score": 7,
+        "max": 8
+      },
+      "todo": {
+        "score": 7,
+        "max": 8
+      },
+      "calc": {
+        "score": 7,
+        "max": 7
+      },
+      "markdown": {
+        "score": 8,
+        "max": 8
+      }
+    },
+    "pygame_syntax_ok": true,
+    "pygame_review": 31,
+    "oi_quality": 40,
+    "oi_tokens": 166,
+    "timings": {
+      "oi": {
+        "load_s": 18.155501417,
+        "total_s": 39.70552675,
+        "eval_count": 166
+      },
+      "snake-pygame": {
+        "load_s": 15.159621833,
+        "total_s": 75.646573083,
+        "eval_count": 2515
+      },
+      "snake-html": {
+        "load_s": 14.456685125,
+        "total_s": 122.399005708,
+        "eval_count": 4393
+      },
+      "tetris": {
+        "load_s": 14.763407459,
+        "total_s": 179.238740042,
+        "eval_count": 6096
+      },
+      "todo": {
+        "load_s": 15.067311916,
+        "total_s": 137.928622458,
+        "eval_count": 4575
+      },
+      "calc": {
+        "load_s": 15.565970917,
+        "total_s": 112.384843125,
+        "eval_count": 3735
+      },
+      "markdown": {
+        "load_s": 15.671896375,
+        "total_s": 97.154412458,
+        "eval_count": 3134
+      }
+    },
+    "elo": {
+      "snake-html": 1030.4476934317588,
+      "tetris": 1016.6394726639828,
+      "todo": 993.64523611983,
+      "calc": 1056.0101785468003,
+      "markdown": 1001.9740045612598
+    },
+    "functional_score": 27.166666666666664,
+    "pygame_review_score": 9.3,
+    "oi_quality_score": 10,
+    "total_tokens": 24448,
+    "visual_snake-html": 5.889468300344358,
+    "visual_tetris": 4.513077468016691,
+    "visual_todo": 1.698672538346846,
+    "visual_calc": 6,
+    "visual_markdown": 2.976983563065586,
+    "visual_score": 21.07820186977348,
+    "efficiency_score": 11.866850270936652,
+    "total": 79.4117188073768
+  },
+  {
+    "model": "qwen3-coder-next",
+    "safe": "qwen3-coder-next",
+    "functional": {
+      "snake-html": {
+        "score": 5,
+        "max": 6
+      },
+      "tetris": {
+        "score": 7,
+        "max": 8
+      },
+      "todo": {
+        "score": 8,
+        "max": 8
+      },
+      "calc": {
+        "score": 7,
+        "max": 7
+      },
+      "markdown": {
+        "score": 7,
+        "max": 8
+      }
+    },
+    "pygame_syntax_ok": true,
+    "pygame_review": 29,
+    "oi_quality": 40,
+    "oi_tokens": 14,
+    "timings": {
+      "oi": {
+        "load_s": 11.690424666,
+        "total_s": 12.1908875,
+        "eval_count": 14
+      },
+      "snake-pygame": {
+        "load_s": 11.2216925,
+        "total_s": 44.121908458,
+        "eval_count": 1238
+      },
+      "snake-html": {
+        "load_s": 11.255562875,
+        "total_s": 102.397923917,
+        "eval_count": 3445
+      },
+      "tetris": {
+        "load_s": 11.193992083,
+        "total_s": 149.605026042,
+        "eval_count": 4996
+      },
+      "todo": {
+        "load_s": 11.325267833,
+        "total_s": 117.209277417,
+        "eval_count": 3841
+      },
+      "calc": {
+        "load_s": 11.231939792,
+        "total_s": 121.188462334,
+        "eval_count": 4031
+      },
+      "markdown": {
+        "load_s": 10.952258667,
+        "total_s": 93.781003917,
+        "eval_count": 3064
+      }
+    },
+    "elo": {
+      "snake-html": 1031.9876438597842,
+      "tetris": 964.9012262028563,
+      "todo": 1004.1267642694263,
+      "calc": 981.4872893634338,
+      "markdown": 1019.6762632708245
+    },
+    "functional_score": 27.833333333333336,
+    "pygame_review_score": 8.7,
+    "oi_quality_score": 10,
+    "total_tokens": 20615,
+    "visual_snake-html": 6,
+    "visual_tetris": 0,
+    "visual_todo": 2.4721093118097195,
+    "visual_calc": 0.9790614097420336,
+    "visual_markdown": 4.783558432511496,
+    "visual_score": 14.234729154063249,
+    "efficiency_score": 15,
+    "total": 75.76806248739659
+  },
+  {
+    "model": "laguna-xs.2",
+    "safe": "laguna-xs.2",
+    "functional": {
+      "snake-html": {
+        "score": 4,
+        "max": 6
+      },
+      "tetris": {
+        "score": 3,
+        "max": 8
+      },
+      "todo": {
+        "score": 7,
+        "max": 8
+      },
+      "calc": {
+        "score": 6,
+        "max": 7
+      },
+      "markdown": {
+        "score": 1,
+        "max": 8
+      }
+    },
+    "pygame_syntax_ok": true,
+    "pygame_review": 24,
+    "oi_quality": 30,
+    "oi_tokens": 13,
+    "timings": {
+      "oi": {
+        "load_s": 8.159758625,
+        "total_s": 8.541529958,
+        "eval_count": 13
+      },
+      "snake-pygame": {
+        "load_s": 7.402103375,
+        "total_s": 30.093115041,
+        "eval_count": 1286
+      },
+      "snake-html": {
+        "load_s": 7.168572917,
+        "total_s": 80.040072542,
+        "eval_count": 3870
+      },
+      "tetris": {
+        "load_s": 6.914172958,
+        "total_s": 135.690539833,
+        "eval_count": 4859
+      },
+      "todo": {
+        "load_s": 6.326333583,
+        "total_s": 67.918576916,
+        "eval_count": 3228
+      },
+      "calc": {
+        "load_s": 6.204918875,
+        "total_s": 50.130462042,
+        "eval_count": 2286
+      },
+      "markdown": {
+        "load_s": 6.13826775,
+        "total_s": 69.612334625,
+        "eval_count": 3220
+      }
+    },
+    "elo": {
+      "snake-html": 986.8730846412246,
+      "tetris": 1020.0542671222524,
+      "todo": 1051.9363420212142,
+      "calc": 995.8913024823578,
+      "markdown": 1031.595926107358
+    },
+    "functional_score": 18.345238095238095,
+    "pygame_review_score": 7.199999999999999,
+    "oi_quality_score": 7.5,
+    "total_tokens": 18749,
+    "visual_snake-html": 2.7618510187781284,
+    "visual_tetris": 4.810946703672061,
+    "visual_todo": 6,
+    "visual_calc": 1.949523855789144,
+    "visual_markdown": 6,
+    "visual_score": 21.522321578239335,
+    "efficiency_score": 9.46521203283255,
+    "total": 64.03277170630999
+  },
+  {
+    "model": "qwen3.5-35b-a3b-coding-nvfp4",
+    "safe": "qwen3.5-35b-a3b-coding-nvfp4",
+    "functional": {
+      "snake-html": {
+        "score": 4,
+        "max": 6
+      },
+      "tetris": {
+        "score": 6,
+        "max": 8
+      },
+      "todo": {
+        "score": 7,
+        "max": 8
+      },
+      "calc": {
+        "score": 7,
+        "max": 7
+      },
+      "markdown": {
+        "score": 8,
+        "max": 8
+      }
+    },
+    "pygame_syntax_ok": true,
+    "pygame_review": 31,
+    "oi_quality": 40,
+    "oi_tokens": 999,
+    "timings": {
+      "oi": {
+        "load_s": 3.659414042,
+        "total_s": 14.331639875,
+        "eval_count": 999
+      },
+      "snake-pygame": {
+        "load_s": 1.047376834,
+        "total_s": 23.658992917,
+        "eval_count": 2084
+      },
+      "snake-html": {
+        "load_s": 1.058350209,
+        "total_s": 48.609864459,
+        "eval_count": 4272
+      },
+      "tetris": {
+        "load_s": 1.063154875,
+        "total_s": 53.839612,
+        "eval_count": 4440
+      },
+      "todo": {
+        "load_s": 1.048457833,
+        "total_s": 55.998467583,
+        "eval_count": 4030
+      },
+      "calc": {
+        "load_s": 1.064158667,
+        "total_s": 52.229312334,
+        "eval_count": 3615
+      },
+      "markdown": {
+        "load_s": 1.050984417,
+        "total_s": 60.023192125,
+        "eval_count": 4321
+      }
+    },
+    "elo": {
+      "snake-html": 1018.4989411635098,
+      "tetris": 971.2349148194602,
+      "todo": 970.6250169648594,
+      "calc": 966.9556467969455,
+      "markdown": 972.8031497581749
+    },
+    "functional_score": 26.416666666666664,
+    "pygame_review_score": 9.3,
+    "oi_quality_score": 10,
+    "total_tokens": 22762,
+    "visual_snake-html": 5.031832968103636,
+    "visual_tetris": 0.552481565189996,
+    "visual_todo": 0,
+    "visual_calc": 0,
+    "visual_markdown": 0,
+    "visual_score": 5.584314533293632,
+    "efficiency_score": 12.619772821591912,
+    "total": 63.9207540215522
+  },
+  {
+    "model": "qwen3-coder-30b",
+    "safe": "qwen3-coder-30b",
+    "functional": {
+      "snake-html": {
+        "score": 6,
+        "max": 6
+      },
+      "tetris": {
+        "score": 8,
+        "max": 8
+      },
+      "todo": {
+        "score": 7,
+        "max": 8
+      },
+      "calc": {
+        "score": 7,
+        "max": 7
+      },
+      "markdown": {
+        "score": 1,
+        "max": 8
+      }
+    },
+    "pygame_syntax_ok": true,
+    "pygame_review": 39,
+    "oi_quality": 40,
+    "oi_tokens": 12,
+    "timings": {
+      "oi": {
+        "load_s": 4.918948667,
+        "total_s": 5.151687209,
+        "eval_count": 12
+      },
+      "snake-pygame": {
+        "load_s": 4.457225833,
+        "total_s": 27.527428875,
+        "eval_count": 2071
+      },
+      "snake-html": {
+        "load_s": 4.735671333,
+        "total_s": 48.8393465,
+        "eval_count": 3870
+      },
+      "tetris": {
+        "load_s": 4.558497458,
+        "total_s": 68.390430375,
+        "eval_count": 5348
+      },
+      "todo": {
+        "load_s": 4.432235917,
+        "total_s": 41.35476475,
+        "eval_count": 3374
+      },
+      "calc": {
+        "load_s": 4.4537685,
+        "total_s": 31.332071209,
+        "eval_count": 2523
+      },
+      "markdown": {
+        "load_s": 4.226136125,
+        "total_s": 50.814979,
+        "eval_count": 4193
+      }
+    },
+    "elo": {
+      "snake-html": 948.3944068342237,
+      "tetris": 993.4844590924951,
+      "todo": 971.7024097590802,
+      "calc": 973.2058458999112,
+      "markdown": 993.4485727418427
+    },
+    "functional_score": 24,
+    "pygame_review_score": 11.700000000000001,
+    "oi_quality_score": 10,
+    "total_tokens": 21379,
+    "visual_snake-html": 0,
+    "visual_tetris": 2.493287908669753,
+    "visual_todo": 0.07950130883791015,
+    "visual_calc": 0.42110372016924535,
+    "visual_markdown": 2.106934654119761,
+    "visual_score": 5.100827591796669,
+    "efficiency_score": 12.046550399500232,
+    "total": 62.8473779912969
+  },
+  {
+    "model": "gpt-oss-20b",
+    "safe": "gpt-oss-20b",
+    "functional": {
+      "snake-html": {
+        "score": 4,
+        "max": 6
+      },
+      "tetris": {
+        "score": 7,
+        "max": 8
+      },
+      "todo": {
+        "score": 5,
+        "max": 8
+      },
+      "calc": {
+        "score": 3,
+        "max": 7
+      },
+      "markdown": {
+        "score": 2,
+        "max": 8
+      }
+    },
+    "pygame_syntax_ok": true,
+    "pygame_review": 44,
+    "oi_quality": 39,
+    "oi_tokens": 73,
+    "timings": {
+      "oi": {
+        "load_s": 3.78497675,
+        "total_s": 4.763950834,
+        "eval_count": 73
+      },
+      "snake-pygame": {
+        "load_s": 1.550546709,
+        "total_s": 27.954560792,
+        "eval_count": 1976
+      },
+      "snake-html": {
+        "load_s": 1.503550542,
+        "total_s": 33.050114417,
+        "eval_count": 2325
+      },
+      "tetris": {
+        "load_s": 1.547335875,
+        "total_s": 35.103335417,
+        "eval_count": 2547
+      },
+      "todo": {
+        "load_s": 1.507545333,
+        "total_s": 42.317846625,
+        "eval_count": 2963
+      },
+      "calc": {
+        "load_s": 1.57454825,
+        "total_s": 37.812661041,
+        "eval_count": 2570
+      },
+      "markdown": {
+        "load_s": 1.530926583,
+        "total_s": 259.831641291,
+        "eval_count": 16000
+      }
+    },
+    "elo": {
+      "snake-html": 983.7982300694989,
+      "tetris": 1033.6856600989533,
+      "todo": 1007.96423086559,
+      "calc": 1026.4497369105516,
+      "markdown": 980.50208356054
+    },
+    "functional_score": 18.88095238095238,
+    "pygame_review_score": 13.2,
+    "oi_quality_score": 9.75,
+    "total_tokens": 28381,
+    "visual_snake-html": 2.541149822284049,
+    "visual_tetris": 6,
+    "visual_todo": 2.755277733441324,
+    "visual_calc": 4.008381535083625,
+    "visual_markdown": 0.7857020144760076,
+    "visual_score": 16.090511105285007,
+    "efficiency_score": 0,
+    "total": 57.921463486237386
+  }
+]

@@ -1,0 +1,24 @@
+{
+  "image_a": "snake-html-gpt-oss-20b.png",
+  "image_b": "snake-html-laguna-xs.2.png",
+  "benchmark": "snake-html",
+  "winner": "A",
+  "delta": 3,
+  "score_a": 4,
+  "score_b": 1,
+  "reason_a": "Polished neon aesthetic with cohesive dark palette, glowing accents, clear typographic hierarchy, and a refined gradient CTA button.",
+  "reason_b": "Bare-bones look with unrendered '<br>' tag, flat green button, and minimal styling that feels like a dev prototype.",
+  "verdict": "A delivers a cohesive, product-grade neon theme while B shows raw markup and lacks visual craft.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2864,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 199,
+    "service_tier": "standard"
+  }
+}

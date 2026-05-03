@@ -1,0 +1,24 @@
+{
+  "image_a": "markdown-gpt-oss-20b.png",
+  "image_b": "markdown-qwen3.5-35b-a3b-coding-nvfp4.png",
+  "benchmark": "markdown",
+  "winner": "B",
+  "delta": 3,
+  "score_a": 1,
+  "score_b": 4,
+  "reason_a": "Image A shows only a raw markdown source block with no rendered preview, header, or styling\u2014feels incomplete.",
+  "reason_b": "Image B has a polished dark-themed split-pane editor/preview layout with proper typography hierarchy, syntax accents, and a branded header bar.",
+  "verdict": "B delivers a complete, cohesive product-like markdown previewer while A appears to be an unfinished first draft showing only source text.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2874,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 197,
+    "service_tier": "standard"
+  }
+}

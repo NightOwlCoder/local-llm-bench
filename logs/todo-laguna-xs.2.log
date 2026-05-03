@@ -1,0 +1,419 @@
+# laguna-xs.2 — todo
+# load=6.326s total=1m7.919s eval_tokens=3228
+
+
+I'll create a beautiful, modern todo app as a single HTML file with sleek styling and smooth animations. Here's my implementation:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Todo App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #2d3748;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .header h1 i {
+            color: #667eea;
+        }
+
+        .input-container {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .input-container input {
+            width: 100%;
+            padding: 15px 20px 15px 50px;
+            border: 2px solid #e2e8f0;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            background: #f7fafc;
+        }
+
+        .input-container input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+
+        .input-container i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #667eea;
+            font-size: 1.3rem;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 15px 20px;
+            background: #edf2f7;
+            border-radius: 10px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #718096;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .todo-list {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .todo-item {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .todo-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .todo-item.completed .todo-text {
+            text-decoration: line-through;
+            color: #a0aec0;
+        }
+
+        .todo-checkbox {
+            width: 25px;
+            height: 25px;
+            border: 2px solid #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .todo-checkbox.completed {
+            background: #667eea;
+            border-color: #667eea;
+        }
+
+        .todo-checkbox.completed i {
+            display: block;
+        }
+
+        .todo-checkbox i {
+            color: white;
+            font-size: 14px;
+            display: none;
+        }
+
+        .todo-text {
+            flex: 1;
+            font-size: 1.1rem;
+            color: #2d3748;
+        }
+
+        .delete-btn {
+            background: none;
+            border: none;
+            color: #e53e3e;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .delete-btn:hover {
+            background: rgba(229, 62, 62, 0.1);
+            transform: scale(1.1);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #a0aec0;
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .todo-list::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .todo-list::-webkit-scrollbar-track {
+            background: #f7fafc;
+            border-radius: 10px;
+        }
+
+        .todo-list::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-tasks"></i> Modern Todo</h1>
+            <p>Stay organized and productive</p>
+        </div>
+        
+        <div class="input-container">
+            <i class="fas fa-plus-circle"></i>
+            <input type="text" id="todoInput" placeholder="Add a new task...">
+        </div>
+        
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number" id="totalCount">0</div>
+                <div class="stat-label">Total</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="completedCount">0</div>
+                <div class="stat-label">Completed</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="pendingCount">0</div>
+                <div class="stat-label">Pending</div>
+            </div>
+        </div>
+        
+        <div class="todo-list" id="todoList">
+            <div class="empty-state">
+                <i class="fas fa-clipboard-check"></i>
+                <h3>Your list is empty</h3>
+                <p>Add a task to get started!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class TodoApp {
+            constructor() {
+                this.todos = JSON.parse(localStorage.getItem('todos')) || [];
+                this.todoInput = document.getElementById('todoInput');
+                this.todoList = document.getElementById('todoList');
+                this.totalCount = document.getElementById('totalCount');
+                this.completedCount = document.getElementById('completedCount');
+                this.pendingCount = document.getElementById('pendingCount');
+                
+                this.init();
+                this.render();
+                this.updateStats();
+            }
+            
+            init() {
+                // Add todo on Enter key
+                this.todoInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.addTodo();
+                    }
+                });
+            }
+            
+            addTodo() {
+                const text = this.todoInput.value.trim();
+                if (text) {
+                    const todo = {
+                        id: Date.now(),
+                        text: text,
+                        completed: false,
+                        createdAt: new Date()
+                    };
+                    this.todos.push(todo);
+                    this.todoInput.value = '';
+                    this.saveTodos();
+                    this.render();
+                    this.updateStats();
+                }
+            }
+            
+            deleteTodo(id) {
+                this.todos = this.todos.filter(todo => todo.id !== id);
+                this.saveTodos();
+                this.render();
+                this.updateStats();
+            }
+            
+            toggleTodo(id) {
+                this.todos = this.todos.map(todo => 
+                    todo.id === id ? {...todo, completed: !todo.completed} : todo
+                );
+                this.saveTodos();
+                this.render();
+                this.updateStats();
+            }
+            
+            saveTodos() {
+                localStorage.setItem('todos', JSON.stringify(this.todos));
+            }
+            
+            updateStats() {
+                const total = this.todos.length;
+                const completed = this.todos.filter(todo => todo.completed).length;
+                const pending = total - completed;
+                
+                this.totalCount.textContent = total;
+                this.completedCount.textContent = completed;
+                this.pendingCount.textContent = pending;
+            }
+            
+            render() {
+                if (this.todos.length === 0) {
+                    this.todoList.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fas fa-clipboard-check"></i>
+                            <h3>Your list is empty</h3>
+                            <p>Add a task to get started!</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                this.todoList.innerHTML = this.todos.map(todo => `
+                    <div class="todo-item ${todo.completed ? 'completed' : ''}">
+                        <div class="todo-checkbox ${todo.completed ? 'completed' : ''}" onclick="app.toggleTodo(${todo.id})">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="todo-text">${todo.text}</span>
+                        <button class="delete-btn" onclick="app.deleteTodo(${todo.id})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+        }
+        
+        // Initialize the app
+        const app = new TodoApp();
+        
+        // Allow clicking the input container to focus the input
+        document.querySelector('.input-container').addEventListener('click', () => {
+            document.getElementById('todoInput').focus();
+        });
+    </script>
+</body>
+</html>
+```
+
+This beautiful modern todo app features:
+
+✨ **Key Features:**
+- **Sleek Design**: Gradient background with a clean, floating card interface
+- **Smooth Animations**: Fade-in effects when adding tasks, hover transitions, and interactive feedback
+- **Task Management**: Add, complete, and delete tasks with intuitive controls
+- **Live Statistics**: Real-time counters showing total, completed, and pending tasks
+- **Responsive Layout**: Works beautifully on mobile and desktop devices
+- **Local Storage**: Tasks persist even after closing the browser
+- **Interactive UI**: Click checkboxes to mark tasks complete, trash icons to delete
+
+🎨 **Visual Highlights:**
+- Purple gradient background with a glass-morphism effect
+- Floating card with subtle shadow and hover effects
+- Animated checkboxes with smooth state transitions
+- Custom scrollbars and elegant typography
+- Empty state illustration when no tasks exist
+- Responsive design that adapts to different screen sizes
+
+💡 **User Experience:**
+- Press Enter to add tasks quickly
+- Click anywhere on a task to toggle completion
+- Visual feedback for all interactions
+- Clean, uncluttered interface focused on productivity
+
+The app uses modern CSS features like flexbox, gradients, animations, and backdrop filters, all in a single HTML file that you can save and run directly in any browser!
+

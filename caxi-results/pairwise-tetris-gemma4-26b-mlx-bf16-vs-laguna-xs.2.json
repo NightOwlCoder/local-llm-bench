@@ -1,0 +1,24 @@
+{
+  "image_a": "tetris-gemma4-26b-mlx-bf16.png",
+  "image_b": "tetris-laguna-xs.2.png",
+  "benchmark": "tetris",
+  "winner": "B",
+  "delta": 1,
+  "score_a": 3,
+  "score_b": 4,
+  "reason_a": "Image A has a clear layout with nice glowing border and rounded panels, but the empty black playfield and plain controls list feel slightly unfinished.",
+  "reason_b": "Image B shows an active game with subtle grid lines, glowing neon blocks, refined uppercase labels, and cohesive dark panels that feel more product-like.",
+  "verdict": "B wins for its polished neon aesthetic, visible grid texture, and refined typography hierarchy that feel more like a shipped product.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 3464,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 194,
+    "service_tier": "standard"
+  }
+}

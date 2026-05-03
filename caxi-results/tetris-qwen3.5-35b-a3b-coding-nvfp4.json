@@ -1,0 +1,30 @@
+{
+  "benchmark": "tetris",
+  "url": "file://<artifact>",
+  "tiers": {
+    "loads_clean": false,
+    "has_canvas": true,
+    "game_starts": false,
+    "gravity_alive": true,
+    "left_moves": true,
+    "right_moves": true,
+    "rotate_works": true,
+    "has_score": true
+  },
+  "score": 6,
+  "hashes": {
+    "before_start": "d110de9dcbca",
+    "after_start": "ee3dc084403d",
+    "after_3s": "bf1785337c7f",
+    "after_left": "027b7d473a6a",
+    "after_right": "c9ecbc7c0014",
+    "after_rotate": "cc8e3bdeb72a"
+  },
+  "start_method": "button-click",
+  "errors": [
+    "Cannot read properties of null (reading 'forEach')"
+  ],
+  "notes": [],
+  "pass": true,
+  "model": "qwen3.5:35b-a3b-coding-nvfp4"
+}

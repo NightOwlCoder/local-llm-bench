@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Scientific Calculator</title>
+    <style>
+        :root {
+            --bg-color: #1e1e2e;
+            --calc-bg: #252537;
+            --display-bg: #181825;
+            --text-main: #cdd6f4;
+            --text-sub: #a6adc8;
+            --btn-num: #313244;
+            --btn-num-hover: #45475a;
+            --btn-op: #89b4fa;
+            --btn-op-hover: #b4befe;
+            --btn-func: #b4befe;
+            --btn-func-hover: #cba6f7;
+            --btn-eq: #a6e3a1;
+            --btn-eq-hover: #a6dba1;
+            --btn-del: #f38ba8;
+            --btn-del-hover: #eba0ac;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--text-main);
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            max-width: 900px;
+            width: 100%;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Calculator Body */
+        .calculator {
+            background-color: var(--calc-bg);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid #313244;
+        }
+
+        /* Display Screen */
+        .display {
+            background-color: var(--display-bg);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: right;
+            border: 1px solid #45475a;
+            position: relative;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .history-line {
+            font-size: 14px;
+            color: var(--text-sub);
+            min-height: 20px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .input-line {
+            font-size: 32px;
+            color: var(--text-main);
+            font-weight: 300;
+            overflow-x: auto;
+            word-break: break-all;
+            white-space: nowrap;
+            scrollbar-width: none; /* Firefox */
+        }
+        .input-line::-webkit-scrollbar { display: none; }
+
+        .result-line {
+            font-size: 40px;
+            color: var(--btn-op);
+            font-weight: 700;
+            margin-top: 5px;
+            min-height: 50px;
+        }
+
+        /* Keypad Grid */
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        button {
+            border: none;
+            outline: none;
+            padding: 20px;
+            font-size: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: white;
+            background-color: var(--btn-num);
+            box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+            user-select: none;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 5px 5px 8px rgba(0,0,0,0.3);
+        }
+
+        button:active {
+            transform: translateY(1px);
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+
+        /* Button Colors */
+        .btn-num { color: var(--text-main); font-weight: 600; }
+        .btn-num:hover { background-color: var(--btn-num-hover); }
+
+        .btn-op { background-color: var(--btn-op); color: #1e1e2e; font-weight: 700; }
+        .btn-op:hover { background-color: var(--btn-op-hover); }
+
+        .btn-func { background-color: var(--btn-func); color: #1e1e2e; font-size: 16px; }
+        .btn-func:hover { background-color: var(--btn-func-hover); }
+
+        .btn-eq { background-color: var(--btn-eq); color: #1e1e2e; font-weight: 900; grid-column: span 2; font-size: 24px;}
+        .btn-eq:hover { background-color: var(--btn-eq-hover); }
+
+        .btn-del { background-color: var(--btn-del); color: #1e1e2e; font-size: 18px; }
+        .btn-del:hover { background-color: var(--btn-del-hover); }
+
+        .btn-clear { background-color: #f9e2af; color: #1e1e2e; font-weight: 700;}
+        .btn-clear:hover { background-color: #f8e1a0; }
+
+        /* History Sidebar */
+        .history-panel {
+            flex: 1;
+            min-width: 250px;
+            background-color: var(--calc-bg);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid #313244;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #45475a;
+            padding-bottom: 10px;
+        }
+
+        .h-title { font-weight: bold; color: var(--btn-func); }
+        .h-clear { font-size: 12px; color: var(--btn-del); cursor: pointer; text-decoration: underline; }
+
+        .history-list {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding-right: 5px;
+        }
+
+        .history-item {
+            background-color: var(--btn-num);
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: monospace;
+        }
+
+        .history-item:hover {
+            background-color: var(--btn-num-hover);
+            border-left: 3px solid var(--btn-op);
+        }
+
+        .hist-exp { font-size: 14px; color: var(--text-sub); margin-bottom: 5px; }
+        .hist-res { font-size: 18px; color: var(--btn-eq); font-weight: bold; text-align: right; }
+
+        /* Scrollbar styling */
+        .history-list::-webkit-scrollbar { width: 6px; }
+        .history-list::-webkit-scrollbar-track { background: var(--display-bg); }
+        .history-list::-webkit-scrollbar-thumb { background: var(--btn-func); border-radius: 3px; }
+
+        @media (max-width: 768px) {
+            .container { flex-direction: column; align-items: center; }
+            .history-panel { width: 100%; max-height: 300px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Calculator Main -->
+    <div class="calculator">
+        <div class="display">
+            <div class="history-line" id="prevExpr"></div>
+            <div class="input-line" id="currExpr" contenteditable="true" spellcheck="false"></div>
+            <div class="result-line" id="resultDisplay">0</div>
+        </div>
+
+        <div class="keypad">
+            <!-- Row 1: Clear & Del -->
+            <button class="btn-clear" onclick="clearAll()">AC</button>
+            <button class="btn-del" onclick="backspace()">DEL</button>
+            <button class="btn-func" onclick="appendFunction('sqrt(')">√</button>
+            <button class="btn-op" onclick="appendOperator('/')">÷</button>
+
+            <!-- Row 2: Funcs & Numbers -->
+            <button class="btn-func" onclick="appendFunction('sin(')">sin</button>
+            <button class="btn-func" onclick="appendFunction('cos(')">cos</button>
+            <button class="btn-func" onclick="appendFunction('tan(')">tan</button>
+            <button class="btn-op" onclick="appendOperator('*')">×</button>
+
+            <!-- Row 3 -->
+            <button class="btn-num" onclick="appendNumber('7')">7</button>
+            <button class="btn-num" onclick="appendNumber('8')">8</button>
+            <button class="btn-num" onclick="appendNumber('9')">9</button>
+            <button class="btn-op" onclick="appendOperator('-')">-</button>
+
+            <!-- Row 4 -->
+            <button class="btn-num" onclick="appendNumber('4')">4</button>
+            <button class="btn-num" onclick="appendNumber('5')">5</button>
+            <button class="btn-num" onclick="appendNumber('6')">6</button>
+            <button class="btn-op" onclick="appendOperator('+')">+</button>
+
+            <!-- Row 5 -->
+            <button class="btn-num" onclick="appendNumber('1')">1</button>
+            <button class="btn-num" onclick="appendNumber('2')">2</button>
+            <button class="btn-num" onclick="appendNumber('3')">3</button>
+            <button class="btn-func" onclick="appendPower()">x^y</button>
+
+            <!-- Row 6 -->
+            <button class="btn-num" onclick="appendNumber('0')">0</button>
+            <button class="btn-num" onclick="appendNumber('.')">.</button>
+            <button class="btn-num" onclick="appendNumber('(')">(</button>
+            <button class="btn-num" onclick="appendNumber(')')">)</button>
+            
+            <!-- Row 7: Equals -->
+            <button class="btn-eq" onclick="calculate()" style="grid-column: span 4;">=</button>
+        </div>
+    </div>
+
+    <!-- History Panel -->
+    <div class="history-panel">
+        <div class="history-header">
+            <span class="h-title">Calculation History</span>
+            <span class="h-clear" onclick="clearHistory()">Clear</span>
+        </div>
+        <div class="history-list" id="historyList">
+            <!-- History items will appear here -->
+            <div style="text-align:center; color: var(--text-sub); margin-top: 50px;">
+                History is empty.<br>Start calculating!
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentExpression = "";
+    let lastResult = null;
+    const currExprDisplay = document.getElementById('currExpr');
+    const resultDisplay = document.getElementById('resultDisplay');
+    const prevExprDisplay = document.getElementById('prevExpr');
+    const historyList = document.getElementById('historyList');
+
+    // Focus the input area when page loads
+    window.onload = () => currExprDisplay.focus();
+
+    // --- Input Handling ---
+
+    function appendNumber(num) {
+        currentExpression += num;
+        updateDisplay();
+        scrollToRight();
+    }
+
+    function appendOperator(op) {
+        // Prevent double operators
+        const lastChar = currentExpression.slice(-1);
+        if (['+', '-', '*', '/'].includes(lastChar)) {
+            currentExpression = currentExpression.slice(0, -1);
+        }
+        currentExpression += op;
+        updateDisplay();
+        scrollToRight();
+    }
+
+    function appendFunction(funcName) {
+        currentExpression += funcName;
+        updateDisplay();
+        scrollToRight();
+    }
+
+    function appendPower() {
+        appendOperator('^'); // Display as ^
+        // Logic handles replacing ^ with ** for calculation
+    }
+
+    function backspace() {
+        currentExpression = currentExpression.slice(0, -1);
+        updateDisplay();
+    }
+
+    function clearAll() {
+        currentExpression = "";
+        lastResult = null;
+        resultDisplay.innerText = "0";
+        prevExprDisplay.innerText = "";
+        updateDisplay();
+    }
+
+    // Prevent pasting plain text, force keyboard interaction for safety
+    currExprDisplay.addEventListener('paste', (e) => {
+        e.preventDefault();
+        const text = e.clipboardData.getData('text/plain');
+        // Only allow numbers, operators, parens, and dots
+        const sanitized = text.replace(/[^0-9+\-*/.()]/g, '');
+        currentExpression += sanitized;
+        updateDisplay();
+    });
+
+    // Handle typing directly into the display
+    currExprDisplay.addEventListener('input', (e) => {
+        // Sync variable with DOM
+        currentExpression = currExprDisplay.innerText;
+    });
+
+    function updateDisplay() {
+        // Replace ** with ^ for visual clarity
+        let visualExpr = currentExpression.replace(/\*/g, '');
+        // We need to be careful not to remove * from valid operators like 2*2
+        // Let's just replace the internal logic ** with ^ for display
+        visualExpr = currentExpression.replace(/\*\*/g, '^').replace(/\*/g, '×');
+        currExprDisplay.innerText = visualExpr;
+    }
+
+    function scrollToRight() {
+        currExprDisplay.scrollLeft = currExprDisplay.scrollWidth;
+    }
+
+    // --- Calculation Logic ---
+
+    function calculate() {
+        if (currentExpression.trim() === "") return;
+
+        let evalString = currentExpression;
+
+        // Pre-processing for calculation
+        // 1. Replace visual symbols with JS Math operators
+        evalString = evalString.replace(/\^/g, '**'); 
+        evalString = evalString.replace(/×/g, '*'); // in case paste didn't clean up
+        
+        // 2. Math Function Mapping (e.g., sin(30) -> Math.sin(30 * Math.PI / 180) or Radians)
+        // For simplicity in a basic calculator, we assume Radians for advanced funcs
+        // Or Degrees if we want user friendly. Let's do Radians (Standard Scientific).
+        
+        // Create a safe-ish scope for Math functions
+        try {
+            // Regex to insert 'Math.' before functions
+            const safeExpr = evalString
+                .replace(/sin/g, 'Math.sin')
+                .replace(/cos/g, 'Math.cos')
+                .replace(/tan/g, 'Math.tan')
+                .replace(/sqrt/g, 'Math.sqrt')
+                .replace(/log/g, 'Math.log10')
+                .replace(/ln/g, 'Math.log');
+
+            // Calculate result
+            // eslint-disable-next-line no-new-func
+            let result = new Function('return ' + safeExpr)();
+
+            // Handle Errors (like Divide by Zero)
+            if (!isFinite(result) || isNaN(result)) {
+                throw new Error("Error");
+            }
+
+            // Fix floating point precision (e.g. 0.1 + 0.2)
+            result = Math.round(result * 10000000000) / 10000000000;
+
+            // Update UI
+            prevExprDisplay.innerText = currentExpression.replace(/\*/g, '×').replace(/\^/g, '^');
+            resultDisplay.innerText = result;
+            lastResult = result;
+            
+            addToHistory(currentExpression, result);
+
+            // Optional: Update current expression to result for chaining
+            // currentExpression = result.toString();
+            // updateDisplay();
+
+        } catch (error) {
+            prevExprDisplay.innerText = currentExpression;
+            resultDisplay.innerText = "Error";
+            resultDisplay.style.color = "#f38ba8";
+            setTimeout(() => resultDisplay.style.color = "var(--btn-op)", 1000);
+        }
+    }
+
+    function addToHistory(expression, result) {
+        // Remove old placeholder if exists
+        if (historyList.children.length > 0 && historyList.children[0].innerText.includes("empty")) {
+            historyList.innerHTML = "";
+        }
+
+        const item = document.createElement('div');
+        item.className = 'history-item';
+        item.innerHTML = `
+            <div class="hist-exp">${expression.replace(/\*/g, '×')}</div>
+            <div class="hist-res">= ${result}</div>
+        `;
+        
+        item.onclick = () => {
+            currentExpression = result.toString();
+            updateDisplay();
+            resultDisplay.innerText = "0";
+            prevExprDisplay.innerText = "";
+            currExprDisplay.focus();
+        };
+
+        historyList.prepend(item);
+    }
+
+    function clearHistory() {
+        historyList.innerHTML = `<div style="text-align:center; color: var(--text-sub); margin-top: 50px;">History is empty.<br>Start calculating!</div>`;
+    }
+
+    // Keyboard Support
+    document.addEventListener('keydown', (e) => {
+        const key = e.key;
+        if (/[0-9]/.test(key)) appendNumber(key);
+        if (['+', '-', '*', '/', '(', ')', '.'].includes(key)) appendNumber(key);
+        if (key === 'Backspace') backspace();
+        if (key === 'Enter') calculate();
+        if (key === 'Escape') clearAll();
+        if (key === '^') appendPower();
+    });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "local-llm-bench",
+  "version": "1.0.0",
+  "description": "Extensible benchmark framework for local coder LLMs running on [Ollama](https://ollama.com).",
+  "main": "index.js",
+  "scripts": {
+    "bench": "./bench.sh",
+    "full": "./scripts/run-full-benchmark.sh",
+    "leaderboard": "node scripts/build-leaderboard.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@aws-sdk/client-bedrock-runtime": "^3.1041.0",
+    "playwright": "^1.59.1"
+  }
+}

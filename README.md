@@ -2,34 +2,40 @@
 
 Extensible benchmark framework for local coder LLMs running on [Ollama](https://ollama.com).
 
-Prompts each model, captures real code artifacts, and runs validators (syntax checks, headless Chrome automation) to measure what actually matters: **does the generated code work, and does it look good?**
+It prompts each model to build real apps/games, saves the generated artifacts, drives them with Playwright, and optionally uses Claude Opus via Bedrock for visual/code/text judging.
 
 ## Why
 
-Most LLM benchmarks are synthetic multiple-choice tests. This one:
-- Asks the model to **actually build something** (todo app, Tetris, snake)
-- Saves the output as a real file you can run
-- Validates automatically via [caxi](https://github.com/kunchenguid/axi) (headless Chrome DevTools Protocol)
-- Tracks load time, generation time, token count, and pass/fail per benchmark
+Most LLM benchmarks are synthetic. This one:
 
-Results across runs are directly comparable. Add a new model, run the bench, see where it lands.
+- Asks the model to **actually build something**: todo app, Tetris, snake, calculator, markdown previewer
+- Saves the output as real files you can open and run
+- Validates behavior with **Playwright**, not screenshots or HTML greps
+- Scores visual polish with pairwise Opus judgments
+- Tracks cold load time, generation time, token count, functional pass/fail, visual ranking, and efficiency
 
 ## Quick start
 
 ```bash
-# Pull repo
 git clone https://github.com/NightOwlCoder/local-llm-bench
 cd local-llm-bench
 
-# Install deps (macOS)
 brew install jq ollama
-# caxi optional but recommended for web benchmarks
-npm install -g @kunchenguid/chrome-devtools-axi
+npm install
+npx playwright install chromium
 
-# Edit bench.config.json — pick your models
-# Run
+# Edit bench.config.json if you want different models
 ./bench.sh
 ```
+
+For the full leaderboard with Opus judgments:
+
+```bash
+export AWS_PROFILE=your-bedrock-profile
+./scripts/run-full-benchmark.sh
+```
+
+If you only want local functional validation, run `./bench.sh`. The Opus judging step is optional.
 
 ## Configuration
 
@@ -55,26 +61,53 @@ Edit `bench.config.json`:
 }
 ```
 
-Re-runs are cheap: outputs already generated are skipped unless you pass `--force`.
+Re-runs skip existing outputs unless you pass `--force`.
 
 ## Benchmarks
 
 | Name | Prompt | Ext | Validator checks |
 |---|---|---|---|
-| `oi` | "oi" | txt | Non-empty response. Captures cold load time. |
-| `snake-pygame` | "give me a snake pygame please" | py | Python syntax valid |
-| `snake-html` | "build me a snake game as a single HTML file. make it beautiful." | html | Loads in Chrome, canvas present, no JS errors |
-| `tetris` | "build me tetris as a single HTML file. make it beautiful." | html | Loads, canvas present, survives arrow key input |
-| `todo` | "build me a modern todo app as a single HTML file. make it beautiful." | html | Functional (input + button + localStorage + filter) + polish (CSS vars, border-radius, shadows, gradient, transitions) |
+| `oi` | `oi` | txt | Non-empty response. Captures cold load time. |
+| `snake-pygame` | `give me a snake pygame please` | py | Python syntax valid; Opus code review in full run |
+| `snake-html` | `build me a snake game as a single HTML file. make it beautiful.` | html | Playwright drives movement, score, canvas/game state |
+| `tetris` | `build me tetris as a single HTML file. make it beautiful.` | html | Playwright validates board, movement, rotation, line/score behavior |
+| `todo` | `build me a modern todo app as a single HTML file. make it beautiful.` | html | Playwright adds/completes/filters/deletes todos and checks persistence/counters |
+| `calc` | See `prompts/calc.txt` | html | Playwright checks precedence, parentheses, decimals, clear behavior |
+| `markdown` | See `prompts/markdown.txt` | html | Playwright checks live preview, headings, bold/italic, links, code blocks |
 
-**Why such short prompts?** If you have to spec "use glassmorphism" the model is cheating. A good 2026-era coder LLM should know what "modern" and "beautiful" mean without being told.
+**Why short prompts?** If you have to spec every UI detail, you're testing instruction-following more than model taste. A strong coder model should infer what “modern” and “beautiful” mean.
+
+## Scoring
+
+`./bench.sh` produces functional scores and screenshots.
+
+`./scripts/run-full-benchmark.sh` adds:
+
+- Opus pairwise visual judgments for web artifacts
+- Opus code review for pygame artifacts
+- Opus text-quality judging for `oi`
+- Aggregated leaderboard in `caxi-results/LEADERBOARD.json`
+- Rendered `RESULTS.md`
+
+Current score weighting:
+
+- Functional: 30 pts
+- Visual polish: 30 pts
+- Pygame code review: 15 pts
+- Oi response quality: 10 pts
+- Efficiency: 15 pts
 
 ## Adding a new benchmark
 
-1. Drop `prompts/my-bench.txt` with your prompt
-2. Drop `validators/my-bench.sh` (optional — contract below)
-3. Add `{"name": "my-bench", "ext": "html"}` to `bench.config.json`
-4. Run `./bench.sh`
+1. Add `prompts/<name>.txt`
+2. Add `validators/<name>.sh`
+3. Add a Playwright driver under `drivers/<name>.mjs` if it is a web artifact
+4. Add `{ "name": "<name>", "ext": "html" }` to `bench.config.json`
+5. Smoke test:
+
+```bash
+./bench.sh --only <name> --model qwen3:1.7b --force
+```
 
 ### Validator contract
 
@@ -85,45 +118,54 @@ Exit: 0 = pass, non-zero = fail
 Must write: <results-dir>/<benchmark>-<safe-model>.json
 ```
 
-See `validators/todo.sh` for the full pattern (function + polish scoring).
+Minimum JSON:
+
+```json
+{"model":"<tag>","benchmark":"<name>","pass":true}
+```
 
 ## Adding a new model
 
-Just append to `models` in `bench.config.json`. Must be a valid tag on [ollama.com/library](https://ollama.com/library).
+Add it to `models` in `bench.config.json`. Must be a valid Ollama tag.
 
-Check availability before adding:
+Check the model page exists:
+
 ```bash
-curl -s -o /dev/null -w "%{http_code}" https://ollama.com/library/<tag-base>
-# 200 = exists
+curl -s -o /dev/null -w "%{http_code}\n" https://ollama.com/library/<tag-base>
 ```
+
+For `devstral:24b`, the tag base is `devstral`.
 
 ## Output layout
 
 ```
-output/<benchmark>/<model>.<ext>   — generated code artifacts (committed)
-logs/<benchmark>-<model>.log       — formatted timing logs (committed)
-raw/<benchmark>-<model>.json       — raw API response (gitignored — big)
-caxi-results/                      — validator JSONs + screenshots (committed)
-screenshots/                       — manual screenshots of working games
+output/<benchmark>/<model>.<ext>   — generated artifacts
+logs/<benchmark>-<model>.log       — formatted timing logs
+raw/<benchmark>-<model>.json       — raw API response (gitignored)
+caxi-results/                      — validator JSONs + screenshots + leaderboard
+screenshots/                       — manual screenshots from early exploratory runs
 ```
+
+`caxi-results/` kept its historical name, but validators now use Playwright.
 
 ## CLI flags
 
 ```bash
 ./bench.sh                        # respects skip_if_exists
 ./bench.sh --force                # regenerate everything
-./bench.sh --only todo            # only the todo benchmark
-./bench.sh --model glm-4.7-flash  # only one model
+./bench.sh --only todo            # only one benchmark
+./bench.sh --model qwen3-coder:30b # only one model
 ```
 
 Flags combine:
+
 ```bash
 ./bench.sh --only todo --model laguna-xs.2 --force
 ```
 
-## Results so far
+## Results
 
-See [RESULTS.md](RESULTS.md) for the current leaderboard and notes on each model.
+See [RESULTS.md](RESULTS.md).
 
 ## License
 

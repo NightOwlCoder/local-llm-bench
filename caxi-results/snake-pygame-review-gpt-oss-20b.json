@@ -1,0 +1,24 @@
+{
+  "model": "gpt-oss-20b",
+  "benchmark": "snake-pygame-review",
+  "artifact": "output/snake-pygame/gpt-oss-20b.py",
+  "correctness": 10,
+  "style": 9,
+  "architecture": 9,
+  "robustness": 7,
+  "ux": 9,
+  "total": 44,
+  "notes": "Clean class-based structure with proper separation of input/update/render, correct use of deque, 180\u00b0 turn prevention, and collision logic. Minor issues: font is re-created every draw_text call (inefficient), no pygame.quit() on normal loop exit paths beyond sys.exit, and the pending_dir check only blocks reversal relative to current direction (fast multi-key presses within one tick could still reverse). Overall a solid, playable implementation with good docstrings and UX (restart, speed scaling, clear game over screen).",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2652,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 218,
+    "service_tier": "standard"
+  }
+}

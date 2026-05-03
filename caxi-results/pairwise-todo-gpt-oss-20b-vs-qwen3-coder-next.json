@@ -1,0 +1,24 @@
+{
+  "image_a": "todo-gpt-oss-20b.png",
+  "image_b": "todo-qwen3-coder-next.png",
+  "benchmark": "todo",
+  "winner": "A",
+  "delta": 2,
+  "score_a": 4,
+  "score_b": 2,
+  "reason_a": "Polished glassmorphic card with gradient background, strong typographic hierarchy, accent button, and refined shadows giving a modern product feel.",
+  "reason_b": "Clean but plain layout with flat white cards on gray, generic green button, and minimal depth \u2014 feels like a first-draft tutorial app.",
+  "verdict": "Image A delivers a cohesive, contemporary aesthetic with gradients, depth, and typographic discipline, while B feels bare-bones and utilitarian.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2903,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 216,
+    "service_tier": "standard"
+  }
+}

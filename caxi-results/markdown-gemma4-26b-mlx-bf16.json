@@ -1,0 +1,22 @@
+{
+  "benchmark": "markdown",
+  "url": "file://<artifact>",
+  "tiers": {
+    "loads_clean": true,
+    "dual_pane": true,
+    "renders_h1": true,
+    "renders_bold": true,
+    "renders_italic": true,
+    "renders_link": true,
+    "renders_code": true,
+    "live_updates": true
+  },
+  "score": 8,
+  "samples": {
+    "preview_len": 246
+  },
+  "errors": [],
+  "notes": [],
+  "pass": true,
+  "model": "gemma4:26b-mlx-bf16"
+}

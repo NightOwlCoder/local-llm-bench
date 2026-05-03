@@ -1,0 +1,24 @@
+{
+  "image_a": "snake-html-laguna-xs.2.png",
+  "image_b": "snake-html-qwen3-coder-next.png",
+  "benchmark": "snake-html",
+  "winner": "B",
+  "delta": 2,
+  "score_a": 2,
+  "score_b": 4,
+  "reason_a": "A has a clean card layout with a soft glow play button, but the dark-on-dark text is low-contrast and the title lacks the neon identity it promises.",
+  "reason_b": "B fully commits to the neon arcade aesthetic with glowing typography, a grid backdrop, and cohesive cyan/magenta accents that feel intentional and branded.",
+  "verdict": "B better delivers on the 'Neon Snake' concept with strong typographic hierarchy, atmospheric grid depth, and polished neon accents, while A feels like a muted, low-contrast draft.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2864,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 221,
+    "service_tier": "standard"
+  }
+}

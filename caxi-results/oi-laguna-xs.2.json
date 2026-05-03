@@ -1,0 +1,6 @@
+{
+  "model": "laguna-xs.2",
+  "benchmark": "oi",
+  "pass": true,
+  "word_count": 7
+}

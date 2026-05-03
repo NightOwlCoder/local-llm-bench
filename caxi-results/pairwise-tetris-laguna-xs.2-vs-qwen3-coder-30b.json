@@ -1,0 +1,24 @@
+{
+  "image_a": "tetris-laguna-xs.2.png",
+  "image_b": "tetris-qwen3-coder-30b.png",
+  "benchmark": "tetris",
+  "winner": "A",
+  "delta": 2,
+  "score_a": 4,
+  "score_b": 2,
+  "reason_a": "Strong typographic hierarchy with a vibrant gradient title, cohesive teal/coral accents, and a playable-looking board with depth and polish.",
+  "reason_b": "Clean layout but feels unfinished with an empty black playfield, flat panels, and generic typography lacking accent polish.",
+  "verdict": "A delivers a more cohesive, product-like visual identity with refined gradients and accent color use, while B feels like a bare-bones first draft.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 3827,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 185,
+    "service_tier": "standard"
+  }
+}

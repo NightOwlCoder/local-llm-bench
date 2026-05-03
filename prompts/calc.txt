@@ -1,0 +1,1 @@
+build a scientific calculator as a single HTML file. support +, -, *, /, parentheses, sqrt, power. show the expression and result. make it beautiful.

@@ -1,0 +1,24 @@
+{
+  "image_a": "tetris-gpt-oss-20b.png",
+  "image_b": "tetris-qwen3-coder-30b.png",
+  "benchmark": "tetris",
+  "winner": "A",
+  "delta": 2,
+  "score_a": 4,
+  "score_b": 2,
+  "reason_a": "Image A has a bold gradient title, cohesive card-based layout with score, next piece, and controls panels, plus gradient buttons and refined spacing that feel like a polished product.",
+  "reason_b": "Image B is functional but minimal, with a monochrome cyan-on-dark palette, basic borders, and no real hierarchy or depth, feeling more like a dev prototype.",
+  "verdict": "A delivers richer typography, layered panels, gradient accents, and a clearly designed product layout, while B reads as a bare-bones first draft.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 3230,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 233,
+    "service_tier": "standard"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "benchmark": "calc",
+  "url": "file://<artifact>",
+  "tiers": {
+    "loads_clean": true,
+    "has_buttons": true,
+    "basic_math": false,
+    "precedence": false,
+    "parentheses": false,
+    "float_ok": false,
+    "clear_works": true
+  },
+  "score": 3,
+  "input_method": null,
+  "reads": {
+    "basic": "2+3",
+    "precedence": "2+3\u00d74",
+    "parens": "(2+3)\u00d74",
+    "float": "0.1+0.2",
+    "before_clear": "5+5",
+    "after_clear": "7"
+  },
+  "errors": [],
+  "notes": [],
+  "pass": false,
+  "model": "gpt-oss:20b"
+}

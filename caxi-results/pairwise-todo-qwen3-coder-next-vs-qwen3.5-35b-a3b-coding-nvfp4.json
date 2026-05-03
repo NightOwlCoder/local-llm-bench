@@ -1,0 +1,24 @@
+{
+  "image_a": "todo-qwen3-coder-next.png",
+  "image_b": "todo-qwen3.5-35b-a3b-coding-nvfp4.png",
+  "benchmark": "todo",
+  "winner": "A",
+  "delta": 2,
+  "score_a": 4,
+  "score_b": 2,
+  "reason_a": "Cohesive glass-morphism card with layered translucency, refined typography with period accent, visible shadow depth, and a polished footer with task count.",
+  "reason_b": "Feels unfinished with a harsh split between gradient header and flat white body, faded unreadable task text, and missing footer polish.",
+  "verdict": "A delivers a unified, product-like glassy aesthetic with consistent spacing and depth, while B looks like a half-styled draft with jarring section breaks.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2870,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 190,
+    "service_tier": "standard"
+  }
+}

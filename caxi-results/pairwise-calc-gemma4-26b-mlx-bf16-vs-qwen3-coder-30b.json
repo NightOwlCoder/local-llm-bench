@@ -1,0 +1,24 @@
+{
+  "image_a": "calc-gemma4-26b-mlx-bf16.png",
+  "image_b": "calc-qwen3-coder-30b.png",
+  "benchmark": "calc",
+  "winner": "A",
+  "delta": 2,
+  "score_a": 4,
+  "score_b": 2,
+  "reason_a": "Clean dark palette with cohesive accent colors, rounded pill buttons, balanced spacing, and clear typographic hierarchy give it a polished modern product feel.",
+  "reason_b": "Muddy red/teal palette with harsh grid lines, inconsistent button coloring, and a jarring orange-pink equals button feel like an unrefined first draft.",
+  "verdict": "A delivers a cohesive, restrained dark-mode aesthetic with disciplined spacing and accent use, while B's clashing colors and rigid grid look dated and unpolished.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2865,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 220,
+    "service_tier": "standard"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "model": "qwen3.5:35b-a3b-coding-nvfp4",
+  "benchmark": "oi",
+  "pass": true,
+  "word_count": 10
+}

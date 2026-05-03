@@ -1,0 +1,24 @@
+{
+  "image_a": "snake-html-gpt-oss-20b.png",
+  "image_b": "snake-html-qwen3.5-35b-a3b-coding-nvfp4.png",
+  "benchmark": "snake-html",
+  "winner": "B",
+  "delta": 3,
+  "score_a": 1,
+  "score_b": 4,
+  "reason_a": "Image A shows a bare-bones dark box with a visible unescaped '<br>' HTML tag, plain default typography, and no visual hierarchy or polish.",
+  "reason_b": "Image B presents a cohesive dark UI with a subtle grid background, styled score cards, a modal-style Game Over panel, refined typography, and a vibrant teal-to-green gradient accent.",
+  "verdict": "B feels like a polished product with intentional design system choices, while A looks like an unfinished prototype with a raw HTML rendering bug.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2878,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 232,
+    "service_tier": "standard"
+  }
+}

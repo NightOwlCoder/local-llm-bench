@@ -1,0 +1,306 @@
+# qwen3.5:35b-a3b-coding-nvfp4 — calc
+# load=1.064s total=52.229s eval_tokens=3615
+
+Here is a complete, single-file solution. It features a modern "Glassmorphism" design, handles complex mathematical logic, and separates the expression view from the result view.
+
+Save this code as an `.html` file (e.g., `calculator.html`) and open it in your browser.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Scientific Calculator</title>
+    <style>
+        :root {
+            --bg-color: #1e1e2e;
+            --calc-bg: #252536;
+            --text-main: #ffffff;
+            --text-secondary: #a9a9b8;
+            --btn-bg: #2f2f42;
+            --btn-hover: #3a3a50;
+            --accent: #6c5ce7;
+            --accent-hover: #5649c0;
+            --operator: #ff7675;
+            --operator-hover: #e05856;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .calculator {
+            width: 360px;
+            background-color: var(--calc-bg);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Screen Area */
+        .screen {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            height: 120px;
+            overflow: hidden;
+        }
+
+        .expression {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            min-height: 1.5rem;
+            margin-bottom: 5px;
+            word-wrap: break-word;
+        }
+
+        .result {
+            color: var(--text-main);
+            font-size: 2.5rem;
+            font-weight: 300;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        
+        /* Hide scrollbar in result */
+        .result::-webkit-scrollbar { display: none; }
+
+        /* Keypad Grid */
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        button {
+            border: none;
+            outline: none;
+            background-color: var(--btn-bg);
+            color: var(--text-main);
+            font-size: 1.2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        button:hover {
+            background-color: var(--btn-hover);
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* Specific Button Styles */
+        .btn-op {
+            background-color: rgba(108, 92, 231, 0.15);
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        .btn-op:hover {
+            background-color: rgba(108, 92, 231, 0.3);
+        }
+
+        .btn-ac {
+            background-color: rgba(255, 118, 117, 0.15);
+            color: var(--operator);
+        }
+
+        .btn-ac:hover {
+            background-color: rgba(255, 118, 117, 0.3);
+        }
+
+        .btn-del {
+            background-color: rgba(108, 92, 231, 0.15);
+            color: var(--text-main);
+        }
+
+        .btn-eq {
+            background-color: var(--accent);
+            color: white;
+            grid-column: span 2; /* Make equals button wider */
+        }
+
+        .btn-eq:hover {
+            background-color: var(--accent-hover);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="calculator">
+        <!-- Display Area -->
+        <div class="screen">
+            <div class="expression" id="expressionDisplay"></div>
+            <div class="result" id="resultDisplay">0</div>
+        </div>
+
+        <!-- Keypad Area -->
+        <div class="keypad">
+            <!-- Row 1 -->
+            <button class="btn-ac" onclick="clearScreen()">AC</button>
+            <button class="btn-del" onclick="deleteLast()">DEL</button>
+            <button class="btn-op" onclick="appendOperator('(')">(</button>
+            <button class="btn-op" onclick="appendOperator(')')">)</button>
+
+            <!-- Row 2 -->
+            <button class="btn-op" onclick="appendOperator('sqrt(')">√</button>
+            <button class="btn-op" onclick="appendOperator('^')">xʸ</button>
+            <button class="btn-op" onclick="appendOperator('/')">÷</button>
+            <button class="btn-op" onclick="appendOperator('*')">×</button>
+
+            <!-- Row 3 -->
+            <button onclick="appendNumber('7')">7</button>
+            <button onclick="appendNumber('8')">8</button>
+            <button onclick="appendNumber('9')">9</button>
+            <button class="btn-op" onclick="appendOperator('-')">-</button>
+
+            <!-- Row 4 -->
+            <button onclick="appendNumber('4')">4</button>
+            <button onclick="appendNumber('5')">5</button>
+            <button onclick="appendNumber('6')">6</button>
+            <button class="btn-op" onclick="appendOperator('+')">+</button>
+
+            <!-- Row 5 -->
+            <button onclick="appendNumber('1')">1</button>
+            <button onclick="appendNumber('2')">2</button>
+            <button onclick="appendNumber('3')">3</button>
+            <button class="btn-eq" onclick="calculate()">=</button>
+
+            <!-- Row 6 -->
+            <button onclick="appendNumber('0')" style="border-radius: 12px 12px 12px 12px;">0</button>
+            <button onclick="appendNumber('.')">.</button>
+        </div>
+    </div>
+
+    <script>
+        const expressionDisplay = document.getElementById('expressionDisplay');
+        const resultDisplay = document.getElementById('resultDisplay');
+        
+        let currentInput = '';
+        let lastResult = '';
+
+        function appendNumber(num) {
+            // If we just calculated something and type a number, start fresh
+            if (lastResult !== '' && !isNaN(num)) {
+                currentInput = num;
+                lastResult = '';
+            } else {
+                currentInput += num;
+            }
+            updateUI();
+        }
+
+        function appendOperator(op) {
+            if (lastResult !== '') {
+                currentInput = lastResult;
+                lastResult = '';
+            }
+            
+            // Handle Power formatting
+            if (op === '^') {
+                currentInput += '**';
+            } 
+            // Handle Sqrt opening bracket visually
+            else if (op === 'sqrt(') {
+                currentInput += 'sqrt(';
+            } 
+            // Prevent double operators
+            else if (currentInput.match(/[+\-*/]$/)) {
+                return; 
+            }
+            else {
+                currentInput += op;
+            }
+            updateUI();
+        }
+
+        function clearScreen() {
+            currentInput = '';
+            lastResult = '';
+            updateUI();
+        }
+
+        function deleteLast() {
+            if (lastResult !== '') {
+                clearScreen();
+                return;
+            }
+            currentInput = currentInput.toString().slice(0, -1);
+            updateUI();
+        }
+
+        function updateUI() {
+            // Show raw expression
+            expressionDisplay.innerText = currentInput;
+            
+            // If input is empty, result is 0
+            if (currentInput === '') {
+                resultDisplay.innerText = '0';
+            }
+        }
+
+        function calculate() {
+            if (currentInput === '') return;
+
+            try {
+                // We need to sanitize the input for the JS engine
+                let expressionToEvaluate = currentInput;
+
+                // Replace Math.sqrt visual with actual JS function call
+                // Regex looks for sqrt( and wraps it properly
+                expressionToEvaluate = expressionToEvaluate.replace(/sqrt\(/g, 'Math.sqrt(');
+
+                // Evaluate the string safely
+                // Note: eval() is used here for simplicity in a client-side calculator.
+                // In a production app, you would use a math parser library.
+                let result = eval(expressionToEvaluate);
+
+                // Handle floating point precision issues (e.g. 0.1 + 0.2)
+                if (!Number.isInteger(result)) {
+                    result = parseFloat(result.toFixed(8)); // Limit decimals
+                }
+
+                // Update displays
+                lastResult = result;
+                expressionDisplay.innerText = currentInput + " =";
+                resultDisplay.innerText = result;
+                
+                // Reset input for next calculation
+                currentInput = '';
+
+            } catch (error) {
+                resultDisplay.innerText = "Error";
+                setTimeout(() => {
+                    resultDisplay.innerText = lastResult !== '' ? lastResult : '0';
+                }, 1000);
+            }
+        }
+    </script>
+</body>
+</html>
+```

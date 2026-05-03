@@ -1,0 +1,19 @@
+{
+  "benchmark": "todo",
+  "url": "file://<artifact>",
+  "tiers": {
+    "loads_clean": true,
+    "add_one": true,
+    "add_multiple": true,
+    "mark_complete": true,
+    "filter_works": true,
+    "persists_refresh": true,
+    "delete_works": true,
+    "counter_updates": true
+  },
+  "score": 8,
+  "errors": [],
+  "notes": [],
+  "pass": true,
+  "model": "qwen3:coder:next"
+}

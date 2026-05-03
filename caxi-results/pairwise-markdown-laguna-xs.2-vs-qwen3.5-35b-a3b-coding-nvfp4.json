@@ -1,0 +1,24 @@
+{
+  "image_a": "markdown-laguna-xs.2.png",
+  "image_b": "markdown-qwen3.5-35b-a3b-coding-nvfp4.png",
+  "benchmark": "markdown",
+  "winner": "A",
+  "delta": 2,
+  "score_a": 3.5,
+  "score_b": 2,
+  "reason_a": "Two-pane editor/preview layout with header, tabs, rendered markdown with syntax-highlighted code and proper typographic hierarchy feels like a real product.",
+  "reason_b": "Single editor pane with no preview, minimal chrome, and empty lower half feels like an unfinished first draft despite the subtle gradient.",
+  "verdict": "A delivers a functional, polished dual-pane experience with rendered output and syntax highlighting, while B is essentially just a styled textarea.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2873,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 218,
+    "service_tier": "standard"
+  }
+}

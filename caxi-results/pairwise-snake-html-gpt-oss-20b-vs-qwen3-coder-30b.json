@@ -1,0 +1,24 @@
+{
+  "image_a": "snake-html-gpt-oss-20b.png",
+  "image_b": "snake-html-qwen3-coder-30b.png",
+  "benchmark": "snake-html",
+  "winner": "A",
+  "delta": 2,
+  "score_a": 3.5,
+  "score_b": 1.5,
+  "reason_a": "Cohesive red gradient backdrop with layered card, refined typography, pill buttons, and soft shadows give it a polished product feel.",
+  "reason_b": "Bare dark canvas with unrendered '<br>' literal in the overlay and default-looking button feels like an unfinished dev prototype.",
+  "verdict": "A shows intentional visual design and hierarchy while B looks like a rough first draft with a visible rendering bug.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 3004,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 181,
+    "service_tier": "standard"
+  }
+}

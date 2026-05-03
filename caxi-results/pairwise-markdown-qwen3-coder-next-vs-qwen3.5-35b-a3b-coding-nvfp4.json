@@ -1,0 +1,24 @@
+{
+  "image_a": "markdown-qwen3-coder-next.png",
+  "image_b": "markdown-qwen3.5-35b-a3b-coding-nvfp4.png",
+  "benchmark": "markdown",
+  "winner": "A",
+  "delta": 2,
+  "score_a": 4,
+  "score_b": 2.5,
+  "reason_a": "Clear light/dark contrast with a polished white preview card, shadows, rounded code block, and proper typographic hierarchy including heading underline and ordered list styling.",
+  "reason_b": "Uniform dark theme feels flat and monotone with minimal depth, basic code block styling, and little visual separation between sections.",
+  "verdict": "A feels like a finished product with layered panels, shadows, and refined rendering, while B reads as a bare-bones dev-tool draft.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2874,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 191,
+    "service_tier": "standard"
+  }
+}

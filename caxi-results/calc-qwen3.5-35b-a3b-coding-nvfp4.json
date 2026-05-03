@@ -1,0 +1,27 @@
+{
+  "benchmark": "calc",
+  "url": "file://<artifact>",
+  "tiers": {
+    "loads_clean": true,
+    "has_buttons": true,
+    "basic_math": true,
+    "precedence": true,
+    "parentheses": true,
+    "float_ok": true,
+    "clear_works": true
+  },
+  "score": 7,
+  "input_method": null,
+  "reads": {
+    "basic": "5",
+    "precedence": "14",
+    "parens": "20",
+    "float": "0.3",
+    "before_clear": "10",
+    "after_clear": "0"
+  },
+  "errors": [],
+  "notes": [],
+  "pass": true,
+  "model": "qwen3.5:35b-a3b-coding-nvfp4"
+}

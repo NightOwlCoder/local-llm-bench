@@ -1,0 +1,24 @@
+{
+  "image_a": "snake-html-gemma4-26b-mlx-bf16.png",
+  "image_b": "snake-html-laguna-xs.2.png",
+  "benchmark": "snake-html",
+  "winner": "B",
+  "delta": 2,
+  "score_a": 2,
+  "score_b": 4,
+  "reason_a": "Image A has a dim, low-contrast card with muted header text that nearly disappears and a generic gradient button, giving a first-draft feel.",
+  "reason_b": "Image B commits to a cohesive neon arcade aesthetic with glowing cyan/magenta typography, a grid-textured play area, and a refined outlined button.",
+  "verdict": "B's confident neon theming, stronger typographic hierarchy, and grid depth signals make it feel like a polished product while A feels washed out and unfinished.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2870,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 200,
+    "service_tier": "standard"
+  }
+}

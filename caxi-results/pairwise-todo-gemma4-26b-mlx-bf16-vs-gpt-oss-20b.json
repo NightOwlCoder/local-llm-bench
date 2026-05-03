@@ -1,0 +1,24 @@
+{
+  "image_a": "todo-gemma4-26b-mlx-bf16.png",
+  "image_b": "todo-gpt-oss-20b.png",
+  "benchmark": "todo",
+  "winner": "B",
+  "delta": 2,
+  "score_a": 2,
+  "score_b": 4,
+  "reason_a": "Flat gray background with basic centered layout feels like a dev-tool first draft despite decent rounded corners.",
+  "reason_b": "Cohesive indigo gradient background, branded header with icon, date subtitle, filter tabs, and a contained card give it a polished product feel.",
+  "verdict": "B delivers a more complete 2026 product vibe with gradient depth, branding, and richer UI structure, while A feels bare-bones.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2909,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 177,
+    "service_tier": "standard"
+  }
+}

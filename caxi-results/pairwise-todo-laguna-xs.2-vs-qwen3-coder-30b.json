@@ -1,0 +1,24 @@
+{
+  "image_a": "todo-laguna-xs.2.png",
+  "image_b": "todo-qwen3-coder-30b.png",
+  "benchmark": "todo",
+  "winner": "A",
+  "delta": 2,
+  "score_a": 4,
+  "score_b": 2,
+  "reason_a": "Clean card with clear typography hierarchy, cohesive indigo accent, a useful stats row, and well-styled task items against a rich gradient backdrop.",
+  "reason_b": "Pleasant purple header gradient but the task list area appears broken/invisible and the overall layout feels empty and unfinished.",
+  "verdict": "A presents a complete, polished product with visible content and refined details, while B looks like a half-rendered draft with missing task visuals.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2857,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 204,
+    "service_tier": "standard"
+  }
+}

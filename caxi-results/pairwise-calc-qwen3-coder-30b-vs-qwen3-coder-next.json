@@ -1,0 +1,24 @@
+{
+  "image_a": "calc-qwen3-coder-30b.png",
+  "image_b": "calc-qwen3-coder-next.png",
+  "benchmark": "calc",
+  "winner": "A",
+  "delta": 2,
+  "score_a": 4,
+  "score_b": 2,
+  "reason_a": "Cohesive dark navy palette with pastel accent buttons, clear typographic hierarchy, and a nicely integrated history panel that gives it a real product feel.",
+  "reason_b": "Muddy red/maroon gradient with clashing teal buttons and a gridded table-like button layout that feels more like a wireframe than a polished app.",
+  "verdict": "A demonstrates disciplined color theory, spacing, and component grouping, while B's awkward gradient and undifferentiated grid of buttons read as a rough first draft.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2951,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 229,
+    "service_tier": "standard"
+  }
+}

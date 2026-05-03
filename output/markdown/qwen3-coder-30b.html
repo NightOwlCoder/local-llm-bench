@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Previewer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: white;
+            font-size: 2.8rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #e0e0e0;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .editor-container {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .panel {
+            flex: 1;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .panel-header {
+            background: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .panel-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .panel-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .editor {
+            height: 500px;
+            padding: 20px;
+            border: none;
+            resize: none;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            outline: none;
+            background: #f8f9fa;
+        }
+
+        .preview {
+            height: 500px;
+            padding: 20px;
+            overflow-y: auto;
+            background: white;
+        }
+
+        .preview-content {
+            line-height: 1.6;
+        }
+
+        .preview-content h1,
+        .preview-content h2,
+        .preview-content h3,
+        .preview-content h4,
+        .preview-content h5,
+        .preview-content h6 {
+            margin: 1.5rem 0 1rem 0;
+            color: #2c3e50;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .preview-content h1 {
+            font-size: 2.5rem;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .preview-content h2 {
+            font-size: 2rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        .preview-content h3 {
+            font-size: 1.5rem;
+        }
+
+        .preview-content p {
+            margin: 1rem 0;
+            font-size: 1.1rem;
+        }
+
+        .preview-content strong {
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .preview-content em {
+            font-style: italic;
+            color: #555;
+        }
+
+        .preview-content a {
+            color: #3498db;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .preview-content a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+
+        .preview-content ul,
+        .preview-content ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .preview-content li {
+            margin: 0.5rem 0;
+        }
+
+        .preview-content blockquote {
+            border-left: 4px solid #3498db;
+            padding: 10px 20px;
+            margin: 1.5rem 0;
+            background: #f8f9fa;
+            color: #555;
+            font-style: italic;
+        }
+
+        .preview-content code {
+            background: #f1f1f1;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .preview-content pre {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .preview-content pre code {
+            background: transparent;
+            padding: 0;
+        }
+
+        .preview-content hr {
+            border: 0;
+            height: 1px;
+            background: #eee;
+            margin: 2rem 0;
+        }
+
+        .preview-content img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin: 1rem 0;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            width: 220px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            margin-top: 30px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 900px) {
+            .editor-container {
+                flex-direction: column;
+            }
+            
+            .panel {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-file-alt"></i> Markdown Previewer</h1>
+            <p class="subtitle">Edit Markdown on the left, see the rendered preview on the right</p>
+        </header>
+
+        <div class="editor-container">
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title">Editor</div>
+                    <div class="panel-actions">
+                        <button class="btn" id="clearBtn"><i class="fas fa-trash"></i> Clear</button>
+                        <button class="btn" id="sampleBtn"><i class="fas fa-code"></i> Sample</button>
+                    </div>
+                </div>
+                <textarea class="editor" id="editor" placeholder="Start writing your Markdown here..."># Markdown Previewer
+
+## Headers
+
+# H1 Header
+## H2 Header
+### H3 Header
+#### H4 Header
+##### H5 Header
+###### H6 Header
+
+## Text Formatting
+
+**Bold text** and *italic text* with `inline code`.
+
+## Links and Images
+
+[Visit GitHub](https://github.com)
+
+![Markdown Logo](https://markdown-here.com/img/icon256.png)
+
+## Lists
+
+### Unordered List
+- Item 1
+- Item 2
+  - Nested item
+- Item 3
+
+### Ordered List
+1. First item
+2. Second item
+3. Third item
+
+## Blockquotes
+
+> This is a blockquote.
+> It can span multiple lines.
+
+## Code Blocks
+
+```javascript
+function hello() {
+    console.log("Hello, world!");
+}

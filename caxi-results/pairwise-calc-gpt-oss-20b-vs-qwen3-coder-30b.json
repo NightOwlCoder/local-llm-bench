@@ -1,0 +1,24 @@
+{
+  "image_a": "calc-gpt-oss-20b.png",
+  "image_b": "calc-qwen3-coder-30b.png",
+  "benchmark": "calc",
+  "winner": "A",
+  "delta": 1,
+  "score_a": 3,
+  "score_b": 2,
+  "reason_a": "Clean dark panel with cohesive coral accents, consistent button sizing, and a calm, modern aesthetic despite empty display area.",
+  "reason_b": "Vibrant gradient background clashes with muted buttons, layout has awkward empty cell and inconsistent accent use making it feel unfinished.",
+  "verdict": "A wins for its disciplined palette, consistent grid, and cohesive product feel, while B suffers from clashing colors and layout gaps.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2859,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 188,
+    "service_tier": "standard"
+  }
+}

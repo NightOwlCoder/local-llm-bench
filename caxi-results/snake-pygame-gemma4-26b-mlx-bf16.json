@@ -1,0 +1,7 @@
+{
+  "model": "gemma4:26b-mlx-bf16",
+  "benchmark": "snake-pygame",
+  "pass": true,
+  "lines": 144,
+  "syntax_ok": true
+}

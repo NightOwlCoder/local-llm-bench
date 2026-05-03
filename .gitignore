@@ -5,6 +5,10 @@ raw/SUMMARY.txt
 
 # Full run logs — huge, regenerable
 bench-run*.log
+overnight.log
+
+# Node dependencies
+node_modules/
 
 # macOS
 .DS_Store

@@ -1,0 +1,24 @@
+{
+  "image_a": "snake-html-qwen3-coder-30b.png",
+  "image_b": "snake-html-qwen3-coder-next.png",
+  "benchmark": "snake-html",
+  "winner": "B",
+  "delta": 1,
+  "score_a": 3,
+  "score_b": 4,
+  "reason_a": "Image A has a polished card layout with soft shadows and rounded corners, but the red gradient background feels generic and the empty play area looks flat.",
+  "reason_b": "Image B embraces a cohesive neon/cyberpunk aesthetic with glowing typography, grid texture, and strong accent colors that feel purposeful and thematic.",
+  "verdict": "B's committed neon theme with glowing text, grid backdrop, and cohesive accent palette feels more like a designed product, while A reads as a generic Bootstrap-style card.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 3004,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 210,
+    "service_tier": "standard"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "image_a": "todo-gpt-oss-20b.png",
+  "image_b": "todo-laguna-xs.2.png",
+  "benchmark": "todo",
+  "winner": "B",
+  "delta": 2,
+  "score_a": 2,
+  "score_b": 4,
+  "reason_a": "Image A has clean but plain styling with a flat light-gray background, basic layout, and no visual hierarchy beyond the title and a lone moon emoji.",
+  "reason_b": "Image B features a vibrant purple gradient background, branded icon, clear typographic hierarchy, stats panel, and polished card with cohesive indigo accents and red delete affordances.",
+  "verdict": "B feels like a shipped modern product with intentional color, depth, and information architecture, while A reads like an unstyled first draft.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2902,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 222,
+    "service_tier": "standard"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "image_a": "snake-html-gemma4-26b-mlx-bf16.png",
+  "image_b": "snake-html-qwen3-coder-next.png",
+  "benchmark": "snake-html",
+  "winner": "A",
+  "delta": 1,
+  "score_a": 4,
+  "score_b": 3,
+  "reason_a": "Image A has strong neon typography, a visible grid backdrop, and cohesive glow treatment that reads like a polished arcade product.",
+  "reason_b": "Image B is cleaner and more contained with a rounded card, but feels flatter and more generic with less dramatic neon craft.",
+  "verdict": "A's bolder neon title, grid texture, and glowing UI elements deliver a more cohesive arcade-styled product than B's softer but plainer card layout.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2871,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 186,
+    "service_tier": "standard"
+  }
+}

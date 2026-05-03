@@ -1,0 +1,261 @@
+# laguna-xs.2 — calc
+# load=6.205s total=50.130s eval_tokens=2286
+
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .calculator {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .display {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+            overflow: hidden;
+        }
+        
+        .expression {
+            color: #aaa;
+            font-size: 18px;
+            min-height: 25px;
+            width: 100%;
+            text-align: right;
+            margin-bottom: 10px;
+            word-break: break-all;
+        }
+        
+        .result {
+            color: #fff;
+            font-size: 36px;
+            font-weight: bold;
+            width: 100%;
+            text-align: right;
+            word-break: break-all;
+        }
+        
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+        
+        button {
+            border: none;
+            border-radius: 12px;
+            padding: 20px 5px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #fff;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .number { background: linear-gradient(135deg, #4e54c8, #8f94fb); }
+        .operator { background: linear-gradient(135deg, #ff6b6b, #eea849); }
+        .function { background: linear-gradient(115deg, #43e97b, #38f9d7); }
+        .equals { background: linear-gradient(135deg, #fa709a, #fee140); }
+        .clear { background: linear-gradient(135deg, #d31928, #ff416c); }
+        
+        .title {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 28px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        @media (max-width: 480px) {
+            .calculator {
+                padding: 20px;
+            }
+            
+            .display {
+                padding: 15px;
+            }
+            
+            .result {
+                font-size: 28px;
+            }
+            
+            button {
+                padding: 15px 5px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1 class="title">Scientific Calculator</h1>
+        <div class="display">
+            <div class="expression" id="expression"></div>
+            <div class="result" id="result">0</div>
+        </div>
+        <div class="buttons">
+            <button class="clear" onclick="clearDisplay()">C</button>
+            <button class="function" onclick="appendFunction('sqrt(')">√</button>
+            <button class="function" onclick="appendFunction('pow(')">xʸ</button>
+            <button class="operator" onclick="appendOperator('/')">÷</button>
+            
+            <button class="number" onclick="appendNumber('7')">7</button>
+            <button class="number" onclick="appendNumber('8')">8</button>
+            <button class="number" onclick="appendNumber('9')">9</button>
+            <button class="operator" onclick="appendOperator('*')">×</button>
+            
+            <button class="number" onclick="appendNumber('4')">4</button>
+            <button class="number" onclick="appendNumber('5')">5</button>
+            <button class="number" onclick="appendNumber('6')">6</button>
+            <button class="operator" onclick="appendOperator('-')">−</button>
+            
+            <button class="number" onclick="appendNumber('1')">1</button>
+            <button class="number" onclick="appendNumber('2')">2</button>
+            <button class="number" onclick="appendNumber('3')">3</button>
+            <button class="operator" onclick="appendOperator('+')">+</button>
+            
+            <button class="number" onclick="appendNumber('0')">0</button>
+            <button class="number" onclick="appendNumber('.')">.</button>
+            <button class="function" onclick="calculate()">=</button>
+        </div>
+    </div>
+
+    <script>
+        let expression = '';
+        let result = '0';
+        
+        function updateDisplay() {
+            document.getElementById('expression').textContent = expression || '';
+            document.getElementById('result').textContent = result;
+        }
+        
+        function appendNumber(num) {
+            if (expression === '' && num === '0') return;
+            expression += num;
+            updateDisplay();
+        }
+        
+        function appendOperator(op) {
+            if (expression === '') return;
+            const lastChar = expression.slice(-1);
+            if (['+', '-', '*', '/', '('].includes(lastChar)) return;
+            expression += op;
+            updateDisplay();
+        }
+        
+        function appendFunction(func) {
+            if (func === 'sqrt(') {
+                expression += 'sqrt(';
+            } else if (func === 'pow(') {
+                expression += 'pow(';
+            }
+            updateDisplay();
+        }
+        
+        function clearDisplay() {
+            expression = '';
+            result = '0';
+            updateDisplay();
+        }
+        
+        function calculate() {
+            if (expression === '') return;
+            
+            try {
+                // Replace sqrt and pow with Math functions
+                let evalExpression = expression
+                    .replace(/sqrt\(/g, 'Math.sqrt(')
+                    .replace(/pow\(/g, 'Math.pow(');
+                
+                // Evaluate the expression
+                result = eval(evalExpression);
+                
+                // Handle errors
+                if (isNaN(result) || !isFinite(result)) {
+                    result = 'Error';
+                    expression = '';
+                }
+            } catch (error) {
+                result = 'Error';
+                expression = '';
+            }
+            
+            updateDisplay();
+        }
+        
+        // Handle keyboard input
+        document.addEventListener('keydown', function(event) {
+            if (event.key >= '0' && event.key <= '9') {
+                appendNumber(event.key);
+            } else if (event.key === '.') {
+                appendNumber(event.key);
+            } else if (event.key === '+') {
+                appendOperator('+');
+            } else if (event.key === '-') {
+                appendOperator('-');
+            } else if (event.key === '*') {
+                appendOperator('*');
+            } else if (event.key === '/') {
+                appendOperator('/');
+            } else if (event.key === 'Enter' || event.key === '=') {
+                calculate();
+            } else if (event.key === 'Escape') {
+                clearDisplay();
+            } else if (event.key === '(') {
+                expression += '(';
+                updateDisplay();
+            } else if (event.key === ')') {
+                expression += ')';
+                updateDisplay();
+            }
+        });
+        
+        // Initialize display
+        updateDisplay();
+    </script>
+</body>
+</html>
+```
+

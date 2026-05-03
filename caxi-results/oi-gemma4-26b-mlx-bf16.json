@@ -1,0 +1,6 @@
+{
+  "model": "gemma4:26b-mlx-bf16",
+  "benchmark": "oi",
+  "pass": true,
+  "word_count": 8
+}

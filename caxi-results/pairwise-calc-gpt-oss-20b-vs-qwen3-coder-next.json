@@ -1,0 +1,24 @@
+{
+  "image_a": "calc-gpt-oss-20b.png",
+  "image_b": "calc-qwen3-coder-next.png",
+  "benchmark": "calc",
+  "winner": "A",
+  "delta": 2,
+  "score_a": 4,
+  "score_b": 2,
+  "reason_a": "Image A shows a polished calculator with a cohesive pastel palette, clear typographic hierarchy, a functional history panel, and well-spaced rounded buttons that feel like a finished product.",
+  "reason_b": "Image B feels unfinished with empty display bars, a jarring pink/dark contrast, inconsistent button emphasis, and a cramped layout that reads as a first draft.",
+  "verdict": "A delivers a cohesive, product-grade aesthetic with refined spacing, color harmony, and useful secondary content, while B looks like a rough prototype with awkward color choices and empty screen area.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2950,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 234,
+    "service_tier": "standard"
+  }
+}

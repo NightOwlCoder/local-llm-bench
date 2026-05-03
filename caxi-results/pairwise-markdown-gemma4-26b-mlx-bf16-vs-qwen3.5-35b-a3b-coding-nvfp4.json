@@ -1,0 +1,24 @@
+{
+  "image_a": "markdown-gemma4-26b-mlx-bf16.png",
+  "image_b": "markdown-qwen3.5-35b-a3b-coding-nvfp4.png",
+  "benchmark": "markdown",
+  "winner": "A",
+  "delta": 1,
+  "score_a": 3,
+  "score_b": 2,
+  "reason_a": "A has more refined details: syntax highlighting in the code block, a visible action button, dual header tabs, and italic monospace styling in the editor give it a more polished product feel.",
+  "reason_b": "B is clean and readable but feels flatter and more generic, with no syntax highlighting, a plain pill button, and less hierarchy between editor and preview.",
+  "verdict": "A wins on visual craft due to accent color use, syntax highlighting, and more deliberate UI chrome, while B remains a competent but bare-bones draft.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2880,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 227,
+    "service_tier": "standard"
+  }
+}

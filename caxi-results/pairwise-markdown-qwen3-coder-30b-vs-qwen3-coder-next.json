@@ -1,0 +1,24 @@
+{
+  "image_a": "markdown-qwen3-coder-30b.png",
+  "image_b": "markdown-qwen3-coder-next.png",
+  "benchmark": "markdown",
+  "winner": "B",
+  "delta": 2,
+  "score_a": 2,
+  "score_b": 4,
+  "reason_a": "A has a bold gradient header but the editor panel is broken with no actual preview rendering, feeling incomplete and amateurish.",
+  "reason_b": "B delivers a functional split-pane editor with proper syntax rendering, cohesive dark/light contrast, and polished typographic hierarchy in the preview.",
+  "verdict": "B feels like a shipped product with working live preview and refined typography, while A looks like a first-draft shell with a flashy header masking broken functionality.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 3000,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 190,
+    "service_tier": "standard"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "model": "laguna-xs.2",
+  "benchmark": "snake-pygame",
+  "pass": true,
+  "lines": 137,
+  "syntax_ok": true
+}

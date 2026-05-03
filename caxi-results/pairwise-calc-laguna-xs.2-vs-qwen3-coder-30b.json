@@ -1,0 +1,24 @@
+{
+  "image_a": "calc-laguna-xs.2.png",
+  "image_b": "calc-qwen3-coder-30b.png",
+  "benchmark": "calc",
+  "winner": "A",
+  "delta": 2,
+  "score_a": 4,
+  "score_b": 2,
+  "reason_a": "Cohesive pill-shaped buttons with gradient fills, distinct color coding for number/operator/function groups, and a clear title create a polished product feel.",
+  "reason_b": "Flat grid of sharp rectangles with muted teal/maroon tones, an awkwardly placed orange '=' button, and dev-tool spacing feel like an unfinished first draft.",
+  "verdict": "A's gradient buttons, rounded corners, and intentional color hierarchy clearly outclass B's flat, uneven grid layout.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2858,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 207,
+    "service_tier": "standard"
+  }
+}

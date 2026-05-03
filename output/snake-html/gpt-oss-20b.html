@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>🌿 Snake Game — Beautiful</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: radial-gradient(circle at 20% 20%, #1e2a3b, #0a0e15);
+    color: #f0f0f0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  #gameContainer {
+    position: relative;
+    width: 90vmin;
+    height: 90vmin;
+    max-width: 600px;
+    max-height: 600px;
+  }
+  canvas {
+    background: #111;
+    border-radius: 8px;
+    border: 3px solid #2e3d4e;
+    display: block;
+  }
+  #ui {
+    position: absolute;
+    top: 10px; left: 10px;
+    font-size: 1.2rem;
+    text-shadow: 0 0 4px #000;
+  }
+  #score, #highScore {
+    display: inline-block;
+    margin-right: 1rem;
+  }
+  #overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  #overlay.show {
+    visibility: visible;
+    opacity: 1;
+  }
+  button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background: #28a745;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: background 0.2s;
+  }
+  button:hover { background: #218838; }
+</style>
+</head>
+<body>
+<div id="gameContainer">
+  <canvas id="gameCanvas"></canvas>
+  <div id="ui">
+    <span id="score">Score: 0</span>
+    <span id="highScore">High: 0</span>
+  </div>
+  <div id="overlay">
+    <div id="overlayText"></div>
+    <button id="restartBtn">Restart</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const canvas = document.getElementById('gameCanvas');
+  const ctx = canvas.getContext('2d');
+  const scoreEl = document.getElementById('score');
+  const highScoreEl = document.getElementById('highScore');
+  const overlay = document.getElementById('overlay');
+  const overlayText = document.getElementById('overlayText');
+  const restartBtn = document.getElementById('restartBtn');
+
+  const GRID_SIZE = 20; // 20x20 grid
+  const CELL_SIZE = 30; // size of each cell in px
+  const SPEED = 100; // ms per move
+
+  let snake, food, direction, nextDirection, interval, score, highScore;
+
+  function init() {
+    canvas.width = canvas.height = GRID_SIZE * CELL_SIZE;
+    snake = [{x: Math.floor(GRID_SIZE/2), y: Math.floor(GRID_SIZE/2)}];
+    direction = 'right';
+    nextDirection = 'right';
+    placeFood();
+    score = 0;
+    updateScore();
+    interval = setInterval(gameLoop, SPEED);
+    hideOverlay();
+  }
+
+  function hideOverlay() { overlay.classList.remove('show'); }
+  function showOverlay(msg) {
+    overlayText.textContent = msg;
+    overlay.classList.add('show');
+  }
+
+  function updateScore() {
+    scoreEl.textContent = `Score: ${score}`;
+    highScoreEl.textContent = `High: ${highScore}`;
+  }
+
+  function placeFood() {
+    let empty = [];
+    for (let x=0; x<GRID_SIZE; x++) {
+      for (let y=0; y<GRID_SIZE; y++) {
+        if (!snake.some(seg => seg.x===x && seg.y===y))
+          empty.push({x, y});
+      }
+    }
+    food = empty[Math.floor(Math.random()*empty.length)];
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Draw food
+    ctx.fillStyle = '#e74c3c';
+    ctx.fillRect(food.x*CELL_SIZE, food.y*CELL_SIZE, CELL_SIZE, CELL_SIZE);
+    // Draw snake
+    ctx.fillStyle = '#2ecc71';
+    snake.forEach((seg, idx) => {
+      ctx.fillRect(seg.x*CELL_SIZE, seg.y*CELL_SIZE, CELL_SIZE, CELL_SIZE);
+      // head glow
+      if (idx === 0) {
+        ctx.shadowColor = '#2ecc71';
+        ctx.shadowBlur = 20;
+        ctx.fillStyle = '#27ae60';
+        ctx.fillRect(seg.x*CELL_SIZE, seg.y*CELL_SIZE, CELL_SIZE, CELL_SIZE);
+        ctx.shadowBlur = 0;
+        ctx.fillStyle = '#2ecc71';
+      }
+    });
+  }
+
+  function gameLoop() {
+    // Update direction
+    direction = nextDirection;
+    const head = snake[0];
+    let newHead = {x: head.x, y: head.y};
+
+    switch(direction) {
+      case 'up': newHead.y--; break;
+      case 'down': newHead.y++; break;
+      case 'left': newHead.x--; break;
+      case 'right': newHead.x++; break;
+    }
+
+    // Collision with walls
+    if (newHead.x < 0 || newHead.x >= GRID_SIZE ||
+        newHead.y < 0 || newHead.y >= GRID_SIZE) {
+      endGame('You hit the wall!');
+      return;
+    }
+
+    // Collision with self
+    if (snake.some(seg => seg.x===newHead.x && seg.y===newHead.y)) {
+      endGame('You ran into yourself!');
+      return;
+    }
+
+    // Move snake
+    snake.unshift(newHead);
+
+    // Eat food
+    if (newHead.x===food.x && newHead.y===food.y) {
+      score++;
+      updateScore();
+      if (score > highScore) {
+        highScore = score;
+        localStorage.setItem('snakeHighScore', highScore);
+        highScoreEl.textContent = `High: ${highScore}`;
+      }
+      placeFood();
+    } else {
+      snake.pop(); // remove tail
+    }
+
+    draw();
+  }
+
+  function endGame(msg) {
+    clearInterval(interval);
+    showOverlay(msg + `<br>Score: ${score}`);
+  }
+
+  // Keyboard controls
+  document.addEventListener('keydown', e => {
+    const key = e.key;
+    if (key === 'ArrowUp' && direction !== 'down') nextDirection = 'up';
+    if (key === 'ArrowDown' && direction !== 'up') nextDirection = 'down';
+    if (key === 'ArrowLeft' && direction !== 'right') nextDirection = 'left';
+    if (key === 'ArrowRight' && direction !== 'left') nextDirection = 'right';
+  });
+
+  restartBtn.addEventListener('click', () => {
+    init();
+  });
+
+  // Load high score
+  highScore = Number(localStorage.getItem('snakeHighScore')) || 0;
+  highScoreEl.textContent = `High: ${highScore}`;
+
+  init();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "model": "gpt-oss:20b",
+  "benchmark": "oi",
+  "pass": true,
+  "word_count": 6
+}

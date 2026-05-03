@@ -1,0 +1,24 @@
+{
+  "image_a": "tetris-gemma4-26b-mlx-bf16.png",
+  "image_b": "tetris-qwen3.5-35b-a3b-coding-nvfp4.png",
+  "benchmark": "tetris",
+  "winner": "A",
+  "delta": 2,
+  "score_a": 4,
+  "score_b": 2,
+  "reason_a": "Image A has a cohesive neon cyan aesthetic with distinct Next/Score/Level panels, grid texture, glow effects, and a clear ghost preview at the bottom.",
+  "reason_b": "Image B feels sparse and unfinished with an empty playfield, only a score panel, and a lone piece floating mid-board with no grid or structural hierarchy.",
+  "verdict": "A delivers a more complete, polished arcade-style product with proper info hierarchy and atmospheric glow, while B reads as a first-draft shell with minimal UI.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2880,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 238,
+    "service_tier": "standard"
+  }
+}

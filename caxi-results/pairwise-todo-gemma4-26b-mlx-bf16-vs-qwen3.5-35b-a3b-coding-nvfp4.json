@@ -1,0 +1,24 @@
+{
+  "image_a": "todo-gemma4-26b-mlx-bf16.png",
+  "image_b": "todo-qwen3.5-35b-a3b-coding-nvfp4.png",
+  "benchmark": "todo",
+  "winner": "A",
+  "delta": 2,
+  "score_a": 4,
+  "score_b": 2,
+  "reason_a": "Clean, cohesive layout with clear typography hierarchy, proper task list rendering, and a polished indigo accent palette.",
+  "reason_b": "Gradient header is visually appealing but the task items are nearly invisible and the layout feels broken and unfinished.",
+  "verdict": "A presents a complete, product-ready todo interface while B has rendering issues that make it feel like a broken first draft.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2876,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 186,
+    "service_tier": "standard"
+  }
+}

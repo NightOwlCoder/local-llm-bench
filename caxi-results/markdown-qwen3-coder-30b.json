@@ -1,0 +1,22 @@
+{
+  "benchmark": "markdown",
+  "url": "file://<artifact>",
+  "tiers": {
+    "loads_clean": true,
+    "dual_pane": false,
+    "renders_h1": false,
+    "renders_bold": false,
+    "renders_italic": false,
+    "renders_link": false,
+    "renders_code": false,
+    "live_updates": false
+  },
+  "score": 1,
+  "samples": {
+    "preview_len": 8476
+  },
+  "errors": [],
+  "notes": [],
+  "pass": false,
+  "model": "qwen3-coder:30b"
+}

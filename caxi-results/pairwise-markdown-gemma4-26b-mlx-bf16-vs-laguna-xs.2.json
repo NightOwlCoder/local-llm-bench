@@ -1,0 +1,24 @@
+{
+  "image_a": "markdown-gemma4-26b-mlx-bf16.png",
+  "image_b": "markdown-laguna-xs.2.png",
+  "benchmark": "markdown",
+  "winner": "B",
+  "delta": 2,
+  "score_a": 2,
+  "score_b": 4,
+  "reason_a": "Image A only shows a raw markdown input panel with no rendered preview, feeling incomplete and dev-tool-like despite decent container styling.",
+  "reason_b": "Image B delivers a proper split-pane editor/preview with clear labels, rendered typography hierarchy, styled code block, and a cohesive product feel.",
+  "verdict": "B wins because it demonstrates the actual markdown rendering with polished typography and a professional split-view layout, while A is essentially just an input box.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2866,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 214,
+    "service_tier": "standard"
+  }
+}

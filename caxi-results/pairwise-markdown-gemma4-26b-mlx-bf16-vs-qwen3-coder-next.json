@@ -1,0 +1,24 @@
+{
+  "image_a": "markdown-gemma4-26b-mlx-bf16.png",
+  "image_b": "markdown-qwen3-coder-next.png",
+  "benchmark": "markdown",
+  "winner": "A",
+  "delta": 1,
+  "score_a": 3,
+  "score_b": 3,
+  "reason_a": "A shows clearer hierarchy with a distinct header bar, labeled panels, card-style preview with shadow, and italic/link rendering, though ordered-list rendering is incorrect and the two-tone split feels slightly mismatched.",
+  "reason_b": "B has a cohesive dark palette, refined minimal layout, and good typographic restraint, but feels flatter and more bare-bones with less depth, accent use, or product identity.",
+  "verdict": "A edges out with more visual layering, labeled sections, and card depth that give it a more product-like feel, while B is cleaner but closer to a dev-tool first draft.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2867,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 258,
+    "service_tier": "standard"
+  }
+}

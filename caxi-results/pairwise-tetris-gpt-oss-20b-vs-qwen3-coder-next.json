@@ -1,0 +1,24 @@
+{
+  "image_a": "tetris-gpt-oss-20b.png",
+  "image_b": "tetris-qwen3-coder-next.png",
+  "benchmark": "tetris",
+  "winner": "A",
+  "delta": 2,
+  "score_a": 4,
+  "score_b": 2,
+  "reason_a": "Neon pink tetromino with glow, clear typographic hierarchy, and well-organized side panels for Score/Next/Controls give it a polished product feel.",
+  "reason_b": "Sparse layout with plain cyan blocks, unbalanced panel sizing, and missing controls/level info feels like a bare first draft.",
+  "verdict": "A delivers stronger typography, depth via neon glow, and a cohesive multi-panel layout, while B looks visually thin and underdeveloped.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2861,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 217,
+    "service_tier": "standard"
+  }
+}

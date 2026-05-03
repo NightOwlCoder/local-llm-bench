@@ -1,0 +1,24 @@
+{
+  "image_a": "markdown-laguna-xs.2.png",
+  "image_b": "markdown-qwen3-coder-30b.png",
+  "benchmark": "markdown",
+  "winner": "A",
+  "delta": 2,
+  "score_a": 3.5,
+  "score_b": 2,
+  "reason_a": "Cohesive dark navy palette with monospace editor, subtle gradient backdrop, and tidy rounded container feels like a focused modern tool.",
+  "reason_b": "Harsh red-to-blue gradient clashes, cramped narrow editor column leaves huge empty white space, and the layout feels broken and unfinished.",
+  "verdict": "A delivers a disciplined, cohesive dark-mode product feel while B suffers from clashing colors and a visibly broken layout.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2999,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 195,
+    "service_tier": "standard"
+  }
+}

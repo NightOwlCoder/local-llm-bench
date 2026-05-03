@@ -1,0 +1,23 @@
+{
+  "model": "qwen3.5-35b-a3b-coding-nvfp4",
+  "benchmark": "oi-quality",
+  "tokens_used": 999,
+  "language": 10,
+  "conciseness": 10,
+  "tone": 10,
+  "cleanliness": 10,
+  "total": 40,
+  "notes": "Perfect friendly Portuguese greeting with a natural follow-up question. However, the 999 token generation count is suspicious given the short visible output \u2014 possible hidden content, but the displayed response itself is ideal.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 505,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 129,
+    "service_tier": "standard"
+  }
+}

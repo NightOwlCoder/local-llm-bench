@@ -1,0 +1,24 @@
+{
+  "image_a": "todo-gemma4-26b-mlx-bf16.png",
+  "image_b": "todo-qwen3-coder-30b.png",
+  "benchmark": "todo",
+  "winner": "A",
+  "delta": 1,
+  "score_a": 3,
+  "score_b": 2,
+  "reason_a": "Clean, functional card with visible task items, clear typography hierarchy, and a cohesive purple accent palette.",
+  "reason_b": "Bolder gradient header and pill-shaped controls look nice, but task list is nearly invisible (white-on-white) making it feel broken.",
+  "verdict": "A wins because it presents a complete, legible UI while B's tasks disappear into the background despite its more ambitious header styling.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2864,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 193,
+    "service_tier": "standard"
+  }
+}

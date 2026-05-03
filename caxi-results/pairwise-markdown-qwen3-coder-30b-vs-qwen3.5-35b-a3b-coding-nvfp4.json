@@ -1,0 +1,24 @@
+{
+  "image_a": "markdown-qwen3-coder-30b.png",
+  "image_b": "markdown-qwen3.5-35b-a3b-coding-nvfp4.png",
+  "benchmark": "markdown",
+  "winner": "A",
+  "delta": 2,
+  "score_a": 3.5,
+  "score_b": 2,
+  "reason_a": "Dark, cohesive IDE-like split view with tabbed headers, live preview rendering, syntax-highlighted code block, and tidy typography hierarchy.",
+  "reason_b": "Bold gradient header looks decorative but the editor is broken with a narrow cramped column, no preview pane rendered, and awkward wrapping.",
+  "verdict": "A delivers a functional, polished product-like markdown editor with working preview and code highlighting, while B feels like a half-built draft with layout issues despite its flashy header.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 3013,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 228,
+    "service_tier": "standard"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "image_a": "tetris-laguna-xs.2.png",
+  "image_b": "tetris-qwen3-coder-next.png",
+  "benchmark": "tetris",
+  "winner": "B",
+  "delta": 2,
+  "score_a": 2,
+  "score_b": 4,
+  "reason_a": "Feels generic with a plain empty playfield, flat panels, and emoji-heavy header giving it a first-draft, dev-tool vibe.",
+  "reason_b": "Strong neon cyan/magenta palette with glowing pieces, refined typography hierarchy, and a cohesive grid-based arcade aesthetic that feels like a polished product.",
+  "verdict": "B delivers a cohesive neon arcade aesthetic with superior typography, glow effects, and layout discipline, while A looks like an unfinished prototype.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 3458,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 209,
+    "service_tier": "standard"
+  }
+}

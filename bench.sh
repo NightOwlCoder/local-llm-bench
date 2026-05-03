@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/opt/homebrew/bin/bash
 # local-llm-bench — extensible benchmark framework for local coder LLMs.
 #
 # Reads bench.config.yaml, runs each benchmark prompt against each model via
@@ -70,8 +70,8 @@ ns_to_s() {
 
 api_generate() {
   local model="$1" prompt="$2" out="$3"
-  jq -n --arg m "$model" --arg p "$prompt" --arg k "$KEEP_ALIVE" \
-    '{model:$m, prompt:$p, stream:false, keep_alive:$k}' \
+  jq -n --arg m "$model" --arg p "$prompt" --arg k "$KEEP_ALIVE" --argjson np 16000 \
+    '{model:$m, prompt:$p, stream:false, keep_alive:$k, options:{num_predict:$np}}' \
     | curl -sS --max-time "$TIMEOUT_SECS" \
            -X POST "$OLLAMA_URL/api/generate" \
            -H 'Content-Type: application/json' \
@@ -136,11 +136,6 @@ for MODEL in "${MODELS[@]}"; do
     continue
   fi
 
-  # Cold start — stop all models once per model so first benchmark is cold
-  stop_all_models
-  sleep 2
-  FIRST_BENCH=true
-
   for BENCH in "${BENCHMARKS[@]}"; do
     EXT=$(ext_for_benchmark "$BENCH")
     LANG=$(lang_for_ext "$EXT")
@@ -163,6 +158,10 @@ for MODEL in "${MODELS[@]}"; do
 
     PROMPT=$(cat "$PROMPT_FILE")
     log "  [$BENCH] prompt: $(echo "$PROMPT" | head -c 60)..."
+
+    # Cold load per benchmark — honest load_duration for every (model, benchmark) pair
+    stop_all_models
+    sleep 2
 
     if ! api_generate "$MODEL" "$PROMPT" "$RAW_FILE"; then
       log "  [$BENCH] FAILED API call"
@@ -205,8 +204,6 @@ for MODEL in "${MODELS[@]}"; do
         log "  [$BENCH] VALIDATOR: fail"
       fi
     fi
-
-    FIRST_BENCH=false
   done
 
   {

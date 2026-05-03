@@ -1,0 +1,24 @@
+{
+  "image_a": "snake-html-qwen3-coder-next.png",
+  "image_b": "snake-html-qwen3.5-35b-a3b-coding-nvfp4.png",
+  "benchmark": "snake-html",
+  "winner": "A",
+  "delta": 1,
+  "score_a": 4,
+  "score_b": 3,
+  "reason_a": "Clean modern card-based layout with cohesive teal/indigo palette, refined rounded corners, subtle grid background, and clear typographic hierarchy feels like a polished product.",
+  "reason_b": "Bold neon arcade aesthetic with strong thematic identity and glow effects, but typography feels dated and the flat black background with basic grid gives a retro/demo vibe rather than modern polish.",
+  "verdict": "A edges out with contemporary product-style design language and spacing discipline, while B leans into a stylized retro theme that reads less as a 2026 web app.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2878,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 222,
+    "service_tier": "standard"
+  }
+}

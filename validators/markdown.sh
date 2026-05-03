@@ -1,0 +1,28 @@
+#!/opt/homebrew/bin/bash
+# Validate markdown via Playwright (drivers/markdown.mjs).
+set -uo pipefail
+ARTIFACT="$1"
+MODEL="$2"
+RESULTS="$3"
+SAFE=$(echo "$MODEL" | tr ':/' '--')
+DRIVER="$(dirname "$(dirname "$(realpath "$0")")")/drivers/markdown.mjs"
+
+if [ ! -s "$ARTIFACT" ]; then
+  jq -n --arg m "$MODEL" '{model:$m, benchmark:"markdown", pass:false, reason:"empty"}' \
+    > "$RESULTS/markdown-$SAFE.json"
+  exit 1
+fi
+
+source "$HOME/.nvm/nvm.sh" >/dev/null 2>&1 || true
+OUTPUT=$(gtimeout 90 node "$DRIVER" "$ARTIFACT" "$RESULTS" "$SAFE" 2>/dev/null)
+if [ -z "$OUTPUT" ]; then
+  jq -n --arg m "$MODEL" '{model:$m, benchmark:"markdown", pass:false, reason:"driver failed"}' \
+    > "$RESULTS/markdown-$SAFE.json"
+  exit 1
+fi
+
+echo "$OUTPUT" | jq --arg m "$MODEL" '. + {model:$m}' > "$RESULTS/markdown-$SAFE.json"
+SCORE=$(jq -r '.score' "$RESULTS/markdown-$SAFE.json")
+PASS=$(jq -r '.pass' "$RESULTS/markdown-$SAFE.json")
+echo "score=$SCORE/8 pass=$PASS"
+[ "$PASS" = "true" ]

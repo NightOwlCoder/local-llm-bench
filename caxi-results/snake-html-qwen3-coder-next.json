@@ -1,0 +1,24 @@
+{
+  "benchmark": "snake-html",
+  "url": "file://<artifact>",
+  "tiers": {
+    "loads_clean": true,
+    "has_canvas": true,
+    "game_starts": true,
+    "loop_alive": true,
+    "input_responds": false,
+    "has_score": true
+  },
+  "score": 5,
+  "hashes": {
+    "before_start": "278460554528",
+    "after_start": "3aa61c65c8f7",
+    "after_2s": "aa4b5aed7a5f",
+    "after_input": "aa4b5aed7a5f"
+  },
+  "start_method": "button-click",
+  "errors": [],
+  "notes": [],
+  "pass": false,
+  "model": "qwen3-coder-next"
+}

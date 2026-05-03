@@ -1,0 +1,24 @@
+{
+  "image_a": "calc-laguna-xs.2.png",
+  "image_b": "calc-qwen3.5-35b-a3b-coding-nvfp4.png",
+  "benchmark": "calc",
+  "winner": "A",
+  "delta": 2,
+  "score_a": 4,
+  "score_b": 2,
+  "reason_a": "Image A shows a refined dark-mode calculator with cohesive purple accents, disciplined spacing, subtle shadows, and a modern pill-button aesthetic.",
+  "reason_b": "Image B has clashing red/orange/green/blue gradients on a muddy red background, giving it a garish, unpolished toy-like appearance.",
+  "verdict": "A wins with a cohesive, restrained modern product feel while B's chaotic color palette and mismatched gradients feel like an unrefined first draft.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2870,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 201,
+    "service_tier": "standard"
+  }
+}

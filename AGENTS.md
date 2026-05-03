@@ -53,13 +53,14 @@ If you're tempted to add `yq`: don't. Stay with `jq`.
 
 ### Why bash, not Python
 
-The whole runner is bash. Reasoning:
+The orchestration layer is bash. Reasoning:
 - No venv, no pip, no pyproject.toml — just `brew install jq ollama` and go
 - `curl | jq` is the dominant pattern; bash is the natural fit
-- Validators are also bash — one language to maintain
+- Validators are thin bash wrappers around purpose-built drivers
 - Python shows up ONLY where necessary: syntax-checking pygame artifacts (`python3 -c "import ast; ast.parse(...)"`)
+- Web behavior is validated with Playwright drivers in `drivers/*.mjs`
 
-If you want Python for something: first ask whether `jq`, `awk`, or `sed` can do it. Usually yes.
+If you want Python for something: first ask whether `jq`, `awk`, `sed`, or Playwright can do it. Usually yes.
 
 ### Why short prompts
 

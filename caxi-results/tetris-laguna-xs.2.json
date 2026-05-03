@@ -1,0 +1,31 @@
+{
+  "benchmark": "tetris",
+  "url": "file://<artifact>",
+  "tiers": {
+    "loads_clean": true,
+    "has_canvas": true,
+    "game_starts": false,
+    "gravity_alive": false,
+    "left_moves": false,
+    "right_moves": false,
+    "rotate_works": false,
+    "has_score": true
+  },
+  "score": 3,
+  "hashes": {
+    "before_start": "37eb46525d6d",
+    "after_start": "89b959e2931d",
+    "after_3s": "89b959e2931d",
+    "after_restart_3s": "89b959e2931d",
+    "after_left": "89b959e2931d",
+    "after_right": "89b959e2931d",
+    "after_rotate": "89b959e2931d"
+  },
+  "start_method": "button-click",
+  "errors": [],
+  "notes": [
+    "game over detected: \"GAME OVER\""
+  ],
+  "pass": false,
+  "model": "laguna-xs.2"
+}

@@ -1,0 +1,24 @@
+{
+  "image_a": "snake-html-gemma4-26b-mlx-bf16.png",
+  "image_b": "snake-html-qwen3.5-35b-a3b-coding-nvfp4.png",
+  "benchmark": "snake-html",
+  "winner": "A",
+  "delta": 1,
+  "score_a": 4,
+  "score_b": 3,
+  "reason_a": "Strong neon cyberpunk aesthetic with cohesive cyan/magenta glow, bold typography hierarchy, and polished modal with refined glowing borders.",
+  "reason_b": "Clean layout with decent score card styling but feels more generic/utilitarian with mismatched accent colors (teal, indigo, green, red) lacking cohesion.",
+  "verdict": "A commits to a distinct neon theme with stronger glow effects and tighter visual identity, while B feels like a competent but less striking first draft.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2884,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 205,
+    "service_tier": "standard"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "image_a": "tetris-qwen3-coder-next.png",
+  "image_b": "tetris-qwen3.5-35b-a3b-coding-nvfp4.png",
+  "benchmark": "tetris",
+  "winner": "B",
+  "delta": 2,
+  "score_a": 2,
+  "score_b": 4,
+  "reason_a": "Image A feels sparse with a tiny playfield, minimal info panels, and a generic icon-like piece that doesn't read as a real Tetris tetromino.",
+  "reason_b": "Image B has a full playfield with grid lines, neon glow pieces, a next-piece preview, clear score/level hierarchy, and a properly structured controls panel.",
+  "verdict": "B delivers a richer, more product-like Tetris UI with proper game elements, stronger typography hierarchy, and cohesive neon aesthetic, while A looks like an unfinished prototype.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2874,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 220,
+    "service_tier": "standard"
+  }
+}

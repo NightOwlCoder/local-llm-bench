@@ -1,0 +1,24 @@
+{
+  "image_a": "calc-gemma4-26b-mlx-bf16.png",
+  "image_b": "calc-qwen3-coder-next.png",
+  "benchmark": "calc",
+  "winner": "A",
+  "delta": 2,
+  "score_a": 4,
+  "score_b": 3,
+  "reason_a": "Image A has a cohesive dark palette with pastel-colored button groupings, a clear calculation history panel with green result accents, and well-balanced layout proportions.",
+  "reason_b": "Image B is cleaner but feels sparse and generic, with monotone buttons that lack visual grouping or hierarchy beyond minor accent colors.",
+  "verdict": "A wins because it pairs a polished two-panel product layout with intentional color coding and richer visual hierarchy, while B reads as a minimal single-component demo.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2956,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 225,
+    "service_tier": "standard"
+  }
+}

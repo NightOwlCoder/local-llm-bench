@@ -1,0 +1,24 @@
+{
+  "image_a": "snake-html-laguna-xs.2.png",
+  "image_b": "snake-html-qwen3.5-35b-a3b-coding-nvfp4.png",
+  "benchmark": "snake-html",
+  "winner": "B",
+  "delta": 1,
+  "score_a": 3,
+  "score_b": 4,
+  "reason_a": "A has a striking neon red 'Game Over' with glow effects but the dim card and muted score badges feel underdeveloped and low-contrast.",
+  "reason_b": "B shows a cohesive dark-blue palette with grid texture, clear score cards, gradient border, and a polished modal with refined typography hierarchy.",
+  "verdict": "B feels more like a finished product with intentional layout, grid depth, and component structure, while A relies heavily on a single neon effect over a sparse layout.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2877,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 216,
+    "service_tier": "standard"
+  }
+}

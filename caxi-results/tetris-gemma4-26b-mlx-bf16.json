@@ -1,0 +1,30 @@
+{
+  "benchmark": "tetris",
+  "url": "file://<artifact>",
+  "tiers": {
+    "loads_clean": false,
+    "has_canvas": true,
+    "game_starts": true,
+    "gravity_alive": true,
+    "left_moves": true,
+    "right_moves": true,
+    "rotate_works": true,
+    "has_score": true
+  },
+  "score": 7,
+  "hashes": {
+    "before_start": "5cc2ec7cfd40",
+    "after_start": "50017df18c75",
+    "after_3s": "3de0a2a6c05c",
+    "after_left": "92a166c71c86",
+    "after_right": "23b8202773bc",
+    "after_rotate": "0aa061b80d58"
+  },
+  "start_method": "button-click",
+  "errors": [
+    "Cannot read properties of null (reading 'length')"
+  ],
+  "notes": [],
+  "pass": true,
+  "model": "gemma4:26b-mlx-bf16"
+}

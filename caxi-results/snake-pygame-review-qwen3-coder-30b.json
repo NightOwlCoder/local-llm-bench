@@ -1,0 +1,24 @@
+{
+  "model": "qwen3-coder-30b",
+  "benchmark": "snake-pygame-review",
+  "artifact": "output/snake-pygame/qwen3-coder-30b.py",
+  "correctness": 9,
+  "style": 8,
+  "architecture": 8,
+  "robustness": 6,
+  "ux": 8,
+  "total": 39,
+  "notes": "Clean OOP structure with Snake/Food/Game classes and solid direction-reversal prevention. Notable weaknesses: food randomize-on-snake check only loops once (could still spawn on snake), unused imports (math, sys partially), and no handling of key presses during the same tick that could still cause 180\u00b0 turns if two keys pressed between updates. UX is good with eyes, grid, score, and restart, though fixed FPS=10 never increases difficulty.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 3182,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 217,
+    "service_tier": "standard"
+  }
+}

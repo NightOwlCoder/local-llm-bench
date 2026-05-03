@@ -1,0 +1,28 @@
+{
+  "benchmark": "tetris",
+  "url": "file://<artifact>",
+  "tiers": {
+    "loads_clean": true,
+    "has_canvas": true,
+    "game_starts": true,
+    "gravity_alive": true,
+    "left_moves": true,
+    "right_moves": true,
+    "rotate_works": true,
+    "has_score": true
+  },
+  "score": 8,
+  "hashes": {
+    "before_start": "ae42194fc099",
+    "after_start": "46112a1873de",
+    "after_3s": "041f844445e5",
+    "after_left": "c7a4bd6d3dcf",
+    "after_right": "cc044db2b142",
+    "after_rotate": "97392fc23a0d"
+  },
+  "start_method": "button-click",
+  "errors": [],
+  "notes": [],
+  "pass": true,
+  "model": "qwen3-coder:30b"
+}

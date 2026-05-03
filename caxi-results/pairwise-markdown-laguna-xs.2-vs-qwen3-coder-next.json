@@ -1,0 +1,24 @@
+{
+  "image_a": "markdown-laguna-xs.2.png",
+  "image_b": "markdown-qwen3-coder-next.png",
+  "benchmark": "markdown",
+  "winner": "A",
+  "delta": 2,
+  "score_a": 4,
+  "score_b": 2.5,
+  "reason_a": "Polished split-pane editor with live HTML preview, clear typographic hierarchy, labeled panels, and rendered markdown styling including code blocks and links.",
+  "reason_b": "Clean dark editor panel with a subtle gradient but lacks any preview, syntax highlighting, or hierarchy beyond a plain header.",
+  "verdict": "A delivers a complete, product-like markdown studio with live preview and richer visual craft, while B feels like a single-panel first draft.",
+  "_model": "global.anthropic.claude-opus-4-7",
+  "_usage": {
+    "input_tokens": 2860,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 194,
+    "service_tier": "standard"
+  }
+}
